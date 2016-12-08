@@ -21,8 +21,10 @@ import java.util.Objects;
 import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
+import tech.sirwellington.alchemy.arguments.AlchemyAssertion;
 
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
 import static tech.sirwellington.alchemy.arguments.assertions.GeolocationAssertions.validLatitude;
 import static tech.sirwellington.alchemy.arguments.assertions.GeolocationAssertions.validLongitude;
 
@@ -62,7 +64,24 @@ public class Location
     {
         return new Location(latitude, longitude);
     }
+    
+    public static AlchemyAssertion<Location> validLocation()
+    {
+        return l ->
+        {
+            checkThat(l)
+                .usingMessage("Location is null")
+                .is(notNull());
+            
+            checkThat(l.latitude).is(validLatitude());
+            checkThat(l.longitude).is(validLongitude());
+        };
+    }
 
+    /**
+     * Returns whether the 
+     * @return 
+     */
     public boolean isSet()
     {
         return latitude != null && longitude != null;

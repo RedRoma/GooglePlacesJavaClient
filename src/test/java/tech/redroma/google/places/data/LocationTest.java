@@ -19,6 +19,7 @@ package tech.redroma.google.places.data;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tech.sirwellington.alchemy.arguments.AlchemyAssertion;
 import tech.sirwellington.alchemy.generator.AlchemyGenerator;
 import tech.sirwellington.alchemy.test.junit.runners.AlchemyTestRunner;
 import tech.sirwellington.alchemy.test.junit.runners.DontRepeat;
@@ -152,6 +153,31 @@ public class LocationTest
     {
         String string = instance.toString();
         assertThat(string, not(isEmptyOrNullString()));
+    }
+
+    @Test
+    public void testValidLocation()
+    {
+        AlchemyAssertion<Location> assertion = Location.validLocation();
+        
+        assertion.check(first);
+        assertion.check(second);
+        assertion.check(instance);
+    }
+
+    @Test
+    public void testValidLocationWithInvalid()
+    {
+        AlchemyAssertion<Location> assertion = Location.validLocation();
+        
+        assertThrows(() -> assertion.check(null)).isInstanceOf(IllegalArgumentException.class);
+        
+        AlchemyGenerator<Double> badNumbers = doubles(200, 2_000);
+        instance.latitude = one(badNumbers);
+        instance.longitude = one(badNumbers);
+        
+        assertThrows(() -> assertion.check(instance))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
 }
