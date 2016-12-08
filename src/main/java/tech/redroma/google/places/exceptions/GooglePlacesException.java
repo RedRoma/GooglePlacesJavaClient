@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package tech;
+package tech.redroma.google.places.exceptions;
 
 /**
  * Parent exception to all Google Places API Exceptions.
