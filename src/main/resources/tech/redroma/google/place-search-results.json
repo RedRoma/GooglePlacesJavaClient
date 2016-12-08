@@ -1,0 +1,887 @@
+{
+    "html_attributions": [],
+    "next_page_token": "CpQCBQEAAKY8khQeEu4Zv0vz8797vT_UYpZKZ5hkQ7vOXRX_92VaAJ47OgJ5UHSH5CT_UcosK89fFwjBDxsK_8Yh4WWsFzz0c8iimQ60c-O9Y6Jbzel8HfVedLNQhO4CQfwlFxd2SKiQweJeysp9Kz6s3b34NOI7Lt9W2gRIo-IYDH0cKrfTWfe-aekW5cdrCCWX_K36IWCCXpwcQdNsAQV-gc1yFOcsrJHH969ih4e0yEo3ohEyA43dF-qFucrhGeVAYAT0GbKuQT-6gtctMBRraKZd02BMiF49vD8_wl6G6W0iGFzEfvTIrY0gWRLrG8NV40nWe7bk5CIfKKBNhXeaZaC7MCuBrIgyMklswsnNUIEuXsh5EhApDbjcxcQl-SuUNSYVu4TDGhQD8qow5qDQiLSKVBYZKe0oNIJtww",
+    "results": [
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.786597,
+                    "lng": -73.9522252
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.78666585000001,
+                        "lng": -73.9521725
+                    },
+                    "southwest": {
+                        "lat": 40.78657405,
+                        "lng": -73.95238329999998
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "13d569f01b2b0a19dd9459053a82ae5e7cb744ca",
+            "name": "Gourmet Garage",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 3264,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/116838844525874831562/photos\">Uri Shusterman</a>"
+                    ],
+                    "photo_reference": "CoQBcwAAAO22D6jGcMsh6PMVvRpO--e5MUYkIz5Ks2s4ByzTcrKVryUzOhqvyLoYrfE75kNhr0AtjFCgPLcZmEMhLYJkP-dY5_W_w-izqx3q7xvLVFr5-krcr0YV9cDY-CEp_MG9hfAJuLn11gm7yV0hnz27-D2UM99XCRnhBgUPSCl_N49xEhCMGvQmTXgd1wal17uza1NlGhQMORlFT-0Tk3wp7vhdXC2kDUDo4w",
+                    "width": 2448
+                }
+            ],
+            "place_id": "ChIJC20ZwKZYwokRiSR_SBV_IZI",
+            "rating": 3.4,
+            "reference": "CmRSAAAAlo8IaBWPYjwI2VDq_O_POW0UeNE758Ekgn8gJrXEbBq62w0AEA3FJKW-Uzr71IqT3BcCqJZuNB2Xt5TdAiV_6GtP4slEa_j7R4rKmjhc7WSfMenaUcvlIzbnrBm83R8eEhBmjXbYlWU3FJxdUqepDrHSGhS5MUjKKdHFDQ8YUJNE2R3r5yMceQ",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "1245 Park Avenue, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.8042726,
+                    "lng": -73.9662993
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.80437730000001,
+                        "lng": -73.96621655000001
+                    },
+                    "southwest": {
+                        "lat": 40.80423769999999,
+                        "lng": -73.96654755
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "a87d056c9af5689e077130a3ce82f532feecd7e7",
+            "name": "Westside Market NYC",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 2988,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/108235598400884797215/photos\">Frederik Storgaard Simonsen</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAAM4HIngwmnj8Mit5bLMZBrvq-ftiyBjimRZozKrGe_HZ36sGMonDDFaPUnRc1mBUoO90usuXDiWjemGsBvzvGZirHZg0DoSThTteaRmBez7EBRM7SnT6uQ6FlJjDZEtw25bqSlQXkBRh48jfnS39Uh78J9IdYf5xwfaEv1Nrxa1DEhBYQXTVHDnHEhzGe56UhDPxGhQlZmdOeqrDVREkSraZ8jMV4FpA4w",
+                    "width": 5312
+                }
+            ],
+            "place_id": "ChIJ80cfcTv2wokRx50S2iq9Hf4",
+            "rating": 4,
+            "reference": "CmRSAAAAK_9lzjR5H6cXMphS3Wuguk6-rhHJGiVCbdUxM4H-iiPRUz2dT8VPN5NxkJJwEDWGDEVjS-XptMCrxkOn60ImGyOuMwu6TS2qT7f_42xGNEcj6m7kKLFoqNK6wYKmiMtpEhBHq6A4tcq0F8YBPCQUSOJiGhSrKrkL4Prj8OJUcnlZyYp-GspcEw",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "2840 Broadway, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.7790727,
+                    "lng": -73.9480225
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.77913520000001,
+                        "lng": -73.94779555
+                    },
+                    "southwest": {
+                        "lat": 40.7788852,
+                        "lng": -73.94809815
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "b6be50cb98537fa8f42e08b10ce4bc81edf6ec52",
+            "name": "C-Town Supermarkets",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 5312,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/104753506302253950827/photos\">Johnny Yang</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAADyzc23wjYn3FJ6SdRgodWBKzres-3QyKw00AvS3HXYocChLMJyVcN2VISutkixZ-EDcBYEWajLCs7B1g-QAt-2Xat-vCG6kHmOw6l3YZvSId9cCNsobWDl7fddN6W4tYoH7BGG4I68JEn6ISp98UpIfh3DPmVaBmb7qyW9O9JokEhAJRMmd-6sKBnte3RpoWEqcGhQ6xRh0xVMnJbkIowZhNEX0N0Jb5Q",
+                    "width": 2988
+                }
+            ],
+            "place_id": "ChIJ6Qr7pbpYwokRqQzVVF7VNhk",
+            "price_level": 2,
+            "rating": 4.1,
+            "reference": "CmRRAAAAjWnwv8drze8kUzt1ltsqfMBGIMUIBYmjoXcQD0DejYn34WQIyacQCE6bAehi0MXY3EwYEP-X_YCThjcvIGcB6F3Rl0SR6tlkBn2ZzRX2bEXdWJExksJ-SeBX2yOWUTRLEhAAlHbFn2XYROSCh-7CioBiGhSCP5ESDnoEYOnLz242v3YuzEvFnQ",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "liquor_store",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "1721 1st Avenue, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.800843,
+                    "lng": -73.959594
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.801113,
+                        "lng": -73.95937500000001
+                    },
+                    "southwest": {
+                        "lat": 40.800753,
+                        "lng": -73.95966700000001
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "9009daaee8905c80ca2f945e8b3f0812200b23db",
+            "name": "Central Markets",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 2988,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/102153021655734362795/photos\">Joe Sioson</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAABgpqajM3H4Z85Hcx-cmeTUoj92EgUyqserJ2rfcRKtv7MqZnpbgzvkvpksaKKYrRoYriDuJdR-S0il2MoecVsWAwtYg-JNgrv4EEaJnlaipW-5k8tNE5WNY474__iVyTt_VvVKPGns1jeWWvuFPJM70E1FTy-y5sKWPyj-x1J4kEhCXzx3Zd9Z8wan_y__tdq6YGhRjVL9j3yscSHv5bw4_nOtP_aR4wg",
+                    "width": 5312
+                }
+            ],
+            "place_id": "ChIJYX8zqiL2wokRlvbqSyfohm0",
+            "rating": 3.2,
+            "reference": "CmRRAAAAeqJd1nMCGLhgwFNXjQN7ALH3OYVak2xVo-LgEyzes82fKauDk-eUPZxXvjuPWGkizD3cN2D5d4DH1QhwKAM0pdeJ-SL3wFG6m2N0w9Gd_VBCL77rMS4UEV2u2WtfuRBbEhBAPmlP2bsEQklC5VUZymTdGhSJInHfQ-czP55QL335IhAkz7MR6w",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "300 West 110th Street, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.8060655,
+                    "lng": -73.9417924
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.80627969999999,
+                        "lng": -73.9417087
+                    },
+                    "southwest": {
+                        "lat": 40.8059941,
+                        "lng": -73.94182029999999
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "7975a8f78786cd83c885055f1eca74def05af0c4",
+            "name": "Wild Olive Market",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 1152,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/108536158260724818023/photos\">Raul Salas</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAAMwmc420YvaYRpG6O3ZAsSo4lJvwNq-d2RPZe3NHL3sFjN1qLTo8qbA5vcyTY6LQcr9IcPMedAOSdRb8sHAj7e3otce-u9octxqeapwU8zaruxAQBhK7Feq6FBpP2SHqBb9Yw5JGVbYcrvcGUCHAAOJvcWphNkYoSXLhonD4wZgiEhBk5Axqt9KidGue0rToKG2PGhR-1fg1VjAmzYlxKjI5qR3uTm27Ow",
+                    "width": 2048
+                }
+            ],
+            "place_id": "ChIJ-dsafwv2wokRoAjEEmGw9uk",
+            "rating": 4.2,
+            "reference": "CmRSAAAApeFZ1RXRCg9WplW_UgECOW-r7ItFNK0VWj2tmSPmmhSgcK91eZl4Kql9sayFwp1jMDmxGdyDA7e7Q8lkvdUlFR_mb0P8vqTL4CzVWu1XYPKmA-8SqXzuzBobtceg_spdEhDGWLty-_FJOdVIgyM2uPs3GhQeH1agzbbYROhD6_FiHZ9fCZ7qpw",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "10 East 125th Street, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.8103323,
+                    "lng": -73.9432427
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.8106179,
+                        "lng": -73.94316955000001
+                    },
+                    "southwest": {
+                        "lat": 40.8102371,
+                        "lng": -73.94346215
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "22274908a81b104047d5806c711d9c10348d72d6",
+            "name": "Pioneer",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 3024,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/101704797561341941440/photos\">Barry Ford</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAAG3H9sf1_qekJAvZ1Z3hSWRMp5-V12ai67a8XmM2Y_cALOl98UM2w_2-YPgS_D4rYbT_WV2VABTHHE9hC06pr9fQWwYuI8nQUlbjpbEU-e2sj_Xj546rYs0oOLUD7c_VU5i1DNWQt4crgtXZ7i9K_2ANNV5wq4JHdnNbcefSCH_7EhBKz2ATkINFVnU7JWkZSrEKGhR62f9s4hAbnKmiWICYBF_v0rjs4A",
+                    "width": 4032
+                }
+            ],
+            "place_id": "ChIJWeXHbHP2wokRpjinxzc2SiI",
+            "rating": 3.5,
+            "reference": "CmRRAAAAqjoLGIz359AD6WsU3fkpiL3FudIZmkjnYHitz2eLLgnnRmWghfX0y_yJRhk6KHx1wwqHRZq9FL-nHj1Kfpvrpa0lymXiIqQGc5QxxBFq8Whj0Xg2WqkBiHAw7e_mj6ebEhC52rkftytLoEYwWkvbCWdpGhQxEBxl3st-DiE1si5_oKx6CtL2fQ",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "380 Lenox Avenue, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.7789827,
+                    "lng": -73.9020627
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.7793154,
+                        "lng": -73.90202074999999
+                    },
+                    "southwest": {
+                        "lat": 40.77798459999999,
+                        "lng": -73.90215455000002
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "ec61fd8196c6a51a87731542bfd689ea69249ded",
+            "name": "Best Market Astoria",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 1117,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/106381311563188211285/photos\">Best Market Astoria</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAACjS_Aeh5lhM54wWy17r3xMMHV9cwXMNJJtngJ4olcYR_DNl0b6bNDqAbwRYZnCOpa5jagyMNgv6_LP-urJzedCJyF0ipzz7hvDNaSSYHyEC3WmbQ5vo6EZR2v5LT4Hs9VUYQZ5XTyauaBZnMkJ19n518QQfen4FyxIP_XdhHABKEhCCXAwHLK7P5XQhZMRdi7E-GhQ7B0arFZeHtzzJVUzsPC19JcRt1g",
+                    "width": 1117
+                }
+            ],
+            "place_id": "ChIJL_ruVyFfwokRNr_1mQlvlLk",
+            "rating": 4.6,
+            "reference": "CmRSAAAAU7ZXqJpPQFvWfI_FbZ62JkoFhNSNFXFe_IpMTdp-5yn2ppCURRAV1_873VtqgVj_OCeGv5QHiVzPlv85wd8aeR36vW_-wMS6ZliDP0VjHIH81elKo5MwoQGxSCnx0OGSEhAxdXhuWcmyCBsl29Jwn6M8GhRHxEZmu7nrYK99MFv61NcfULlv6A",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "19-30 37th Street, Astoria"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.84598399999999,
+                    "lng": -73.938295
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.8460392,
+                        "lng": -73.93817999999999
+                    },
+                    "southwest": {
+                        "lat": 40.84596559999999,
+                        "lng": -73.93863999999999
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "8f509f14d0b99134787dae4b6e507f505ad2e8a9",
+            "name": "Bravo Supermarkets",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 406,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/112851188018526508652/photos\">Bravo Supermarkets</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAAIN2jHc8ypAHi2J2cwlAvlAE-BS09vEcpTP5_IG2jaGH7anN1Ai0OedZPxaYSlzSoDGnmXuUWOnGaYEmlGE-V2W3U2-lzrNcU9pzCjQe2NCeHeh-bn6YdP6JJvZMe_P3ofIO_03AO3-LX5NO7DM4wXz0TKKunC4wOVoGYO1P085REhBII1hxLr74E5LkvWlz6MB0GhSpbU5GvQHcg4Tuk1Xit0WoDkKWvQ",
+                    "width": 900
+                }
+            ],
+            "place_id": "ChIJX7Gco5_2wokRV_CopYx_ck4",
+            "rating": 3.8,
+            "reference": "CmRRAAAA_ao3NdETowuyJLMdzNXOTX1XrYQn3q6tgkOVhh7iiPwCGhU0yhBg4cpqUJv9FxMFn5WOhB2Yo81xv8yTvLLnIMj6phcn3GCV-ZN2QLTnIB23ob_E5aev5jufVK672LHgEhCqo-jeFKDQwelC1vrHWVT0GhTVRfLw8wPyASEEADmPZNWFTfna4Q",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "liquor_store",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "4138 Broadway, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.7993212,
+                    "lng": -73.9625507
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.79944555,
+                        "lng": -73.96245105
+                    },
+                    "southwest": {
+                        "lat": 40.79927975,
+                        "lng": -73.96284965000001
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "50badf3b2a7e4f3152aed7eae6ec8f4381f4e543",
+            "name": "Freshy's Deli & Grocery",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "place_id": "ChIJA8jRASP2wokRLmUEVQ46SeA",
+            "rating": 4.3,
+            "reference": "CmRSAAAAUvK1PEJKJyZMWqxgEKnQlGdup99jENx7mLjjDPuDckowgfTDxf1MI9iJm1stNXlUqB-W6cb1DLTpriRhKuazq1WJQm4zuUfRAN_UJitF7MzZnbd9Mn3eA1gtOTMCYkLQEhAuSJBlahUgGPTPCOyCYuuIGhQOTtOoXSjJGOajY7P84c5S_Un--w",
+            "scope": "GOOGLE",
+            "types": [
+                "liquor_store",
+                "grocery_or_supermarket",
+                "florist",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "941 Columbus Avenue, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.78973479999999,
+                    "lng": -73.94786839999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.78990190000001,
+                        "lng": -73.94777924999998
+                    },
+                    "southwest": {
+                        "lat": 40.78967909999999,
+                        "lng": -73.94813585
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "e2b7949f3f88f18702ac1e64191ee0d2ac3f37e7",
+            "name": "El Tepeyac Grocery",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 1200,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/100230107701796229313/photos\">El Tepeyac Grocery</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAAG32DnEi6sA9qwE1nPevcQe6WgDm4KZV5B2iZgiYtLEhY3_tDatzbr0Yw09AkRlQ8Nv6pdOd-v6inz3rjOTk9tNdXgocS-6GghzWkh3cG14lEtsSJWwrw9PkXO6B4qFtl8T0g83AVMBX2YQ2V7uG_98wfsbWpUG2d1D8ZOi4rMnnEhCGVoD65QSjXp7rVr8UdbI3GhQPr8wE__tyXwMnUQ1zb7HjZmF3Gg",
+                    "width": 1600
+                }
+            ],
+            "place_id": "ChIJ2WX0VB32wokRjYMN2qw0GoI",
+            "reference": "CmRSAAAAZTJOgyxMWxgHwRrph8d0jEuarw4OzRowsByd0erW5UPVwuiuYgphVL1LH-8cNYzzc5fxdIpGcahfKA5TRk8qVo8GKlaC28yr-gIFW07NEEIRaLWxVrlH5nkusUB-rPicEhANDj3F-f9vJCWFwpdWfkfmGhQxfCNsYY45Bf0LwJzUA3uZ6LRc1g",
+            "scope": "GOOGLE",
+            "types": [
+                "liquor_store",
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "1621 Lexington Avenue, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.7780058,
+                    "lng": -73.9527497
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.7783412,
+                        "lng": -73.95247909999999
+                    },
+                    "southwest": {
+                        "lat": 40.777894,
+                        "lng": -73.95283989999999
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "3c4db285aaec0682130bc730737af541b1b4f54f",
+            "name": "Fairway Market 86th Street",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 1944,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/111204336841864867577/photos\">Vladimir Chernov</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAABMpTKuvsyJNL6paEUfH5uipjKpmnzp4phVRPXp1V7EvFplaV8kMjqKsnxoc7rzH5Lk-1WuadzeAfjOIhPE_WOIhOmvxcJL1_AY3tljmd0Wu8AVEYu_kcwhjHa-E_ca8zl9lWlzTAMCo54jCzD8av2ziygQ15oeCAz7NFE9n_nrhEhCkKAhakOU-DemAPA5aBoPrGhRa6Xa7N_tQk-IZ-IedmlZDZJ18AQ",
+                    "width": 2592
+                }
+            ],
+            "place_id": "ChIJQ75KlYlYwokRN76w58GDi00",
+            "rating": 4.1,
+            "reference": "CmRRAAAAkSq0BU7wJ0GFiU8eNUiuT4nHETREm8pxUwoiWQ6rlLUQYVPK8tt4PliMTEnyYXVCCzyebyhDtpD0t8qM_AKUKREG1v7ll4VjDbVlLXAzjtKYaqAC--XkHhSGGIT3ONYuEhCKghb-Y0dWjX1_LKb1LTq6GhTAANKaiaVhIrs5s8LKs4Opts609A",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "240 East 86th Street, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.819684,
+                    "lng": -73.9594688
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.82002645,
+                        "lng": -73.95882335
+                    },
+                    "southwest": {
+                        "lat": 40.81956984999999,
+                        "lng": -73.95968395
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "5e5612b9393ee7de1b3b6180a8450a685b368f57",
+            "name": "Fairway Market Harlem",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 4032,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/108579076632069790865/photos\">Andrii Lukashchuk</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAANrAvBDoS1IiUpfFVmoNTqXXjb87kn_RIyyNUdH7Ww2HNZzodcGt35LztflyCmCCDD06VRP_YC_UvOsUD7VVJgBh7p4t_oVU1RVV0sZ16AjeSi_OxUO6fB4AnFL6jUXUR3sKPimnGVy8QKvKQuXi_MXSLzZMCuvpSFU4Ws1480h6EhAVQXdqZG_6hqP0aTyzOI-kGhSTPFdwQ_BQjOSH7ZPky87BU-XZrA",
+                    "width": 3024
+                }
+            ],
+            "place_id": "ChIJtRnkH2j2wokR3bnS8Xx_xTY",
+            "rating": 4.4,
+            "reference": "CmRRAAAA_5doQOostYyEV9FOnCjQd1bRkmQbgnzYCyppwuJtrifH8dkwqxXn-y-1YiEoBLhne2YPlaCuAzy11xvFjugQz73vJbAR0NgKFtk86h9NreJaallhL9UmwPV4jru9K-IKEhBJZmoDKLtAMMr2A3-rB9YvGhShZIjhuNhkNtA1MmOceugCM4ZJqA",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "2328 12th Avenue, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.7953113,
+                    "lng": -73.9309272
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.7958984,
+                        "lng": -73.93016440000001
+                    },
+                    "southwest": {
+                        "lat": 40.7951156,
+                        "lng": -73.93321559999998
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "f8586f5258e0795d222b6bff3b67e204817fe608",
+            "name": "ALDI New York",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 2322,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/104743455604521069834/photos\">mohammed sadakat</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAANQGP6wO6bjbPWrglKjwZ2Mpdat0h2EMhZMQ94xBXudOEFIwNabwSKVp7lKnzuEHc4OXK4AA1h1nS72LbKnadxgNfDf4s7FGidsRfw6IqZbkwZkyY4M-skvEIY8AL-Mm5tWWBxe-eKQQ-lLjJ4ocCcD1H3FmBfxmHMrqJPfN9BOSEhASFi-3XmyYQh4zxXnfi-eKGhSRyiCQ6rVIa4_KSOngXmV9IFKMGQ",
+                    "width": 4128
+                }
+            ],
+            "place_id": "ChIJL5fG5fz1wokRlAvvjIRpmCY",
+            "price_level": 1,
+            "rating": 4.4,
+            "reference": "CmRRAAAAziXdCPnmW1NTNAZmGXlhtg4xMo3gT65ec5p2p0MVuJqGnm1OHH5XkD_SVu5WvRagZ-Sp55Ib4GMogA2bJ3tmcAfgWGdKkfFNzmbTZKsscaZiud5izz4w-OU_2QbJgXBXEhAEsB1rjY_oNo2zAtrAbAWaGhTrCQbyDG32kzMFoUOp_22Ye4LOBw",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "517 East 117th Street, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.8283343,
+                    "lng": -73.8804444
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.8285695,
+                        "lng": -73.8803391
+                    },
+                    "southwest": {
+                        "lat": 40.8282559,
+                        "lng": -73.8804795
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "e4d5cd6b5cf290cd675c30bd1ea94f8f2fac4702",
+            "name": "A & B West Indian Grocery",
+            "place_id": "ChIJwRwAYfr0wokRnMCapzPZCQE",
+            "reference": "CmRRAAAAeS_IyXcbDh09vNBSzOVTMvQ4xbpZudbt6aMDNYvLHlZHYPwjzGKRP--3k1GEbB1ezaXl4KN05dvswrgm3l-yb79Xk5aaVK1EboHbgBUaW_-E6rzqb2-yD8aevg82lVmJEhBN6ciDIjr50xilktKPVRr6GhT1PzUs7Ncq69Hi8mX5R7EWdj9ZIA",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "1494 Westchester Avenue, Bronx"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.788852,
+                    "lng": -73.943365
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.7889978,
+                        "lng": -73.94322095000001
+                    },
+                    "southwest": {
+                        "lat": 40.7888034,
+                        "lng": -73.94379715
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "507d7039dfdc22591e7c00493421e9e5985d58c1",
+            "name": "Mexican Grocery",
+            "place_id": "ChIJOVin36lYwokRH6XVw0YljI0",
+            "reference": "CmRSAAAASfv1ooXiPfX5rSNSJtLQLdE02_ME4_oXU270dOK5O7ZZzAiv50ksGNvq7Fygr1AgViD8ytPTS_WIIxvZ-v0JcGGIRt7d8AQ7TrYozhiYd7LBPensvoHnh8u6TJ6qPHbnEhDH1wbci8PIWediOi9aK-Z8GhTYQWuhX8r4pNOB4Kym-ZtF-SqvhQ",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "2006 2nd Avenue, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.8124064,
+                    "lng": -73.9572102
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.8124417,
+                        "lng": -73.95695475
+                    },
+                    "southwest": {
+                        "lat": 40.81230049999999,
+                        "lng": -73.95729535
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "1b82366d315290b848bac2641c8d9ed8a56d8f0d",
+            "name": "Met Food",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 2988,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/101498665416961683499/photos\">Stephen Harris</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAAEkC8fo2ls8XjhaF1rX7mc0XAztX5_7Oqtn31Nj_dv0y8zjrjXqn2uK5PYcK71YnyqzNPGVQYQGhkjoixJP0OvxOdt8VaaAlvYkWGSXYB9zYb0Eubs-2Ne9reSThtW6dr_g8pej3vbPgPGXMk3_MKrD7kpStCBu4lRb_AEwA-W-mEhDXnJcqNVMiVxTqsN_sZS1LGhRv6RnVKZM6hzhVXNol_nzFxGH9tw",
+                    "width": 5312
+                }
+            ],
+            "place_id": "ChIJVWuk5Gr2wokRqvu2Zr5J_iY",
+            "rating": 3.3,
+            "reference": "CmRRAAAA2dbcd4h-NsNRjW_T6MhIa3YGVIZoZFKuSbGzEB87P89zgTXU4AKiEtxeh2kx7sGSdPxTi-JLbIe8PtvLI5LzEPP9-hpJheVAFNwpQZQw6obdM1offSKeDFx6Bm-RoC4FEhBR5WeP-HKdnSQMCRw9qkUQGhQtlR1Ee1RLStqDyjtwdR0UWCSSjw",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "1316 Amsterdam Avenue, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.8447985,
+                    "lng": -73.9101778
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.84488970000001,
+                        "lng": -73.90937305
+                    },
+                    "southwest": {
+                        "lat": 40.8447641,
+                        "lng": -73.91044605000002
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+            "id": "1a8ea00c1a8cf804cf4c965aa574e61b8f5f7756",
+            "name": "Aurora Fish",
+            "place_id": "ChIJO7nB9Wr0wokRf2hSCvYbcaQ",
+            "rating": 4,
+            "reference": "CmRSAAAAMklJ30I82y7uxgMZ1xF0P_658pVtdAb0fbDO4Qc4vgldnf_Ke0-z2lJ03JKkfUMNsK5g5CqM5P7W75QMuGTYGIbgdBD4ONwgp77TWjxY2oUeZ3nq6XoFCOVhRnPlmd88EhD3phGFccqHVptdK7JTIuF7GhTHQrZKlbvembRGd6_i3JKzK_i0iQ",
+            "scope": "GOOGLE",
+            "types": [
+                "restaurant",
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "128 East 174th Street, Bronx"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.7721125,
+                    "lng": -73.9531409
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.77215899999999,
+                        "lng": -73.95280625
+                    },
+                    "southwest": {
+                        "lat": 40.771973,
+                        "lng": -73.95325245000001
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "60a111e5a3233607d4d0801ddaec5e4119d9d78c",
+            "name": "Agata & Valentina",
+            "opening_hours": {
+                "open_now": false,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 5312,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/112500905580851103904/photos\">Yemi Adesoba</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAAKilRGUg3yeulmYdp5Tk1DqEI9Jem642ERHnCh4p2_VTa1We_e_95xqwheMeexbm5ESrKhPOJz1IXTcV8kI4k-tusZZf27Af7VadskS9nYwAF5Sfa-Nd2gci_SuJI1RpipbvM2P0QHgqTJQBR9LnTm7Y3QUGErUef5OGjpdcJHFUEhDKYBtUoFaYrlkcNAFLZD2WGhSCetQ_ojQj0Z321bV9jZtVclYRtg",
+                    "width": 2988
+                }
+            ],
+            "place_id": "ChIJtW2myLhYwokRS6qs9B8iDI8",
+            "price_level": 2,
+            "rating": 3.9,
+            "reference": "CmRSAAAASDBfTPr-fMruARt8FZCIb3W0xUL2nirUi0twGP0FYU2Yg_s-X44BJMLF1xtpkNNM3qSidnoQNiWkD7TTUDE4fGr5DGG_J_dHkBCXyb6QPBe-JVHQS2YNG4251kSTp16BEhCUAuoZwYzlsqyh95USpuvIGhSAUWreDZaOxu5EnuWWkfQNwVAQog",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "1505 1st Avenue, New York"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.8457015,
+                    "lng": -73.8975327
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.84576125,
+                        "lng": -73.89742919999999
+                    },
+                    "southwest": {
+                        "lat": 40.84552225,
+                        "lng": -73.8975672
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "080b37766b6936037c467e0b6febdd3f5b4ba2c1",
+            "name": "Leidy Deli Grocery",
+            "place_id": "ChIJH8BPiWb0wokRlwpdlB8MYTA",
+            "rating": 4.2,
+            "reference": "CmRRAAAAztzWjENEnKM0uvNpTlOb3vhwGcvZ_bemP0IQLueAlxMCf9ntdZusvev5KtT6cNYL-s0VXj_9d6ki57Dob0P0AhzIs-QmBwCBWlVoyqD6ke1CGqyeeUeiCv67Kx86KYycEhDx_-BOKLCZiTWP1HdOwvfgGhRHfTmmT4oEQJrmXLwaHCSB5NNZtQ",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "501 East 176th Street, Bronx"
+        },
+        {
+            "geometry": {
+                "location": {
+                    "lat": 40.8076734,
+                    "lng": -73.9645049
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.80770865,
+                        "lng": -73.96424419999998
+                    },
+                    "southwest": {
+                        "lat": 40.80756765,
+                        "lng": -73.9645918
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+            "id": "f20b2a3978deee93df9724ab491c42c86ddc13cd",
+            "name": "Morton Williams",
+            "opening_hours": {
+                "open_now": true,
+                "weekday_text": []
+            },
+            "photos": [
+                {
+                    "height": 4032,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/116676065544125728335/photos\">shiva chetan</a>"
+                    ],
+                    "photo_reference": "CoQBdwAAAJ_STtw7GSL4cnHG4Ys6GpR8RyCSpJiGn-LIn2m-A55P_5bh4uLxMgcF6xaJvrDFrLW62sQAfwHRHaGyCkpodYb71-BZ7n84UcrywP1C76gqqJFrLiitk60D7P8aaJqg3r6iqQXCmPaOd20ww_CSNe39g-IUbVP8g_qrtwCds0jVEhBlNX1s3--gox4JBH0ehoTLGhTn171wExMgAG64EtlLDVtx1A-2Kw",
+                    "width": 3024
+                }
+            ],
+            "place_id": "ChIJx5-q0D72wokR-98xbWUpdMY",
+            "rating": 2.9,
+            "reference": "CmRSAAAAqN8BuxvjsiM-l7rjS1T8TVxalSg4yzE6jGSg8D9fwwTDcjdFyEOP_OhpNZMhB0si29xNlOz_sh8h-lrEJhzDyBJvXK8f65Ui81rnL6Hlx6rN1Vmwla_lniglArAxN4XjEhAdJlzX8Dz0af6OO0Mp1E-7GhS7xATMCTlD6vjdY6pvr0iT9gKhuw",
+            "scope": "GOOGLE",
+            "types": [
+                "grocery_or_supermarket",
+                "food",
+                "store",
+                "point_of_interest",
+                "establishment"
+            ],
+            "vicinity": "2941 Broadway, New York"
+        }
+    ],
+    "status": "OK"
+}
