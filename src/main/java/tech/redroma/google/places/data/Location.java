@@ -37,8 +37,11 @@ import static tech.sirwellington.alchemy.arguments.assertions.GeolocationAsserti
 public class Location
 {
 
+    /** Latitude field. */
     @SerializedName("lat")
     public Double latitude;
+    
+    /** Longitude field. */
     @SerializedName("lon")
     public Double longitude;
 
