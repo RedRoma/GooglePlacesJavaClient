@@ -65,6 +65,11 @@ public class Location
         return new Location(latitude, longitude);
     }
     
+    /**
+     * Creates an {@link AlchemyAssertion} that checks whether a location is valid, and has a valid latitude and longitude.
+     *
+     * @return 
+     */
     public static AlchemyAssertion<Location> validLocation()
     {
         return l ->
@@ -79,7 +84,8 @@ public class Location
     }
 
     /**
-     * Returns whether the 
+     * Returns whether the latitude and longitude variables are set.
+     * 
      * @return 
      */
     public boolean isSet()
