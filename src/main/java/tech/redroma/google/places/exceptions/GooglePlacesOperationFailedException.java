@@ -17,7 +17,8 @@
 package tech.redroma.google.places.exceptions;
 
 /**
- *
+ * Thrown when the Google Places API fails to complete an operation.
+ * 
  * @author SirWellington
  */
 public class GooglePlacesOperationFailedException extends GooglePlacesException
