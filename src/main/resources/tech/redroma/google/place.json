@@ -1,0 +1,47 @@
+{
+    "geometry": {
+        "location": {
+            "lat": 40.786597,
+            "lng": -73.9522252
+        },
+        "viewport": {
+            "northeast": {
+                "lat": 40.78666585000001,
+                "lng": -73.9521725
+            },
+            "southwest": {
+                "lat": 40.78657405,
+                "lng": -73.95238329999998
+            }
+        }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+    "id": "13d569f01b2b0a19dd9459053a82ae5e7cb744ca",
+    "name": "Gourmet Garage",
+    "opening_hours": {
+        "open_now": false,
+        "weekday_text": []
+    },
+    "photos": [
+        {
+            "height": 3264,
+            "html_attributions": [
+                "<a href=\"https://maps.google.com/maps/contrib/116838844525874831562/photos\">Uri Shusterman</a>"
+            ],
+            "photo_reference": "CoQBcwAAAO22D6jGcMsh6PMVvRpO--e5MUYkIz5Ks2s4ByzTcrKVryUzOhqvyLoYrfE75kNhr0AtjFCgPLcZmEMhLYJkP-dY5_W_w-izqx3q7xvLVFr5-krcr0YV9cDY-CEp_MG9hfAJuLn11gm7yV0hnz27-D2UM99XCRnhBgUPSCl_N49xEhCMGvQmTXgd1wal17uza1NlGhQMORlFT-0Tk3wp7vhdXC2kDUDo4w",
+            "width": 2448
+        }
+    ],
+    "place_id": "ChIJC20ZwKZYwokRiSR_SBV_IZI",
+    "rating": 3.4,
+    "reference": "CmRSAAAAlo8IaBWPYjwI2VDq_O_POW0UeNE758Ekgn8gJrXEbBq62w0AEA3FJKW-Uzr71IqT3BcCqJZuNB2Xt5TdAiV_6GtP4slEa_j7R4rKmjhc7WSfMenaUcvlIzbnrBm83R8eEhBmjXbYlWU3FJxdUqepDrHSGhS5MUjKKdHFDQ8YUJNE2R3r5yMceQ",
+    "scope": "GOOGLE",
+    "types": [
+        "grocery_or_supermarket",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+    ],
+    "vicinity": "1245 Park Avenue, New York"
+}
