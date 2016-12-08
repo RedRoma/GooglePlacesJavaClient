@@ -17,6 +17,9 @@
 package tech.redroma.google.places.data;
 
 import java.util.Objects;
+import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
+import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
+import tech.sirwellington.alchemy.annotations.objects.Pojo;
 
 import static tech.redroma.google.places.data.Location.validLocation;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
@@ -26,6 +29,9 @@ import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull
  *
  * @author SirWellington
  */
+@Mutable
+@ThreadUnsafe
+@Pojo
 public class Geometry
 {
 
