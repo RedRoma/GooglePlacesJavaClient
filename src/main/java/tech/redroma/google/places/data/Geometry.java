@@ -16,6 +16,8 @@
 
 package tech.redroma.google.places.data;
 
+import java.util.Objects;
+
 import static tech.redroma.google.places.data.Location.validLocation;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
 import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
@@ -43,24 +45,40 @@ public class Geometry
         this.viewport = viewport;
     }
 
-    public Location getLocation()
+    @Override
+    public int hashCode()
     {
-        return location;
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.location);
+        hash = 71 * hash + Objects.hashCode(this.viewport);
+        return hash;
     }
 
-    public void setLocation(Location location)
+    @Override
+    public boolean equals(Object obj)
     {
-        this.location = location;
-    }
-
-    public Viewport getViewport()
-    {
-        return viewport;
-    }
-
-    public void setViewport(Viewport viewport)
-    {
-        this.viewport = viewport;
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final Geometry other = (Geometry) obj;
+        if (!Objects.equals(this.location, other.location))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.viewport, other.viewport))
+        {
+            return false;
+        }
+        return true;
     }
 
     @Override
