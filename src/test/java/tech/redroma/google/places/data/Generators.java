@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
- 
 package tech.redroma.google.places.data;
-
 
 import tech.sirwellington.alchemy.generator.AlchemyGenerator;
 
@@ -28,17 +26,46 @@ import static tech.sirwellington.alchemy.generator.GeolocationGenerators.longitu
  *
  * @author SirWellington
  */
-public class Generators 
+public class Generators
 {
 
     public static AlchemyGenerator<Location> locations()
     {
         AlchemyGenerator<Double> lats = latitudes();
         AlchemyGenerator<Double> lons = longitudes();
-        
+
         return () ->
-        {
-            return Location.of(one(lats), one(lons));
-        };
+            {
+                return Location.of(one(lats), one(lons));
+            };
+    }
+    
+    public static AlchemyGenerator<Viewport> viewPorts()
+    {
+        return Generators::createViewPort;
+    }
+    
+    public static AlchemyGenerator<Geometry> geometries()
+    {
+        return Generators::createGeometry;
+    }
+
+    public static Viewport createViewPort()
+    {
+        Viewport viewport = new Viewport();
+        viewport.northEast = one(locations());
+        viewport.southWest = one(locations());
+
+        return viewport;
+    }
+
+    public static Geometry createGeometry()
+    {
+        Geometry geometry = new Geometry();
+
+        geometry.location = one(locations());
+        geometry.viewport = createViewPort();
+
+        return geometry;
     }
 }
