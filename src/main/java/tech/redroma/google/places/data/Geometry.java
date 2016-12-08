@@ -32,6 +32,11 @@ public class Geometry
     public Location location;
     public Viewport viewport;
 
+    public static Geometry create(Location location, Viewport viewport)
+    {
+        return new Geometry(location, viewport);
+    }
+    
     public Geometry()
     {
     }
@@ -43,6 +48,16 @@ public class Geometry
 
         this.location = location;
         this.viewport = viewport;
+    }
+
+    public boolean hasLocation()
+    {
+        return Objects.nonNull(location);
+    }
+
+    public boolean hasViewport()
+    {
+        return Objects.nonNull(viewport);
     }
 
     @Override
