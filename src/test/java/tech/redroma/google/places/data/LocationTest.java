@@ -31,9 +31,8 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static tech.redroma.google.places.data.Generators.locations;
 import static tech.sirwellington.alchemy.generator.AlchemyGenerator.one;
-import static tech.sirwellington.alchemy.generator.GeolocationGenerators.latitudes;
-import static tech.sirwellington.alchemy.generator.GeolocationGenerators.longitudes;
 import static tech.sirwellington.alchemy.generator.NumberGenerators.doubles;
 import static tech.sirwellington.alchemy.test.junit.ThrowableAssertion.assertThrows;
 
@@ -67,17 +66,9 @@ public class LocationTest
 
     private void setupData() throws Exception
     {
-        AlchemyGenerator<Double> lats = latitudes();
-        AlchemyGenerator<Double> lons = longitudes();
-        
-        instance.latitude = one(lats);
-        instance.longitude = one(lons);
-        
-        first.latitude = one(lats);
-        first.longitude = one(lons);
-        
-        second.latitude = one(lats);
-        second.longitude = one(lons);
+        instance = one(locations());
+        first = one(locations());
+        second = one(locations());
     }
 
     private void setupMocks() throws Exception
