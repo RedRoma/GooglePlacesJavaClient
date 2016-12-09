@@ -17,11 +17,21 @@
 package tech.redroma.google.places.data;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.Objects;
+import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
+import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
+import tech.sirwellington.alchemy.annotations.objects.Pojo;
+
+import static tech.redroma.google.places.data.Location.validLocation;
+import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
 
 /**
  *
  * @author SirWellington
  */
+@Mutable
+@ThreadUnsafe
+@Pojo
 public class Viewport
 {
 
@@ -30,5 +40,69 @@ public class Viewport
 
     @SerializedName(value = "southwest")
     Location southWest;
+
+    public Viewport()
+    {
+    }
+
+    Viewport(Location northEast, Location southWest)
+    {
+        checkThat(northEast, southWest).are(validLocation());
+        
+        this.northEast = northEast;
+        this.southWest = southWest;
+    }
+
+    public boolean hasNorthEast()
+    {
+        return Objects.nonNull(northEast);
+    }
+    
+    public boolean hasSouthWest()
+    {
+        return Objects.nonNull(southWest);
+    }
+    
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.northEast);
+        hash = 97 * hash + Objects.hashCode(this.southWest);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final Viewport other = (Viewport) obj;
+        if (!Objects.equals(this.northEast, other.northEast))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.southWest, other.southWest))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Viewport{" + "northEast=" + northEast + ", southWest=" + southWest + '}';
+    }
 
 }
