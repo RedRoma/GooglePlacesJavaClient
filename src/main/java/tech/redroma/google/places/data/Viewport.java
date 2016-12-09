@@ -36,10 +36,10 @@ public class Viewport
 {
 
     @SerializedName(value = "northeast")
-    Location northEast;
+    public Location northEast;
 
     @SerializedName(value = "southwest")
-    Location southWest;
+    public Location southWest;
 
     public Viewport()
     {
