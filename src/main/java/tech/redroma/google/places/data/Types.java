@@ -16,6 +16,11 @@
 
 package tech.redroma.google.places.data;
 
+import tech.sirwellington.alchemy.annotations.arguments.NonEmpty;
+
+import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
+
 /**
  * This page lists the supported values for the types property in the Google PlaceType API. You can use {@link PlaceType} in place
  * searches and place additions.
@@ -139,6 +144,15 @@ public class Types
             return this.toString().toLowerCase();
         }
 
+        public static PlaceType from(@NonEmpty String string) throws IllegalArgumentException
+        {
+            checkThat(string)
+                .usingMessage("text cannot be empty")
+                .is(nonEmptyString());
+
+            return PlaceType.valueOf(string.toUpperCase());
+        }
+
     }
 
     /**
@@ -192,6 +206,15 @@ public class Types
         {
             return this.toString().toLowerCase();
         }
+
+        public static ReturnedPlaceType from(@NonEmpty String string) throws IllegalArgumentException
+        {
+            checkThat(string)
+                .usingMessage("text cannot be empty")
+                .is(nonEmptyString());
+
+            return ReturnedPlaceType.valueOf(string.toUpperCase());
+        }
     }
 
     /**
@@ -211,6 +234,15 @@ public class Types
         public String asText()
         {
             return this.toString().toLowerCase();
+        }
+
+        public static AutocompleteType from(@NonEmpty String string) throws IllegalArgumentException
+        {
+            checkThat(string)
+                .usingMessage("text cannot be empty")
+                .is(nonEmptyString());
+
+            return AutocompleteType.valueOf(string.toUpperCase());
         }
     }
 
