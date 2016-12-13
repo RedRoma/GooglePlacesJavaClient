@@ -46,7 +46,10 @@ import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.s
 /**
  * Used to make requests to the
  * <a href="https://developers.google.com/places/web-service/autocomplete">Google Places Autocomplete API</a>.
- *
+ * <p>
+ * 
+ * See {@link #newBuilder() } to make new requests.
+ * 
  * @author SirWellington
  * @see Builder
  * @see #newBuilder() 
