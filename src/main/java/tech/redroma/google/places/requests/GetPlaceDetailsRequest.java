@@ -37,8 +37,12 @@ import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.n
 
 /**
  * This request is used to get more detailed information about a {@linkplain Place Google Place}.
+ * <p>
+ * See {@link #newBuilder() } to create requests.
  *
  * @author SirWellington
+ * @see #newBuilder()
+ * @see Builder
  */
 @ThreadSafe
 @Immutable
@@ -155,7 +159,8 @@ public final class GetPlaceDetailsRequest
          *                {@link Place#placeId}.
          * @return
          * @throws IllegalArgumentException
-         * @see <a href="https://developers.google.com/places/web-service/place-id">https://developers.google.com/places/web-service/place-id</a>
+         * @see
+         * <a href="https://developers.google.com/places/web-service/place-id">https://developers.google.com/places/web-service/place-id</a>
          */
         @Required
         public Builder withPlaceID(@NonEmpty String placeId) throws IllegalArgumentException
@@ -191,7 +196,7 @@ public final class GetPlaceDetailsRequest
          *
          * @param language The language code, indicating in which language the results should be returned, if possible.
          * @return
-         * @throws IllegalArgumentException 
+         * @throws IllegalArgumentException
          */
         public Builder withLanguage(@NonEmpty Language language) throws IllegalArgumentException
         {
@@ -204,6 +209,7 @@ public final class GetPlaceDetailsRequest
 
         /**
          * Builds the {@link GetPlaceDetailsRequest} object from the specified information.
+         *
          * @return
          * @throws IllegalArgumentException If any of the required fields are missing or misconfigured.
          */
