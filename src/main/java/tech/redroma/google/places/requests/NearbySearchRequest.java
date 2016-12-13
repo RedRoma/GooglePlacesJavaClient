@@ -17,6 +17,7 @@
 package tech.redroma.google.places.requests;
 
 import java.util.Objects;
+import tech.redroma.google.places.data.Language;
 import tech.redroma.google.places.data.Location;
 import tech.redroma.google.places.data.PriceLevel;
 import tech.redroma.google.places.data.Types;
@@ -55,7 +56,7 @@ public final class NearbySearchRequest
     private final Integer radiusInMeters;
     private final String keyword;
     private final String name;
-    private final String language;
+    private final Language language;
     private final PriceLevel minPrice;
     private final PriceLevel maxPrice;
     private final boolean onlyOpenNow;
@@ -67,7 +68,7 @@ public final class NearbySearchRequest
                         Integer radiusInMeters,
                         String keyword,
                         String name,
-                        String language,
+                        Language language,
                         PriceLevel minPrice,
                         PriceLevel maxPrice,
                         boolean onlyOpenNow,
@@ -115,7 +116,7 @@ public final class NearbySearchRequest
 
     public boolean hasLanguage()
     {
-        return !isNullOrEmpty(language);
+        return Objects.nonNull(language);
     }
 
     public boolean hasMinAndMaxPrice()
@@ -264,7 +265,7 @@ public final class NearbySearchRequest
         private Integer radiusInMeters;
         private String keyword;
         private String name;
-        private String language;
+        private Language language;
         private PriceLevel minPrice;
         private PriceLevel maxPrice;
         private boolean onlyOpenNow;
@@ -355,15 +356,20 @@ public final class NearbySearchRequest
 
         /**
          * Sets the language code, indicating in which language the results should be 
-         * returned, if possible. Searches are also biased to the selected language; results in teh selected language may be given a higher ranking.
-         * 
+         * returned, if possible. Searches are also
+         * biased to the selected language; results in the selected language may be given a higher ranking.
+         * <p>
+         * See {@link Language} for a list of the supported languages.
+         *
          * @param language The language to use for the query.
          * @return
          * @throws IllegalArgumentException 
+         * @see Language
          */
-        public Builder withLanguage(@NonEmpty String language) throws IllegalArgumentException
+        public Builder withLanguage(@NonEmpty Language language) throws IllegalArgumentException
         {
-            checkThat(language).is(nonEmptyString());
+            checkThat(language)
+                .is(notNull());
 
             this.language = language;
             return this;
