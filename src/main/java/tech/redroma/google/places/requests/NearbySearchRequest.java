@@ -485,6 +485,13 @@ public final class NearbySearchRequest
 
         private void checkParameters()
         {
+            
+            if (!isNullOrEmpty(pageToken))
+            {
+                //Other parameters are not required.
+                return;
+            }
+            
             checkThat(location)
                 .usingMessage("a valid location is required")
                 .is(validLocation());
