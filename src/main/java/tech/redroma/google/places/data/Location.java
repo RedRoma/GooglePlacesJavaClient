@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 import tech.sirwellington.alchemy.annotations.arguments.Required;
 import tech.sirwellington.alchemy.annotations.concurrency.Immutable;
-import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
+import tech.sirwellington.alchemy.annotations.concurrency.ThreadSafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
 import tech.sirwellington.alchemy.arguments.AlchemyAssertion;
 
@@ -30,12 +30,15 @@ import static tech.sirwellington.alchemy.arguments.assertions.GeolocationAsserti
 import static tech.sirwellington.alchemy.arguments.assertions.GeolocationAssertions.validLongitude;
 
 /**
- * Represents a Geo-Coordinate.
+ * Represents a Geo-Coordinate. 
+ * <p>
+ * To create an instance, see {@link #of(double, double) }.
  *
+ * @see #of(double, double) 
  * @author SirWellington
  */
 @Immutable
-@ThreadUnsafe
+@ThreadSafe
 @Pojo
 public class Location
 {
