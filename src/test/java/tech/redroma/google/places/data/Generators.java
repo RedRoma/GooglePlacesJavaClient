@@ -61,8 +61,8 @@ public class Generators
     public static Viewport createViewPort()
     {
         Viewport viewport = new Viewport();
-        viewport.northEast = one(locations());
-        viewport.southWest = one(locations());
+        viewport.northEast = createLocation();
+        viewport.southWest = createLocation();
 
         return viewport;
     }
@@ -71,7 +71,7 @@ public class Generators
     {
         Geometry geometry = new Geometry();
 
-        geometry.location = one(locations());
+        geometry.location = createLocation();
         geometry.viewport = createViewPort();
 
         return geometry;
@@ -80,7 +80,7 @@ public class Generators
     public static NearbySearchRequest createNearbySearchRequest()
     {
         return NearbySearchRequest.newBuilder()
-            .withLocation(one(locations()))
+            .withLocation(createLocation())
             .withKeyword(one(alphabeticString()))
             .onlyOpenNow()
             .withRadiusInMeters(createRadius())
@@ -102,7 +102,7 @@ public class Generators
     {
         return AutocompletePlaceRequest.newBuilder()
             .withInput(one(alphabeticString()))
-            .withLocation(one(locations()))
+            .withLocation(createLocation())
             .withRadiusInMeters(createRadius())
             .withTypes(listOf(enumValueOf(Types.AutocompleteType.class)))
             .build();
