@@ -34,7 +34,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author SirWellington
  */
-@Repeat(25)
+@Repeat(10)
 @RunWith(AlchemyTestRunner.class)
 public class NearbySearchRequestTest
 {
