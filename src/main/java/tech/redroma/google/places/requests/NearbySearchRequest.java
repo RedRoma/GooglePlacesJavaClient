@@ -25,7 +25,12 @@ import tech.sirwellington.alchemy.annotations.concurrency.ThreadSafe;
 import tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static tech.redroma.google.places.data.Location.validLocation;
+import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.BUILDER;
 import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.PRODUCT;
+import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.assertions.Assertions.nullObject;
+import static tech.sirwellington.alchemy.arguments.assertions.NumberAssertions.lessThan;
 
 /**
  *
@@ -37,39 +42,41 @@ import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPat
 public final class NearbySearchRequest
 {
 
-    private Location location;
-    private double radiusInMeters;
-    private String keyword;
-    private String language;
-    private PriceLevel minPrice;
-    private PriceLevel maxPrice;
-    private boolean onlyOpenNow;
-    private Ranking rankBy;
-    private Types.PlaceType type;
-
-    private NearbySearchRequest()
-    {
-    }
+    private final Location location;
+    private final Double radiusInMeters;
+    private final String keyword;
+    private final String name;
+    private final String language;
+    private final PriceLevel minPrice;
+    private final PriceLevel maxPrice;
+    private final boolean onlyOpenNow;
+    private final Ranking rankBy;
+    private final Types.PlaceType type;
+    private final String pageToken;
 
     NearbySearchRequest(Location location,
-                        double radiusInMeters,
+                        Double radiusInMeters,
                         String keyword,
+                        String name,
                         String language,
                         PriceLevel minPrice,
                         PriceLevel maxPrice,
                         boolean onlyOpenNow,
                         Ranking rankBy,
-                        Types.PlaceType type)
+                        Types.PlaceType type,
+                        String pageToken)
     {
         this.location = location;
         this.radiusInMeters = radiusInMeters;
         this.keyword = keyword;
+        this.name = name;
         this.language = language;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.onlyOpenNow = onlyOpenNow;
         this.rankBy = rankBy;
         this.type = type;
+        this.pageToken = pageToken;
     }
 
     public boolean hasLocation()
@@ -79,12 +86,22 @@ public final class NearbySearchRequest
 
     public boolean hasRadius()
     {
+        if (Objects.isNull(radiusInMeters))
+        {
+            return false;
+        }
+
         return radiusInMeters > 0.0;
     }
 
     public boolean hasKeyword()
     {
         return !isNullOrEmpty(keyword);
+    }
+
+    public boolean hasName()
+    {
+        return !isNullOrEmpty(name);
     }
 
     public boolean hasLanguage()
@@ -116,15 +133,16 @@ public final class NearbySearchRequest
     public int hashCode()
     {
         int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.location);
-        hash = 71 * hash + (int) (Double.doubleToLongBits(this.radiusInMeters) ^ (Double.doubleToLongBits(this.radiusInMeters) >>> 32));
-        hash = 71 * hash + Objects.hashCode(this.keyword);
-        hash = 71 * hash + Objects.hashCode(this.language);
-        hash = 71 * hash + Objects.hashCode(this.minPrice);
-        hash = 71 * hash + Objects.hashCode(this.maxPrice);
-        hash = 71 * hash + (this.onlyOpenNow ? 1 : 0);
-        hash = 71 * hash + Objects.hashCode(this.rankBy);
-        hash = 71 * hash + Objects.hashCode(this.type);
+        hash = 59 * hash + Objects.hashCode(this.location);
+        hash = 59 * hash + Objects.hashCode(this.radiusInMeters);
+        hash = 59 * hash + Objects.hashCode(this.keyword);
+        hash = 59 * hash + Objects.hashCode(this.name);
+        hash = 59 * hash + Objects.hashCode(this.language);
+        hash = 59 * hash + Objects.hashCode(this.minPrice);
+        hash = 59 * hash + Objects.hashCode(this.maxPrice);
+        hash = 59 * hash + (this.onlyOpenNow ? 1 : 0);
+        hash = 59 * hash + Objects.hashCode(this.rankBy);
+        hash = 59 * hash + Objects.hashCode(this.type);
         return hash;
     }
 
@@ -144,10 +162,6 @@ public final class NearbySearchRequest
             return false;
         }
         final NearbySearchRequest other = (NearbySearchRequest) obj;
-        if (Double.doubleToLongBits(this.radiusInMeters) != Double.doubleToLongBits(other.radiusInMeters))
-        {
-            return false;
-        }
         if (this.onlyOpenNow != other.onlyOpenNow)
         {
             return false;
@@ -156,11 +170,19 @@ public final class NearbySearchRequest
         {
             return false;
         }
+        if (!Objects.equals(this.name, other.name))
+        {
+            return false;
+        }
         if (!Objects.equals(this.language, other.language))
         {
             return false;
         }
         if (!Objects.equals(this.location, other.location))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.radiusInMeters, other.radiusInMeters))
         {
             return false;
         }
@@ -186,13 +208,89 @@ public final class NearbySearchRequest
     @Override
     public String toString()
     {
-        return "NearbySearchRequest{" + "location=" + location + ", radiusInMeters=" + radiusInMeters + ", keyword=" + keyword + ", language=" + language + ", minPrice=" + minPrice + ", maxPrice=" + maxPrice + ", onlyOpenNow=" + onlyOpenNow + ", rankBy=" + rankBy + ", type=" + type + '}';
+        return "NearbySearchRequest{" + "location=" + location + ", radiusInMeters=" + radiusInMeters + ", keyword=" + keyword + ", name=" + name + ", language=" + language + ", minPrice=" + minPrice + ", maxPrice=" + maxPrice + ", onlyOpenNow=" + onlyOpenNow + ", rankBy=" + rankBy + ", type=" + type + '}';
     }
 
     public static enum Ranking
     {
         PROMINENCE,
         DISTANCE
+    }
+
+    public static Builder newBuilder()
+    {
+        return Builder.newInstance();
+    }
+
+    @BuilderPattern(role = BUILDER)
+    public static class Builder
+    {
+
+        /**
+         * The maximum allowable radius in meters.
+         */
+        public static final int MAX_RADIUS = 50_000;
+
+        private Location location;
+        private Double radiusInMeters;
+        private String keyword;
+        private String name;
+        private String language;
+        private PriceLevel minPrice;
+        private PriceLevel maxPrice;
+        private boolean onlyOpenNow;
+        private Ranking rankBy;
+        private Types.PlaceType type;
+        private String pageToken;
+
+        public Builder()
+        {
+        }
+
+        static Builder newInstance()
+        {
+            return new Builder();
+        }
+
+        private void checkParameters()
+        {
+            checkThat(location)
+                .usingMessage("a valid location is required")
+                .is(validLocation());
+
+            if (rankBy != null)
+            {
+                checkThat(radiusInMeters)
+                    .usingMessage("Distance ranking cannot be used in conjunction with radius")
+                    .is(nullObject());
+
+                if (allAreEmpty(keyword, name, type))
+                {
+                    throw new IllegalArgumentException("when rankBy is set, at least one of name, keyword, or type are required");
+                }
+            }
+            
+            if (Objects.nonNull(minPrice) && Objects.nonNull(maxPrice))
+            {
+                checkThat(minPrice.value)
+                    .usingMessage("minPrice must be < maxPrice")
+                    .is(lessThan(maxPrice.value));
+            }
+
+        }
+
+        private boolean allAreEmpty(Object... objects)
+        {
+            for (Object object : objects)
+            {
+                if (Objects.nonNull(object))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
 }
