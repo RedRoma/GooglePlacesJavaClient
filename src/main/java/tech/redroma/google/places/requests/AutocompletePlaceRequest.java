@@ -63,13 +63,13 @@ import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.s
 public final class AutocompletePlaceRequest
 {
 
-    private final String input;
-    private final Integer offset;
-    private final Location location;
-    private final Integer radiusInMeters;
-    private final Language language;
-    private final List<Types.AutocompleteType> types;
-    private final boolean strictBounds;
+    public final String input;
+    public final Integer offset;
+    public final Location location;
+    public final Integer radiusInMeters;
+    public final Language language;
+    public final List<Types.AutocompleteType> types;
+    public final boolean strictBounds;
 
     AutocompletePlaceRequest(String input,
                              Integer offset, Location location,
@@ -218,6 +218,22 @@ public final class AutocompletePlaceRequest
         public static Builder newInstance()
         {
             return new Builder();
+        }
+        
+        public static Builder from(@Required AutocompletePlaceRequest request) throws IllegalArgumentException
+        {
+            checkThat(request).is(notNull());
+            
+            Builder builder = newBuilder();
+            builder.input = request.input;
+            builder.offset = request.offset;
+            builder.location = request.location;
+            builder.radiusInMeters = request.radiusInMeters;
+            builder.language = request.language;
+            builder.types = Lists.copy(request.types);
+            builder.strictBounds = request.strictBounds;
+            
+            return builder;
         }
 
         /**
@@ -376,7 +392,13 @@ public final class AutocompletePlaceRequest
         {
             checkParameters();
 
-            return new AutocompletePlaceRequest(input, offset, location, radiusInMeters, language, types, strictBounds);
+            return new AutocompletePlaceRequest(input,
+                                                offset,
+                                                location,
+                                                radiusInMeters,
+                                                language,
+                                                types,
+                                                strictBounds);
         }
 
         private void checkParameters()

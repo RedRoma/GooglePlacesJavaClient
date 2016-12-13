@@ -103,6 +103,7 @@ public class Generators
         return AutocompletePlaceRequest.newBuilder()
             .withInput(one(alphabeticString()))
             .withLocation(createLocation())
+            .withLanguage(oneLanguage())
             .withRadiusInMeters(createRadius())
             .withTypes(listOf(enumValueOf(Types.AutocompleteType.class)))
             .build();
