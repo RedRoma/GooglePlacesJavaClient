@@ -16,9 +16,14 @@
 
 package tech.redroma.google.places.data;
 
+import com.google.gson.JsonDeserializer;
+import java.util.Objects;
 import tech.sirwellington.alchemy.annotations.arguments.NonEmpty;
 
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.assertions.Assertions.equalTo;
+import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
+import static tech.sirwellington.alchemy.arguments.assertions.BooleanAssertions.trueStatement;
 import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
 
 /**
@@ -163,6 +168,99 @@ public class Types
      */
     public static enum ReturnedPlaceType
     {
+        //Base Types
+        ACCOUNTING,
+        AIRPORT,
+        AMUSEMENT_PARK,
+        AQUARIUM,
+        ART_GALLERY,
+        ATM,
+        BAKERY,
+        BANK,
+        BAR,
+        BEAUTY_SALON,
+        BICYCLE_STORE,
+        BOOK_STORE,
+        BOWLING_ALLEY,
+        BUS_STATION,
+        CAFE,
+        CAMPGROUND,
+        CAR_DEALER,
+        CAR_RENTAL,
+        CAR_REPAIR,
+        CAR_WASH,
+        CASINO,
+        CEMETERY,
+        CHURCH,
+        CITY_HALL,
+        CLOTHING_STORE,
+        CONVENIENCE_STORE,
+        COURTHOUSE,
+        DENTIST,
+        DEPARTMENT_STORE,
+        DOCTOR,
+        ELECTRICIAN,
+        ELECTRONICS_STORE,
+        EMBASSY,
+        FIRE_STATION,
+        FLORIST,
+        FUNERAL_HOME,
+        FURNITURE_STORE,
+        GAS_STATION,
+        GYM,
+        HAIR_CARE,
+        HARDWARE_STORE,
+        HINDU_TEMPLE,
+        HOME_GOODS_STORE,
+        HOSPITAL,
+        INSURANCE_AGENCY,
+        JEWELRY_STORE,
+        LAUNDRY,
+        LAWYER,
+        LIBRARY,
+        LIQUOR_STORE,
+        LOCAL_GOVERNMENT_OFFICE,
+        LOCKSMITH,
+        LODGING,
+        MEAL_DELIVERY,
+        MEAL_TAKEAWAY,
+        MOSQUE,
+        MOVIE_RENTAL,
+        MOVIE_THEATER,
+        MOVING_COMPANY,
+        MUSEUM,
+        NIGHT_CLUB,
+        PAINTER,
+        PARK,
+        PARKING,
+        PET_STORE,
+        PHARMACY,
+        PHYSIOTHERAPIST,
+        PLUMBER,
+        POLICE,
+        POST_OFFICE,
+        REAL_ESTATE_AGENCY,
+        RESTAURANT,
+        ROOFING_CONTRACTOR,
+        RV_PARK,
+        SCHOOL,
+        SHOE_STORE,
+        SHOPPING_MALL,
+        SPA,
+        STADIUM,
+        STORAGE,
+        STORE,
+        SUBWAY_STATION,
+        SYNAGOGUE,
+        TAXI_STAND,
+        TRAIN_STATION,
+        TRANSIT_STATION,
+        TRAVEL_AGENCY,
+        UNIVERSITY,
+        VETERINARY_CARE,
+        ZOO,
+        
+        //Additional types
         ADMINISTRATIVE_AREA_LEVEL_1,
         ADMINISTRATIVE_AREA_LEVEL_2,
         ADMINISTRATIVE_AREA_LEVEL_3,
@@ -214,6 +312,35 @@ public class Types
                 .is(nonEmptyString());
 
             return ReturnedPlaceType.valueOf(string.toUpperCase());
+        }
+        
+        public static JsonDeserializer<ReturnedPlaceType> createDeserializer()
+        {
+            return (json, type, context) ->
+            {
+                checkThat(type)
+                    .is(equalTo(ReturnedPlaceType.class))
+                    .is(notNull());
+
+                if (Objects.isNull(json))
+                {
+                    return null;
+                }
+
+                checkThat(json.isJsonPrimitive())
+                    .usingMessage("expecting json primitive")
+                    .is(trueStatement());
+
+                String string = json.getAsString();
+                try
+                {
+                    return ReturnedPlaceType.from(string);
+                }
+                catch (IllegalArgumentException ex)
+                {
+                    return null;
+                }
+            };
         }
     }
 
