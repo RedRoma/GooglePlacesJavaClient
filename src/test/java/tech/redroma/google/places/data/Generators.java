@@ -38,15 +38,14 @@ import static tech.sirwellington.alchemy.generator.StringGenerators.hexadecimalS
 public class Generators
 {
 
+    public static Location createLocation()
+    {
+        return Location.of(one(latitudes()), one(longitudes()));
+    }
+    
     public static AlchemyGenerator<Location> locations()
     {
-        AlchemyGenerator<Double> lats = latitudes();
-        AlchemyGenerator<Double> lons = longitudes();
-
-        return () ->
-            {
-                return Location.of(one(lats), one(lons));
-            };
+        return Generators::createLocation;
     }
     
     public static AlchemyGenerator<Viewport> viewPorts()
