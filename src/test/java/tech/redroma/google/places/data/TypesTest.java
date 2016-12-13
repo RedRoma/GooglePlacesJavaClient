@@ -16,6 +16,9 @@
 
 package tech.redroma.google.places.data;
 
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonPrimitive;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +33,10 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static tech.sirwellington.alchemy.test.junit.ThrowableAssertion.assertThrows;
 
 /**
  *
@@ -110,5 +116,34 @@ public class TypesTest
         String text = autocompleteType.asText();
         AutocompleteType result = AutocompleteType.from(text);
         assertThat(result, is(autocompleteType));
+    }
+    
+    @Test
+    public void testReturnedPlaceDeserializer() throws Exception
+    {
+        JsonDeserializer<ReturnedPlaceType> deserializer = ReturnedPlaceType.createJSONDeserializer();
+
+        JsonDeserializationContext context = mock(JsonDeserializationContext.class);
+        
+        String text = returnedPlaceType.asText();
+        JsonPrimitive textJson = new JsonPrimitive(text);
+        
+        ReturnedPlaceType result = deserializer.deserialize(textJson, ReturnedPlaceType.class, context);
+        assertThat(result, is(returnedPlaceType));
+        
+    }
+    
+    @Test
+    public void testReturnedPlaceDeserializerWithInvalidArgs() throws Exception
+    {
+        JsonDeserializer<ReturnedPlaceType> deserializer = ReturnedPlaceType.createJSONDeserializer();
+        String text = returnedPlaceType.asText();
+        JsonPrimitive json = new JsonPrimitive(text);
+
+        assertThrows(() -> deserializer.deserialize(json, null, null))
+            .isInstanceOf(IllegalArgumentException.class);
+        
+        ReturnedPlaceType result = deserializer.deserialize(null, ReturnedPlaceType.class, null);
+        assertThat(result, is(nullValue()));
     }
 }

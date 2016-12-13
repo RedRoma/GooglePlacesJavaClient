@@ -318,8 +318,8 @@ public class Types
             return (json, type, context) ->
             {
                 checkThat(type)
-                    .is(equalTo(ReturnedPlaceType.class))
-                    .is(notNull());
+                    .is(notNull())
+                    .is(equalTo(ReturnedPlaceType.class));
 
                 if (Objects.isNull(json))
                 {
