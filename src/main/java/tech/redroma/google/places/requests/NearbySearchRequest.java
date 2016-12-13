@@ -42,6 +42,8 @@ import static tech.sirwellington.alchemy.arguments.assertions.NumberAssertions.l
 import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
 
 /**
+ * This request is used to search for places near a certain location.
+ * <p>
  * See {@link #newBuilder() } to create {@linkplain NearbySearchRequest Nearby Search Requests}.
  *
  * @author SirWellington
@@ -355,15 +357,14 @@ public final class NearbySearchRequest
         }
 
         /**
-         * Sets the language code, indicating in which language the results should be 
-         * returned, if possible. Searches are also
+         * Sets the language code, indicating in which language the results should be returned, if possible. Searches are also
          * biased to the selected language; results in the selected language may be given a higher ranking.
          * <p>
          * See {@link Language} for a list of the supported languages.
          *
          * @param language The language to use for the query.
          * @return
-         * @throws IllegalArgumentException 
+         * @throws IllegalArgumentException
          * @see Language
          */
         public Builder withLanguage(@NonEmpty Language language) throws IllegalArgumentException
@@ -376,16 +377,16 @@ public final class NearbySearchRequest
         }
 
         /**
-         * Sets the min and max price for the query. This restrices results to only those places
-         * within the specified range.
-         * 
+         * Sets the min and max price for the query. This restrices results to only those places within the specified range.
+         *
          * @param minPrice The minimum acceptable price.
          * @param maxPrice The maximum acceptable price.
          * @return
-         * @throws IllegalArgumentException 
+         * @throws IllegalArgumentException
          * @see PriceLevel
          */
-        public Builder withMinAndMaxPrice(@Required PriceLevel minPrice, @Required PriceLevel maxPrice) throws IllegalArgumentException
+        public Builder withMinAndMaxPrice(@Required PriceLevel minPrice, @Required PriceLevel maxPrice) throws
+            IllegalArgumentException
         {
             checkThat(minPrice, maxPrice).are(notNull());
 
@@ -407,12 +408,12 @@ public final class NearbySearchRequest
         }
 
         /**
-         * Sets the ranking to use for the query. This affects the order
-         * in which results are listed. Note that this cannot be used with
-         * {@linkplain #withRadiusInMeters(int) radius}.
+         * Sets the ranking to use for the query. This affects the order in which results are listed. Note that this cannot be
+         * used with {@linkplain #withRadiusInMeters(int) radius}.
+         *
          * @param rankBy
          * @return
-         * @throws IllegalArgumentException 
+         * @throws IllegalArgumentException
          */
         public Builder withRankBy(@Required Ranking rankBy) throws IllegalArgumentException
         {
@@ -423,12 +424,11 @@ public final class NearbySearchRequest
         }
 
         /**
-         * Sets the type for the query. This restrices the 
-         * results to places that match the specified type.
-         * 
+         * Sets the type for the query. This restrices the results to places that match the specified type.
+         *
          * @param type
          * @return
-         * @throws IllegalArgumentException 
+         * @throws IllegalArgumentException
          * @see Types.PlaceType
          */
         public Builder withPlaceType(@Required Types.PlaceType type) throws IllegalArgumentException
@@ -445,7 +445,7 @@ public final class NearbySearchRequest
          *
          * @param pageToken
          * @return
-         * @throws IllegalArgumentException 
+         * @throws IllegalArgumentException
          */
         public Builder withPageToken(@NonEmpty String pageToken) throws IllegalArgumentException
         {
@@ -469,7 +469,7 @@ public final class NearbySearchRequest
             {
                 radiusInMeters = DEFAULT_RADIUS;
             }
-            
+
             return new NearbySearchRequest(location,
                                            radiusInMeters,
                                            keyword,
