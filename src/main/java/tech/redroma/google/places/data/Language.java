@@ -92,6 +92,13 @@ public enum Language
         this.code = code;
     }
 
+    /**
+     * Finds the corresponding language given the language code.
+     * 
+     * @param code The language code.
+     * @return
+     * @throws IllegalArgumentException 
+     */
     public static Language fromCode(@NonEmpty String code) throws IllegalArgumentException
     {
         checkThat(code)
