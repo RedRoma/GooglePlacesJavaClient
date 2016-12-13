@@ -48,6 +48,7 @@ public class Photo
     @SerializedName("html_attributions")
     public List<String> htmlAttributions;
 
+    @SerializedName("photo_reference")
     public String photoReference;
 
     public Photo()
