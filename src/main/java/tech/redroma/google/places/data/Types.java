@@ -360,6 +360,12 @@ public class Types
 
         public String asText()
         {
+            switch (this)
+            {
+                case REGIONS: return "(regions)";
+                case CITIES : return "(cities)";
+            }
+            
             return this.toString().toLowerCase();
         }
 
