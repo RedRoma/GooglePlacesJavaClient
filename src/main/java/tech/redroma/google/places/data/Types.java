@@ -25,7 +25,6 @@ import static tech.sirwellington.alchemy.arguments.assertions.Assertions.equalTo
 import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
 import static tech.sirwellington.alchemy.arguments.assertions.BooleanAssertions.trueStatement;
 import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
-import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
 
 /**
  * This page lists the supported values for the types property in the Google PlaceType API. You can use {@link PlaceType} in place
@@ -260,7 +259,6 @@ public class Types
         UNIVERSITY,
         VETERINARY_CARE,
         ZOO,
-        
         //Additional types
         ADMINISTRATIVE_AREA_LEVEL_1,
         ADMINISTRATIVE_AREA_LEVEL_2,
@@ -346,10 +344,11 @@ public class Types
     }
 
     /**
-     * You may restrict results from a Place Auto-complete request to be a of a certain type by passing a types parameter. THe
-     * parameter specifies a type or a type collection, as listed in the supported types below. if nothing is specified, all types
-     * are returned. in general only a single type is allowed. The exception is that you can safely mix the {@link #GEOCODE} and
-     * {@link #ESTABLISHMENT} types, but not that this will have the same effect as specifying no types.
+     * You may restrict results from a Place Auto-complete request to be a of a certain type by passing a types parameter.
+     * <p>
+     * The parameter specifies a type or a type collection, as listed in the supported types below. if nothing is specified, all
+     * types are returned. in general only a single type is allowed. The exception is that you can safely mix the {@link #GEOCODE}
+     * and {@link #ESTABLISHMENT} types, but not that this will have the same effect as specifying no types.
      */
     public static enum AutocompleteType
     {
