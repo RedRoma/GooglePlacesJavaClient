@@ -16,11 +16,14 @@
 
 package tech.redroma.google.places.data;
 
+import tech.redroma.google.places.requests.NearbySearchRequest;
 import tech.sirwellington.alchemy.generator.AlchemyGenerator;
 
 import static tech.sirwellington.alchemy.generator.AlchemyGenerator.one;
 import static tech.sirwellington.alchemy.generator.GeolocationGenerators.latitudes;
 import static tech.sirwellington.alchemy.generator.GeolocationGenerators.longitudes;
+import static tech.sirwellington.alchemy.generator.NumberGenerators.integers;
+import static tech.sirwellington.alchemy.generator.StringGenerators.alphabeticString;
 
 /**
  *
@@ -67,5 +70,20 @@ public class Generators
         geometry.viewport = createViewPort();
 
         return geometry;
+    }
+    
+    public static NearbySearchRequest createNearbySearchRequest()
+    {
+        return NearbySearchRequest.newBuilder()
+            .withLocation(one(locations()))
+            .withKeyword(one(alphabeticString()))
+            .onlyOpenNow()
+            .withRadiusInMeters(createRadius())
+            .build();
+    }
+
+    private static int createRadius()
+    {
+        return one(integers(1, NearbySearchRequest.Builder.MAX_RADIUS));
     }
 }
