@@ -304,13 +304,13 @@ public class Types
             return this.toString().toLowerCase();
         }
 
-        public static ReturnedPlaceType from(@NonEmpty String string) throws IllegalArgumentException
+        public static ReturnedPlaceType from(@NonEmpty String text) throws IllegalArgumentException
         {
-            checkThat(string)
+            checkThat(text)
                 .usingMessage("text cannot be empty")
                 .is(nonEmptyString());
 
-            return ReturnedPlaceType.valueOf(string.toUpperCase());
+            return ReturnedPlaceType.valueOf(text.toUpperCase());
         }
         
         public static JsonDeserializer<ReturnedPlaceType> createJSONDeserializer()
