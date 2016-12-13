@@ -18,6 +18,7 @@ package tech.redroma.google.places.data;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
+import tech.sirwellington.alchemy.annotations.arguments.Required;
 import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
@@ -63,6 +64,20 @@ public class Location
     public static Location of(double latitude, double longitude)
     {
         return new Location(latitude, longitude);
+    }
+    
+    /**
+     * Returns a new Location object with the given latitude and longitude pair.
+     * 
+     * @param location
+     * @return
+     * @throws IllegalArgumentException 
+     */
+    public static Location copyOf(@Required Location location) throws IllegalArgumentException
+    {
+        checkThat(location).is(validLocation());
+        
+        return Location.of(location.latitude, location.longitude);
     }
     
     /**

@@ -171,4 +171,14 @@ public class LocationTest
             .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    public void testCopyOf()
+    {
+        Location copy = Location.copyOf(instance);
+        assertThat(copy, is(instance));
+        
+        assertThrows(() -> Location.copyOf(null))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
