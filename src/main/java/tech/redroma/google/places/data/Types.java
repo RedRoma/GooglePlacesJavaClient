@@ -375,6 +375,12 @@ public class Types
                 .usingMessage("text cannot be empty")
                 .is(nonEmptyString());
 
+            switch (string)
+            {
+                case "(regions)" : return REGIONS;
+                case "(cities)" : return CITIES;
+            }
+            
             return AutocompleteType.valueOf(string.toUpperCase());
         }
     }
