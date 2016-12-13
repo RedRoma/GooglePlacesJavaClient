@@ -25,13 +25,22 @@ import com.google.gson.annotations.SerializedName;
 public enum PriceLevel
 {
     @SerializedName("0")
-    FREE,
+    FREE(0),
     @SerializedName("1")
-    INEXPENSIVE,
+    INEXPENSIVE(1),
     @SerializedName("2")
-    MODERATE,
+    MODERATE(2),
     @SerializedName("3")
-    EXPENSIVE,
+    EXPENSIVE(3),
     @SerializedName("4")
-    VERY_EXPENSIVE
+    VERY_EXPENSIVE(4)
+    ;
+    
+    public final int value;
+
+    private PriceLevel(int value)
+    {
+        this.value = value;
+    }
+    
 }
