@@ -17,6 +17,8 @@
 package tech.redroma.google.places.requests;
 
 import java.util.Objects;
+import tech.redroma.google.places.data.Photo;
+import tech.redroma.google.places.data.Place;
 import tech.sirwellington.alchemy.annotations.arguments.NonEmpty;
 import tech.sirwellington.alchemy.annotations.arguments.Positive;
 import tech.sirwellington.alchemy.annotations.concurrency.Immutable;
@@ -29,6 +31,8 @@ import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPat
 import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.PRODUCT;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
 import static tech.sirwellington.alchemy.arguments.assertions.Assertions.nullObject;
+import static tech.sirwellington.alchemy.arguments.assertions.NumberAssertions.greaterThanOrEqualTo;
+import static tech.sirwellington.alchemy.arguments.assertions.NumberAssertions.lessThanOrEqualTo;
 import static tech.sirwellington.alchemy.arguments.assertions.NumberAssertions.positiveInteger;
 import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
 
@@ -140,6 +144,17 @@ public final class GetPhotoRequest
         private Integer maxWidth;
         private Integer maxHeight;
         
+        /** The minimum allowable width. */
+        public final static int MIN_WIDTH = 1;
+        /** The maximum allowable width. */
+        public final static int MAX_WIDTH = 1600;
+        
+        /** The minimum allowable height. */
+        public final static int MIN_HEIGHT = MIN_WIDTH;
+        /** The maximum allowable height. */
+        public final static int MAX_HEIGHT = MAX_WIDTH;
+        
+        
         Builder()
         {
         }
@@ -149,6 +164,14 @@ public final class GetPhotoRequest
             return new Builder();
         }
         
+        /**
+         * Sets the photo reference for the request. This uniquely identifies a photo.
+         * These are usually obtained from a {@link Place} object after making a {@link NearbySearchRequest}.
+         * 
+         * @param photoReference The {@link Photo#photoReference} to use in the request.
+         * @return
+         * @throws IllegalArgumentException 
+         */
         public Builder withPhotoReference(@NonEmpty String photoReference) throws IllegalArgumentException
         {
             checkThat(photoReference).is(nonEmptyString());
@@ -157,6 +180,15 @@ public final class GetPhotoRequest
             return this;
         }
         
+        /**
+         * Sets the maxHeight for the request. This specifies the maximum desired height, in pixels, of the image returned by the
+         * API. If the image is smaller than the specified value, the original image will be returned. If the image is larger, it
+         * will be scaled down to match the smaller of the two dimensions, restricted to its original aspect-ratio.
+         *
+         * @param maxHeight Must be {@code >1 && < } {@link #MAX_HEIGHT}.
+         * @return
+         * @throws IllegalArgumentException
+         */
         public Builder withMaxHeight(@Positive int maxHeight) throws IllegalArgumentException
         {
             checkThat(maxWidth)
@@ -164,12 +196,23 @@ public final class GetPhotoRequest
                 .is(nullObject());
                 
             checkThat(maxHeight)
-                .is(positiveInteger());
+                .is(positiveInteger())
+                .is(greaterThanOrEqualTo(MIN_HEIGHT))
+                .is(lessThanOrEqualTo(MAX_HEIGHT));
             
             this.maxHeight = maxHeight;
             return this;
         }
-        
+
+        /**
+         * Sets the maxWidth for the request. This specifies the maximum desired width, in pixels, of the image returned by the
+         * API. If the image is smaller than the specified value, the original image will be returned. If the image is larger, it
+         * will be scaled down to match the smaller of the two dimensions, restricted to its original aspect-ratio.
+         *
+         * @param maxWidth Must be {@code >1 && < } {@link #MAX_WIDTH}.
+         * @return
+         * @throws IllegalArgumentException
+         */
         public Builder withMaxWidth(@Positive int maxWidth) throws IllegalArgumentException
         {
             checkThat(maxHeight)
@@ -183,6 +226,12 @@ public final class GetPhotoRequest
             return this;
         }
         
+        /**
+         * Builds the {@link GetPhotoRequest} from the information specified so far.
+         * 
+         * @return
+         * @throws IllegalArgumentException 
+         */
         public GetPhotoRequest build() throws IllegalArgumentException
         {
             checkParameters();
