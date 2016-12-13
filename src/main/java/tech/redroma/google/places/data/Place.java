@@ -18,6 +18,7 @@ package tech.redroma.google.places.data;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
+import java.util.Objects;
 import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
@@ -110,7 +111,7 @@ public final class Place
      * property is only returned for a TextSearchRequest.
      */
     public String formattedAddress;
-    
+
     /**
      * A flag indicating whether the place has permanently closed and shut down. If the place is not permanently closed, the flag
      * is absent.
@@ -137,4 +138,101 @@ public final class Place
      */
     @Deprecated
     private String reference;
+
+    Place()
+    {
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.iconURL);
+        hash = 23 * hash + Objects.hashCode(this.placeId);
+        hash = 23 * hash + Objects.hashCode(this.geometry);
+        hash = 23 * hash + Objects.hashCode(this.name);
+        hash = 23 * hash + Objects.hashCode(this.openingHours);
+        hash = 23 * hash + Objects.hashCode(this.photos);
+        hash = 23 * hash + Objects.hashCode(this.rating);
+        hash = 23 * hash + Objects.hashCode(this.priceLevel);
+        hash = 23 * hash + Objects.hashCode(this.types);
+        hash = 23 * hash + Objects.hashCode(this.vicinity);
+        hash = 23 * hash + Objects.hashCode(this.formattedAddress);
+        hash = 23 * hash + Objects.hashCode(this.permanentlyClosed);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final Place other = (Place) obj;
+        if (!Objects.equals(this.iconURL, other.iconURL))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.placeId, other.placeId))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.vicinity, other.vicinity))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.formattedAddress, other.formattedAddress))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.geometry, other.geometry))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.openingHours, other.openingHours))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.photos, other.photos))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.rating, other.rating))
+        {
+            return false;
+        }
+        if (this.priceLevel != other.priceLevel)
+        {
+            return false;
+        }
+        if (!Objects.equals(this.types, other.types))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.permanentlyClosed, other.permanentlyClosed))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Place{" + "iconURL=" + iconURL + ", placeId=" + placeId + ", geometry=" + geometry + ", name=" + name + ", openingHours=" + openingHours + ", photos=" + photos + ", rating=" + rating + ", priceLevel=" + priceLevel + ", types=" + types + ", vicinity=" + vicinity + ", formattedAddress=" + formattedAddress + ", permanentlyClosed=" + permanentlyClosed + '}';
+    }
+
 }
