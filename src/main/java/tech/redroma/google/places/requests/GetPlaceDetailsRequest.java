@@ -18,7 +18,10 @@ package tech.redroma.google.places.requests;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
+import tech.redroma.google.places.data.Extensions;
+import tech.redroma.google.places.data.Place;
 import tech.sirwellington.alchemy.annotations.arguments.NonEmpty;
+import tech.sirwellington.alchemy.annotations.arguments.Required;
 import tech.sirwellington.alchemy.annotations.concurrency.Immutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadSafe;
 import tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern;
@@ -28,6 +31,7 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.BUILDER;
 import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.PRODUCT;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
 import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
 
 /**
@@ -44,10 +48,10 @@ public final class GetPlaceDetailsRequest
 
     @SerializedName("place_id")
     private final String placeId;
-    private final String extensions;
+    private final Extensions extensions;
     private final String language;
 
-    GetPlaceDetailsRequest(String placeId, String extensions, String language)
+    GetPlaceDetailsRequest(String placeId, Extensions extensions, String language)
     {
         checkThat(placeId)
             .usingMessage("placeId is required")
@@ -65,7 +69,7 @@ public final class GetPlaceDetailsRequest
 
     public boolean hasExtensions()
     {
-        return !isNullOrEmpty(extensions);
+        return Objects.nonNull(extensions);
     }
 
     public boolean hasLanguage()
@@ -125,52 +129,91 @@ public final class GetPlaceDetailsRequest
         return Builder.newInstance();
     }
 
+    /**
+     * Facilitates creation of {@link GetPlaceDetailsRequest} requests.
+     * <p>
+     * Note that {@link #withPlaceID(java.lang.String) } is <b>required</b>.
+     */
     @BuilderPattern(role = BUILDER)
     public static class Builder
     {
-        
+
         private String placeId;
-        private String extensions;
+        private Extensions extensions;
         private String language;
-        
+
         public static Builder newInstance()
         {
             return new Builder();
         }
-        
+
+        /**
+         * Sets the Place ID.
+         *
+         * @param placeId A textual identifier that uniquely identifies a place. This is typically obtained from
+         *                {@link Place#placeId}.
+         * @return
+         * @throws IllegalArgumentException
+         * @see <a href="https://developers.google.com/places/web-service/place-id">https://developers.google.com/places/web-service/place-id</a>
+         */
+        @Required
         public Builder withPlaceID(@NonEmpty String placeId) throws IllegalArgumentException
         {
             checkThat(placeId).is(nonEmptyString());
-            
+
             this.placeId = placeId;
             return this;
         }
-        
-        public Builder withExtensions(@NonEmpty String extensions) throws IllegalArgumentException
+
+        /**
+         * Sets the extensions for the request. This indicates if the response should include additional values.
+         *
+         * @param extensions Note that only {@link Extensions#REVIEW_SUMMARY} is supported for now.
+         * @return
+         * @throws IllegalArgumentException
+         * @see Extensions
+         * @see Extensions#REVIEW_SUMMARY
+         */
+        public Builder withExtensions(@Required Extensions extensions) throws IllegalArgumentException
         {
-            checkThat(extensions).is(nonEmptyString());
-            
+            checkThat(extensions)
+                .is(notNull());
+
             this.extensions = extensions;
             return this;
         }
-        
+
+        /**
+         * Sets the language for the request.
+         * <p>
+         * Note that some fields may not be available in the requested language.
+         *
+         * @param language The language code, indicating in which language the results should be returned, if possible.
+         * @return
+         * @throws IllegalArgumentException 
+         */
         public Builder withLanguage(@NonEmpty String language) throws IllegalArgumentException
         {
             checkThat(language).is(nonEmptyString());
-            
+
             this.language = language;
             return this;
         }
-        
+
+        /**
+         * Builds the {@link GetPlaceDetailsRequest} object from the specified information.
+         * @return
+         * @throws IllegalArgumentException If any of the required fields are missing or misconfigured.
+         */
         public GetPlaceDetailsRequest build() throws IllegalArgumentException
         {
             checkThat(placeId)
                 .usingMessage("placeID is required")
                 .is(nonEmptyString());
-            
+
             return new GetPlaceDetailsRequest(placeId, extensions, language);
         }
-            
+
     }
 
 }
