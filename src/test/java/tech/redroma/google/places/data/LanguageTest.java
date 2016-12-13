@@ -25,6 +25,9 @@ import tech.sirwellington.alchemy.test.junit.runners.Repeat;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+import static tech.sirwellington.alchemy.generator.AlchemyGenerator.one;
+import static tech.sirwellington.alchemy.generator.StringGenerators.hexadecimalString;
+import static tech.sirwellington.alchemy.test.junit.ThrowableAssertion.assertThrows;
 
 /**
  *
@@ -55,5 +58,13 @@ public class LanguageTest
         Language result = Language.fromCode(code);
         assertThat(result, notNullValue());
         assertThat(result, is(language));
+    }
+    
+    @Test
+    public void testFromWithUnknownCode() throws Exception
+    {
+        String code = one(hexadecimalString(10));
+        assertThrows(() -> Language.fromCode(code))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }
