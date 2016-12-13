@@ -40,6 +40,7 @@ import static tech.sirwellington.alchemy.arguments.assertions.NumberAssertions.l
 import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
 
 /**
+ * See {@link #newBuilder() } to create {@linkplain NearbySearchRequest Nearby Search Requests}.
  *
  * @author SirWellington
  */
@@ -239,6 +240,11 @@ public final class NearbySearchRequest
         return Builder.newInstance();
     }
 
+    /**
+     * Facilitates the creation of {@link NearbySearchRequest} objects.
+     *
+     * @see #newInstance()
+     */
     @BuilderPattern(role = BUILDER)
     public static class Builder
     {
@@ -311,14 +317,15 @@ public final class NearbySearchRequest
             this.language = language;
             return this;
         }
-        
-        public Builder withMinAndMaxPrice(@Required PriceLevel minPrice, @Required PriceLevel maxPrice) throws IllegalArgumentException
+
+        public Builder withMinAndMaxPrice(@Required PriceLevel minPrice, @Required PriceLevel maxPrice) throws
+            IllegalArgumentException
         {
             checkThat(minPrice, maxPrice).are(notNull());
-            
+
             this.minPrice = maxPrice;
             this.maxPrice = maxPrice;
-        
+
             return this;
         }
 
@@ -327,27 +334,27 @@ public final class NearbySearchRequest
             this.onlyOpenNow = true;
             return this;
         }
-        
+
         public Builder withRankBy(@Required Ranking rankBy) throws IllegalArgumentException
         {
             checkThat(rankBy).is(notNull());
-            
+
             this.rankBy = rankBy;
             return this;
         }
-        
+
         public Builder withPlaceType(@Required Types.PlaceType type) throws IllegalArgumentException
         {
             checkThat(type).is(notNull());
-            
+
             this.type = type;
             return this;
         }
-        
+
         public Builder withPageToken(@NonEmpty String pageToken) throws IllegalArgumentException
         {
             checkThat(pageToken).is(nonEmptyString());
-            
+
             this.pageToken = pageToken;
             return this;
         }
