@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import sir.wellington.alchemy.collections.lists.Lists;
 import tech.sirwellington.alchemy.test.junit.runners.AlchemyTestRunner;
+import tech.sirwellington.alchemy.test.junit.runners.DontRepeat;
 import tech.sirwellington.alchemy.test.junit.runners.GeneratePojo;
 import tech.sirwellington.alchemy.test.junit.runners.Repeat;
 
@@ -31,6 +32,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static tech.redroma.google.places.data.TestResources.GSON;
 
 /**
  *
@@ -185,6 +187,15 @@ public class PlaceTest
     {
         String string = instance.toString();
         assertThat(string, not(isEmptyOrNullString()));
+    }
+
+    @DontRepeat
+    @Test
+    public void testJSONDeserialization() throws Exception
+    {
+        String json = TestResources.loadFile("place.json");
+        Place place = GSON.fromJson(json, Place.class);
+        assertThat(place, notNullValue());
     }
 
 }
