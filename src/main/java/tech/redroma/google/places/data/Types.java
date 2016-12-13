@@ -355,7 +355,7 @@ public class Types
         GEOCODE,
         ADDRESS,
         ESTABLISHMENT,
-        REGISONS,
+        REGIONS,
         CITIES;
 
         public String asText()
