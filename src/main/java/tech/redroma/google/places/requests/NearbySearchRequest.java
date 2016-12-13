@@ -279,9 +279,37 @@ public final class NearbySearchRequest
         {
         }
 
-        static Builder newInstance()
+        public static Builder newInstance()
         {
             return new Builder();
+        }
+        
+        /**
+         * Creates a builder using the information from the specified request object.
+         * 
+         * @param request
+         * @return
+         * @throws IllegalArgumentException 
+         */
+        public static Builder from(@Required NearbySearchRequest request) throws IllegalArgumentException
+        {
+            checkThat(request).is(notNull());
+            
+            Builder builder = newBuilder();
+            
+            builder.keyword = request.keyword;
+            builder.language = request.language;
+            builder.location = request.location;
+            builder.maxPrice = request.maxPrice;
+            builder.minPrice = request.minPrice;
+            builder.name = request.name;
+            builder.onlyOpenNow = request.onlyOpenNow;
+            builder.pageToken = request.pageToken;
+            builder.radiusInMeters = request.radiusInMeters;
+            builder.rankBy = request.rankBy;
+            builder.type = request.type;
+            
+            return builder;
         }
 
         /**
