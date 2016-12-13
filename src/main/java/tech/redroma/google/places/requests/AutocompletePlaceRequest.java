@@ -47,12 +47,12 @@ import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.s
  * Used to make requests to the
  * <a href="https://developers.google.com/places/web-service/autocomplete">Google Places Autocomplete API</a>.
  * <p>
- * 
+ *
  * See {@link #newBuilder() } to make new requests.
- * 
+ *
  * @author SirWellington
  * @see Builder
- * @see #newBuilder() 
+ * @see #newBuilder()
  * @see
  * <a href="https://developers.google.com/places/web-service/autocomplete">https://developers.google.com/places/web-service/autocomplete</a>
  */
@@ -188,7 +188,7 @@ public final class AutocompletePlaceRequest
     {
         return "AutocompletePlaceRequest{" + "input=" + input + ", offset=" + offset + ", location=" + location + ", radiusInMeters=" + radiusInMeters + ", language=" + language + ", types=" + types + ", strictBounds=" + strictBounds + '}';
     }
-    
+
     public static Builder newBuilder()
     {
         return Builder.newInstance();
@@ -214,31 +214,30 @@ public final class AutocompletePlaceRequest
         Builder()
         {
         }
-        
+
         public static Builder newInstance()
         {
             return new Builder();
         }
-        
+
         /**
          * Sets the input. The Place Autocomplete service will return candidate matches based on this string and order results
          * based on their perceived relevance.
          *
          * @param input The text string on which to search.
          * @return
-         * @throws IllegalArgumentException 
+         * @throws IllegalArgumentException
          */
         public Builder withInput(@NonEmpty String input) throws IllegalArgumentException
         {
             checkThat(input)
                 .is(nonEmptyString())
                 .is(stringWithLengthGreaterThanOrEqualTo(MINIMUM_INPUT_LENGTH));
-            
+
             this.input = input;
             return this;
         }
-        
-        
+
         /**
          * Sets the offset. This is the position, in the input term, of the last character that the service uses to match
          * predictions. For example. if the input if 'Google' and offset is 3, the service will match on 'Goog'. The string
@@ -254,23 +253,23 @@ public final class AutocompletePlaceRequest
         {
             checkThat(offset)
                 .is(positiveInteger());
-            
+
             this.offset = offset;
             return this;
         }
-        
+
         /**
          * The Sets the location for the query.
-         * 
+         *
          * @param location The point around which you wish to retrieve place information.
          * @return
-         * @throws IllegalArgumentException 
+         * @throws IllegalArgumentException
          */
         public Builder withLocation(@Required Location location) throws IllegalArgumentException
         {
             checkThat(location).is(validLocation());
-            
-            this.location = Location.copyOf(location); 
+
+            this.location = Location.copyOf(location);
             return this;
         }
 
@@ -283,18 +282,18 @@ public final class AutocompletePlaceRequest
          * @param radius The radius (in meters) to use for the query.
          * @return
          * @throws IllegalArgumentException
-         * @see #withStrictBounds() 
-         * @see #withLocation(tech.redroma.google.places.data.Location) 
+         * @see #withStrictBounds()
+         * @see #withLocation(tech.redroma.google.places.data.Location)
          */
         public Builder withRadiusInMeters(@Positive int radius) throws IllegalArgumentException
         {
             checkThat(radius)
                 .is(positiveInteger());
-            
+
             this.radiusInMeters = radius;
             return this;
         }
-        
+
         /**
          * Sets the language to use for the query. This affects the language of the search results. Setting the language also
          * biases the results to the selected language; results in the selected language may be given a higher ranking.
@@ -307,7 +306,7 @@ public final class AutocompletePlaceRequest
         public Builder withLanguage(@Required Language language) throws IllegalArgumentException
         {
             checkThat(language).is(notNull());
-            
+
             this.language = language;
             return this;
         }
@@ -321,12 +320,13 @@ public final class AutocompletePlaceRequest
          * @throws IllegalArgumentException
          * @see #withTypes(java.util.List)
          */
-        public Builder withTypes(@Required Types.AutocompleteType first, @Optional Types.AutocompleteType... others) throws IllegalArgumentException
+        public Builder withTypes(@Required Types.AutocompleteType first, @Optional Types.AutocompleteType... others) throws
+            IllegalArgumentException
         {
             checkThat(first)
                 .usingMessage("first parameter is required")
                 .is(notNull());
-                
+
             return this.withTypes(Lists.createFrom(first, others));
         }
 
@@ -344,38 +344,38 @@ public final class AutocompletePlaceRequest
             checkThat(types)
                 .usingMessage("types cannot be empty")
                 .is(nonEmptyList());
-            
+
             this.types = types.stream()
                 .distinct()
                 .collect(toList());
-            
+
             return this;
         }
-        
+
         /**
          * Enables Strict Bounds. This makes it so that the API only returns places that are strictly within the region defined by
          * {@linkplain #withLocation(tech.redroma.google.places.data.Location) location} and
          * {@linkplain #withRadiusInMeters(int) radius}. This is a restriction, and so places outside of this region will not be
          * returned.
          *
-         * @return 
+         * @return
          */
         public Builder withStrictBounds()
         {
             this.strictBounds = true;
             return this;
         }
-        
+
         /**
          * Builds the {@link AutocompletePlaceRequest} request object from the data specified so far.
-         * 
+         *
          * @return
          * @throws IllegalArgumentException If any of the required information is missing or incorrect.
          */
         public AutocompletePlaceRequest build() throws IllegalArgumentException
         {
             checkParameters();
-            
+
             return new AutocompletePlaceRequest(input, offset, location, radiusInMeters, language, types, strictBounds);
         }
 
@@ -386,7 +386,8 @@ public final class AutocompletePlaceRequest
                 .is(nonEmptyString())
                 .usingMessage("input must have at least " + MINIMUM_INPUT_LENGTH + " characters")
                 .is(stringWithLengthGreaterThanOrEqualTo(MINIMUM_INPUT_LENGTH));
-            
+
         }
     }
+
 }
