@@ -23,13 +23,11 @@ import tech.sirwellington.alchemy.arguments.AlchemyAssertion;
 import tech.sirwellington.alchemy.generator.AlchemyGenerator;
 import tech.sirwellington.alchemy.test.junit.runners.AlchemyTestRunner;
 import tech.sirwellington.alchemy.test.junit.runners.DontRepeat;
-import tech.sirwellington.alchemy.test.junit.runners.GeneratePojo;
 import tech.sirwellington.alchemy.test.junit.runners.Repeat;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static tech.redroma.google.places.data.Generators.locations;
 import static tech.sirwellington.alchemy.generator.AlchemyGenerator.one;
@@ -45,16 +43,10 @@ import static tech.sirwellington.alchemy.test.junit.ThrowableAssertion.assertThr
 @RunWith(AlchemyTestRunner.class)
 public class LocationTest 
 {
-    @GeneratePojo
     private Location instance;
-    
-    @GeneratePojo
     private Location first;
-    
-    @GeneratePojo
     private Location second;
     
-
     @Before
     public void setUp() throws Exception
     {
@@ -90,27 +82,6 @@ public class LocationTest
         
         assertThrows(() -> Location.of(badNumbers.get(), badNumbers.get()))
             .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    public void testIsSet()
-    {
-    }
-
-    @DontRepeat
-    @Test
-    public void testIsSetWhenNotSet()
-    {
-        instance.latitude = null;
-        instance.longitude = null;
-        assertFalse(instance.isSet());
-        
-        instance.latitude = first.latitude;
-        assertFalse(instance.isSet());
-        
-        instance.longitude = first.longitude;
-        instance.latitude = null;
-        assertFalse(instance.isSet());
     }
 
     @Test
@@ -162,12 +133,14 @@ public class LocationTest
         AlchemyAssertion<Location> assertion = Location.validLocation();
         
         assertThrows(() -> assertion.check(null)).isInstanceOf(IllegalArgumentException.class);
-        
+    }
+    
+    @Test
+    public void testWithInvalidParameters() throws Exception
+    {
         AlchemyGenerator<Double> badNumbers = doubles(200, 2_000);
-        instance.latitude = one(badNumbers);
-        instance.longitude = one(badNumbers);
-        
-        assertThrows(() -> assertion.check(instance))
+
+        assertThrows(() -> new Location(one(badNumbers), one(badNumbers)))
             .isInstanceOf(IllegalArgumentException.class);
     }
 

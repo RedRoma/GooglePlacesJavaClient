@@ -19,7 +19,7 @@ package tech.redroma.google.places.data;
 import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 import tech.sirwellington.alchemy.annotations.arguments.Required;
-import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
+import tech.sirwellington.alchemy.annotations.concurrency.Immutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
 import tech.sirwellington.alchemy.arguments.AlchemyAssertion;
@@ -34,7 +34,7 @@ import static tech.sirwellington.alchemy.arguments.assertions.GeolocationAsserti
  *
  * @author SirWellington
  */
-@Mutable
+@Immutable
 @ThreadUnsafe
 @Pojo
 public class Location
@@ -42,15 +42,11 @@ public class Location
 
     /** Latitude field. */
     @SerializedName("lat")
-    public Double latitude;
+    public final double latitude;
     
     /** Longitude field. */
     @SerializedName("lng")
-    public Double longitude;
-
-    public Location()
-    {
-    }
+    public final double longitude;
 
     public Location(double latitude, double longitude)
     {
@@ -96,16 +92,6 @@ public class Location
             checkThat(l.latitude).is(validLatitude());
             checkThat(l.longitude).is(validLongitude());
         };
-    }
-
-    /**
-     * Returns whether the latitude and longitude variables are set.
-     * 
-     * @return 
-     */
-    public boolean isSet()
-    {
-        return latitude != null && longitude != null;
     }
 
     @Override
