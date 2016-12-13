@@ -44,7 +44,7 @@ public class Location
     public Double latitude;
     
     /** Longitude field. */
-    @SerializedName("lon")
+    @SerializedName("lng")
     public Double longitude;
 
     public Location()
