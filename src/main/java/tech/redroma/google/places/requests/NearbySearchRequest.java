@@ -29,6 +29,7 @@ import tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static tech.redroma.google.places.data.Location.validLocation;
+import static tech.redroma.google.places.requests.NearbySearchRequest.Ranking.DISTANCE;
 import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.BUILDER;
 import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.PRODUCT;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
@@ -254,6 +255,11 @@ public final class NearbySearchRequest
          */
         public static final int MAX_RADIUS = 50_000;
 
+        /**
+         * This is the default radius used when one is not set.
+         */
+        public static final int DEFAULT_RADIUS = 5_000;
+
         private Location location;
         private Integer radiusInMeters;
         private String keyword;
@@ -275,6 +281,14 @@ public final class NearbySearchRequest
             return new Builder();
         }
 
+        /**
+         * Sets the location for the query.
+         *
+         * @param location The latitude/longitude around which to retrieve place information.
+         * @return
+         * @throws IllegalArgumentException
+         */
+        @Required
         public Builder withLocation(@Required Location location) throws IllegalArgumentException
         {
             checkThat(location).is(validLocation());
@@ -283,6 +297,16 @@ public final class NearbySearchRequest
             return this;
         }
 
+        /**
+         * Sets the distance (in meters) within which to return place results. The maximum allowd radius is {@link #MAX_RADIUS}.
+         * Note that radius cannot be included if {@link #withRankBy(tech.redroma.google.places.requests.NearbySearchRequest.Ranking)
+         * } is used with {@link Ranking#DISTANCE}.
+         *
+         * @param radius The radius, in meters, to use for the query. Must be {@code > 0} and {@code < MAX_RADIUS}.
+         * @return
+         * @throws IllegalArgumentException
+         */
+        @Required
         public Builder withRadiusInMeters(@Positive int radius) throws IllegalArgumentException
         {
             checkThat(radius)
@@ -294,6 +318,14 @@ public final class NearbySearchRequest
             return this;
         }
 
+        /**
+         * Sets the term to be used for the query.
+         *
+         * @param keyword A term to be matched against all content that Google has indexed for this place, including but not
+         *                limited to: name, type, address, as well as customer reviews.
+         * @return
+         * @throws IllegalArgumentException
+         */
         public Builder withKeyword(@NonEmpty String keyword) throws IllegalArgumentException
         {
             checkThat(keyword).is(nonEmptyString());
@@ -302,6 +334,17 @@ public final class NearbySearchRequest
             return this;
         }
 
+        /**
+         * Sets the name for the query.
+         * <p>
+         * <b>NOTE:</b> Google recommends that you only use {@linkplain #withKeyword(java.lang.String) keyword} instead of 'name'.
+         *
+         * @param name A term to be matched against all content that Google has indexed for this place. Equivalent to 
+         * {@link #withKeyword(java.lang.String) }.
+         *
+         * @return
+         * @throws IllegalArgumentException
+         */
         public Builder withName(@NonEmpty String name) throws IllegalArgumentException
         {
             checkThat(name).is(nonEmptyString());
@@ -310,6 +353,14 @@ public final class NearbySearchRequest
             return this;
         }
 
+        /**
+         * Sets the language code, indicating in which language the results should be 
+         * returned, if possible. Searches are also biased to the selected language; results in teh selected language may be given a higher ranking.
+         * 
+         * @param language The language to use for the query.
+         * @return
+         * @throws IllegalArgumentException 
+         */
         public Builder withLanguage(@NonEmpty String language) throws IllegalArgumentException
         {
             checkThat(language).is(nonEmptyString());
@@ -318,8 +369,17 @@ public final class NearbySearchRequest
             return this;
         }
 
-        public Builder withMinAndMaxPrice(@Required PriceLevel minPrice, @Required PriceLevel maxPrice) throws
-            IllegalArgumentException
+        /**
+         * Sets the min and max price for the query. This restrices results to only those places
+         * within the specified range.
+         * 
+         * @param minPrice The minimum acceptable price.
+         * @param maxPrice The maximum acceptable price.
+         * @return
+         * @throws IllegalArgumentException 
+         * @see PriceLevel
+         */
+        public Builder withMinAndMaxPrice(@Required PriceLevel minPrice, @Required PriceLevel maxPrice) throws IllegalArgumentException
         {
             checkThat(minPrice, maxPrice).are(notNull());
 
@@ -329,12 +389,25 @@ public final class NearbySearchRequest
             return this;
         }
 
+        /**
+         * Sets the query to restrict results to only places that are open 'now', at the time of request.
+         *
+         * @return
+         */
         public Builder onlyOpenNow()
         {
             this.onlyOpenNow = true;
             return this;
         }
 
+        /**
+         * Sets the ranking to use for the query. This affects the order
+         * in which results are listed. Note that this cannot be used with
+         * {@linkplain #withRadiusInMeters(int) radius}.
+         * @param rankBy
+         * @return
+         * @throws IllegalArgumentException 
+         */
         public Builder withRankBy(@Required Ranking rankBy) throws IllegalArgumentException
         {
             checkThat(rankBy).is(notNull());
@@ -343,6 +416,15 @@ public final class NearbySearchRequest
             return this;
         }
 
+        /**
+         * Sets the type for the query. This restrices the 
+         * results to places that match the specified type.
+         * 
+         * @param type
+         * @return
+         * @throws IllegalArgumentException 
+         * @see Types.PlaceType
+         */
         public Builder withPlaceType(@Required Types.PlaceType type) throws IllegalArgumentException
         {
             checkThat(type).is(notNull());
@@ -351,6 +433,14 @@ public final class NearbySearchRequest
             return this;
         }
 
+        /**
+         * Sets the page token. Returns the next 20 results from a previously-run search. Setting this parameter will execute a
+         * search with the same parameters used previously. All parameters other than pageToken will be ignored.
+         *
+         * @param pageToken
+         * @return
+         * @throws IllegalArgumentException 
+         */
         public Builder withPageToken(@NonEmpty String pageToken) throws IllegalArgumentException
         {
             checkThat(pageToken).is(nonEmptyString());
@@ -359,10 +449,21 @@ public final class NearbySearchRequest
             return this;
         }
 
+        /**
+         * Builds the {@link NearbySearchRequest} from the information specified.
+         *
+         * @return
+         * @throws IllegalArgumentException
+         */
         public NearbySearchRequest build() throws IllegalArgumentException
         {
             checkParameters();
 
+            if (allAreNull(rankBy, radiusInMeters))
+            {
+                radiusInMeters = DEFAULT_RADIUS;
+            }
+            
             return new NearbySearchRequest(location,
                                            radiusInMeters,
                                            keyword,
@@ -384,11 +485,14 @@ public final class NearbySearchRequest
 
             if (rankBy != null)
             {
-                checkThat(radiusInMeters)
-                    .usingMessage("Distance ranking cannot be used in conjunction with radius")
-                    .is(nullObject());
+                if (rankBy == DISTANCE)
+                {
+                    checkThat(radiusInMeters)
+                        .usingMessage("Distance ranking cannot be used in conjunction with radius")
+                        .is(nullObject());
+                }
 
-                if (allAreEmpty(keyword, name, type))
+                if (allAreNull(keyword, name, type))
                 {
                     throw new IllegalArgumentException("when rankBy is set, at least one of name, keyword, or type are required");
                 }
@@ -403,7 +507,7 @@ public final class NearbySearchRequest
 
         }
 
-        private boolean allAreEmpty(Object... objects)
+        private boolean allAreNull(Object... objects)
         {
             for (Object object : objects)
             {
