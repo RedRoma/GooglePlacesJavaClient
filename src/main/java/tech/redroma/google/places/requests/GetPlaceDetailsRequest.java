@@ -18,21 +18,27 @@ package tech.redroma.google.places.requests;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
+import tech.sirwellington.alchemy.annotations.arguments.NonEmpty;
 import tech.sirwellington.alchemy.annotations.concurrency.Immutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadSafe;
+import tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.BUILDER;
+import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.PRODUCT;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
 import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
 
 /**
+ * This request is used to get more detailed information about a {@linkplain Place Google Place}.
  *
  * @author SirWellington
  */
 @ThreadSafe
 @Immutable
 @Pojo
+@BuilderPattern(role = PRODUCT)
 public final class GetPlaceDetailsRequest
 {
 
@@ -112,6 +118,59 @@ public final class GetPlaceDetailsRequest
     public String toString()
     {
         return "GetPlaceDetailsRequest{" + "placeId=" + placeId + ", extensions=" + extensions + ", language=" + language + '}';
+    }
+
+    public static Builder newBuilder()
+    {
+        return Builder.newInstance();
+    }
+
+    @BuilderPattern(role = BUILDER)
+    public static class Builder
+    {
+        
+        private String placeId;
+        private String extensions;
+        private String language;
+        
+        public static Builder newInstance()
+        {
+            return new Builder();
+        }
+        
+        public Builder withPlaceID(@NonEmpty String placeId) throws IllegalArgumentException
+        {
+            checkThat(placeId).is(nonEmptyString());
+            
+            this.placeId = placeId;
+            return this;
+        }
+        
+        public Builder withExtensions(@NonEmpty String extensions) throws IllegalArgumentException
+        {
+            checkThat(extensions).is(nonEmptyString());
+            
+            this.extensions = extensions;
+            return this;
+        }
+        
+        public Builder withLanguage(@NonEmpty String language) throws IllegalArgumentException
+        {
+            checkThat(language).is(nonEmptyString());
+            
+            this.language = language;
+            return this;
+        }
+        
+        public GetPlaceDetailsRequest build() throws IllegalArgumentException
+        {
+            checkThat(placeId)
+                .usingMessage("placeID is required")
+                .is(nonEmptyString());
+            
+            return new GetPlaceDetailsRequest(placeId, extensions, language);
+        }
+            
     }
 
 }
