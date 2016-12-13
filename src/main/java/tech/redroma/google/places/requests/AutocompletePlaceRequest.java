@@ -22,19 +22,34 @@ import sir.wellington.alchemy.collections.lists.Lists;
 import tech.redroma.google.places.data.Language;
 import tech.redroma.google.places.data.Location;
 import tech.redroma.google.places.data.Types;
+import tech.sirwellington.alchemy.annotations.arguments.NonEmpty;
+import tech.sirwellington.alchemy.annotations.arguments.Optional;
+import tech.sirwellington.alchemy.annotations.arguments.Positive;
+import tech.sirwellington.alchemy.annotations.arguments.Required;
 import tech.sirwellington.alchemy.annotations.concurrency.Immutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadSafe;
 import tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.util.stream.Collectors.toList;
+import static tech.redroma.google.places.data.Location.validLocation;
+import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.BUILDER;
 import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.PRODUCT;
+import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
+import static tech.sirwellington.alchemy.arguments.assertions.CollectionAssertions.nonEmptyList;
+import static tech.sirwellington.alchemy.arguments.assertions.NumberAssertions.positiveInteger;
+import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
+import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.stringWithLengthGreaterThanOrEqualTo;
 
 /**
  * Used to make requests to the
  * <a href="https://developers.google.com/places/web-service/autocomplete">Google Places Autocomplete API</a>.
  *
  * @author SirWellington
+ * @see Builder
+ * @see #newBuilder() 
  * @see
  * <a href="https://developers.google.com/places/web-service/autocomplete">https://developers.google.com/places/web-service/autocomplete</a>
  */
@@ -170,5 +185,126 @@ public final class AutocompletePlaceRequest
     {
         return "AutocompletePlaceRequest{" + "input=" + input + ", offset=" + offset + ", location=" + location + ", radiusInMeters=" + radiusInMeters + ", language=" + language + ", types=" + types + ", strictBounds=" + strictBounds + '}';
     }
+    
+    public static Builder newBuilder()
+    {
+        return Builder.newInstance();
+    }
 
+    /**
+     * Facilitates creation of {@link AutocompletePlaceRequest} requests.
+     */
+    @BuilderPattern(role = BUILDER)
+    public static class Builder
+    {
+
+        private final static int MINIMUM_INPUT_LENGTH = 2;
+
+        private String input;
+        private Integer offset;
+        private Location location;
+        private Integer radiusInMeters;
+        private Language language;
+        private List<Types.AutocompleteType> types = Lists.emptyList();
+        private boolean strictBounds = false;
+
+        Builder()
+        {
+        }
+        
+        public static Builder newInstance()
+        {
+            return new Builder();
+        }
+        
+        public Builder withInput(@NonEmpty String input) throws IllegalArgumentException
+        {
+            checkThat(input)
+                .is(nonEmptyString())
+                .is(stringWithLengthGreaterThanOrEqualTo(MINIMUM_INPUT_LENGTH));
+            
+            this.input = input;
+            return this;
+        }
+        
+        
+        public Builder withOffset(@Positive int offset) throws IllegalArgumentException
+        {
+            checkThat(offset)
+                .is(positiveInteger());
+            
+            this.offset = offset;
+            return this;
+        }
+        
+        public Builder withLocation(@Required Location location) throws IllegalArgumentException
+        {
+            checkThat(location).is(validLocation());
+            
+            this.location = Location.copyOf(location); 
+            return this;
+        }
+        
+        public Builder withRadiusInMeters(@Positive int radius) throws IllegalArgumentException
+        {
+            checkThat(radius)
+                .is(positiveInteger());
+            
+            this.radiusInMeters = radius;
+            return this;
+        }
+        
+        public Builder withLanguage(@Required Language language) throws IllegalArgumentException
+        {
+            checkThat(language).is(notNull());
+            
+            this.language = language;
+            return this;
+        }
+        
+        public Builder withTypes(@Required Types.AutocompleteType first, @Optional Types.AutocompleteType... others) throws IllegalArgumentException
+        {
+            checkThat(first)
+                .usingMessage("first parameter is required")
+                .is(notNull());
+                
+            return this.withTypes(Lists.createFrom(first, others));
+        }
+        
+        public Builder withTypes(@NonEmpty List<Types.AutocompleteType> types) throws IllegalArgumentException
+        {
+            checkThat(types)
+                .usingMessage("types cannot be empty")
+                .is(nonEmptyList());
+            
+            this.types = types.stream()
+                .distinct()
+                .collect(toList());
+            
+            return this;
+        }
+        
+        public Builder withStrictBounds()
+        {
+            this.strictBounds = true;
+            return this;
+        }
+        
+        public AutocompletePlaceRequest build() throws IllegalArgumentException
+        {
+            checkParameters();
+            
+            return new AutocompletePlaceRequest(input, offset, location, radiusInMeters, language, types, strictBounds);
+        }
+
+        private void checkParameters()
+        {
+            checkThat(input)
+                .usingMessage("input is missing")
+                .is(nonEmptyString())
+                .usingMessage("input must have at least " + MINIMUM_INPUT_LENGTH + " characters")
+                .is(stringWithLengthGreaterThanOrEqualTo(MINIMUM_INPUT_LENGTH));
+            
+        }
+    }
 }
