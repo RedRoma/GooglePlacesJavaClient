@@ -1,0 +1,292 @@
+{
+    "address_components": [
+        {
+            "long_name": "2840",
+            "short_name": "2840",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "Broadway",
+            "short_name": "Broadway",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Upper Manhattan",
+            "short_name": "Upper Manhattan",
+            "types": [
+                "neighborhood",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Manhattan",
+            "short_name": "Manhattan",
+            "types": [
+                "sublocality_level_1",
+                "sublocality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "New York",
+            "short_name": "New York",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "New York County",
+            "short_name": "New York County",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "New York",
+            "short_name": "NY",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "United States",
+            "short_name": "US",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "10025",
+            "short_name": "10025",
+            "types": [
+                "postal_code"
+            ]
+        },
+        {
+            "long_name": "7816",
+            "short_name": "7816",
+            "types": [
+                "postal_code_suffix"
+            ]
+        }
+    ],
+    "adr_address": "<span class=\"street-address\">2840 Broadway</span>, <span class=\"locality\">New York</span>, <span class=\"region\">NY</span> <span class=\"postal-code\">10025-7816</span>, <span class=\"country-name\">USA</span>",
+    "formatted_address": "2840 Broadway, New York, NY 10025, USA",
+    "formatted_phone_number": "(212) 222-3367",
+    "geometry": {
+        "location": {
+            "lat": 40.8042726,
+            "lng": -73.9662993
+        },
+        "viewport": {
+            "northeast": {
+                "lat": 40.80437730000001,
+                "lng": -73.96621655000001
+            },
+            "southwest": {
+                "lat": 40.80423769999999,
+                "lng": -73.96654755
+            }
+        }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+    "id": "a87d056c9af5689e077130a3ce82f532feecd7e7",
+    "international_phone_number": "+1 212-222-3367",
+    "name": "Westside Market NYC",
+    "opening_hours": {
+        "open_now": true,
+        "periods": [
+            {
+                "open": {
+                    "day": 0,
+                    "time": "0000"
+                }
+            }
+        ],
+        "weekday_text": [
+            "Monday: Open 24 hours",
+            "Tuesday: Open 24 hours",
+            "Wednesday: Open 24 hours",
+            "Thursday: Open 24 hours",
+            "Friday: Open 24 hours",
+            "Saturday: Open 24 hours",
+            "Sunday: Open 24 hours"
+        ]
+    },
+    "photos": [
+        {
+            "height": 2988,
+            "html_attributions": [
+                "<a href=\"https://maps.google.com/maps/contrib/108235598400884797215/photos\">Frederik Storgaard Simonsen</a>"
+            ],
+            "photo_reference": "CoQBdwAAAIGjQJbiv3F_798Wq8LQpDrFS1FOaytIcPCKrgACusdAbpv_stV2VgLC3bdPL0Hxx9eRHkGK4aHYItqSIKLBquX6hSytrRZ2vpzvzmajSApctvm_WznSpjnKh0dBz4OvHdtFvlKV416jq7rXcYgzTka9Owo7eXW5rzs6PIy0ygfkEhAhAPj0_nE5fku1qHPt4c_lGhSH7kl6zt1Lq282uUaL_MwAy3Kttg",
+            "width": 5312
+        },
+        {
+            "height": 2988,
+            "html_attributions": [
+                "<a href=\"https://maps.google.com/maps/contrib/110502685003455122760/photos\">Brian Toro</a>"
+            ],
+            "photo_reference": "CoQBdwAAANca50ZKtwqqy9V_iRZwb00J393qgYIxP9pS0JSPchIdON35-dsrpSPyMUcoJayIxKhQQNaVm9n6QZAlaRSQTiMs8AdIQe0-K0S9WKJa93v5-xrsaxeRYicGDVtW57ObTQm4ntEyoYgSdBeQq5Jm26RIAfZHwSDGelJr0M_3VJ2REhAU0AwBag3yfRnFLSEhOtKpGhRnuE6ZjL4unQd6T85wWzY0rAaFLw",
+            "width": 5312
+        },
+        {
+            "height": 648,
+            "html_attributions": [
+                "<a href=\"https://maps.google.com/maps/contrib/109687568673638689652/photos\">Walkertwo NYC</a>"
+            ],
+            "photo_reference": "CoQBdwAAAOvZknd7GDXqf1WpcD9S7Ue7Bnc8QmH4EblqaAc5JhK-xGXgn4U71ZPOWKGV1I53LPQQuyOAh9yRMt96duVWEgVBoV2DPqufJB4TcRFVsM8VFHR0VwSHA9MUno5PNyeUeeG13OzT1T5D1dXEKjS0eEk4EVULf0beizLHZ-11LmO8EhDBQvQfchLJAwYblklKBIA5GhSTxiMqqj7llxb1LTu_AeDwxMj0MA",
+            "width": 1152
+        },
+        {
+            "height": 4208,
+            "html_attributions": [
+                "<a href=\"https://maps.google.com/maps/contrib/104593939821611442698/photos\">Ofer Tal</a>"
+            ],
+            "photo_reference": "CoQBdwAAAO1ran9dzy-4-jyuY4rtz1I8IwJL9V1r9CCrWfeYRK8U0IX0gxq3nVM58ENZxd4QfJYpYFLoq-sRpev4zvQzqeGeyAtzjX98BEPv6zWh-f0_O1ZvQQpJbt3-UOiEQHwxebwa6LvwhUlO5sxlkrkB4jHDU1_TSfmYfX6gsLqvtukuEhALdBC1kyyZxVWbSvWKUAeTGhS4ysEiB3d2127weJ9BzkQ19ULr6Q",
+            "width": 2368
+        },
+        {
+            "height": 2988,
+            "html_attributions": [
+                "<a href=\"https://maps.google.com/maps/contrib/108235598400884797215/photos\">Frederik Storgaard Simonsen</a>"
+            ],
+            "photo_reference": "CoQBdwAAABnwKqb4q-h2WSXNZYoGqXfNZnS7jqIfxsZuiBLeg5xQnBkgv4biTYJUzGzqTNJBAa6IrZUywrKESCUh9zVxCuOljxLWVJN_AIc8qSZ_IRltOxu7avLUoVowKYRdSOGZ3NpFm-xAv3hSkBZqHEHyL_6hijH-k0OoSRx9mc6r1mpHEhCxXpQxXURAl_DviULn-KHPGhQs2Azs9K_nJVZ8Jh7Y3C9e0S3hrA",
+            "width": 5312
+        },
+        {
+            "height": 747,
+            "html_attributions": [
+                "<a href=\"https://maps.google.com/maps/contrib/109905707214012267331/photos\">Ebow Yawson</a>"
+            ],
+            "photo_reference": "CoQBdwAAAKvCnibcLXA0Mks896-fG8x6upfwW6ZGNl-UCRwW_5QaMXbDeG5k-ztylP-CBJtbrL4zyXmdPKskzKEhI-KrVBUSCNS2IKgXVnLsHnEaSLEKelurt-4kcG1Lp7jRNDuTXhiNMi9uTlc3b7vn75cBmXSnYFJc7li07-_ck4TvhVivEhBwSQg3SlfcwA3IFw3wsb77GhS-MQSIeO7HObMe3KpX_cl97dn81Q",
+            "width": 1328
+        },
+        {
+            "height": 648,
+            "html_attributions": [
+                "<a href=\"https://maps.google.com/maps/contrib/109687568673638689652/photos\">Walkertwo NYC</a>"
+            ],
+            "photo_reference": "CoQBdwAAADmNKo3MJ9kK6fDklRgOONUyRvfuhk641kIGe5z9BFNVnNqS1ZlckZEm5MJ0aHJDjG2OBV_TFBbxV_bo6r6B1Q4SuHOrD3GT54fnRXCGscqG3jJNmGECnFoZK6emkKur6HKWrPVoyqVzyaSISRRxynFt8dvbMwfPgMa78862lAXEEhAwOOuOjNAgC4GTXcGsT0rCGhSqtiHXRkHEQrDjXRF_RzNyZWWyQQ",
+            "width": 1152
+        },
+        {
+            "height": 4160,
+            "html_attributions": [
+                "<a href=\"https://maps.google.com/maps/contrib/106083369713132260285/photos\">Mahmut Bilgener</a>"
+            ],
+            "photo_reference": "CoQBdwAAAF7pkuGVg5Z_v6GURSvWTqOGBiv8Cff29HzDr3Fj4u4nFaZgMuR9AbFCEgHULgjRYOP1VseMFZNtMix0idRd1s0bv0zad9ZuIahnSt3riiUiFOTltbKF0FVtXFxuRGUjQpuwBuKi5wzukD3rG_wP9xGmdNa7O8WzSNspqy2qZLFgEhCOf7YYUsck80sWA7kFj8LpGhQkNvh5jVoeht22RSuKOIgiAWRHgQ",
+            "width": 3120
+        },
+        {
+            "height": 3024,
+            "html_attributions": [
+                "<a href=\"https://maps.google.com/maps/contrib/111625983714797235353/photos\">Andrew Norton</a>"
+            ],
+            "photo_reference": "CoQBdwAAAMF4XWy72hNZhEHMqZCvimijZTxWxwEgBCs8JnX7bMloLyYJqUJ9qohu8Cg9MSX4ZRiK7RdTyQYGCpDPZpRkAlviJWFvUOsNt5cqYOnrqGkgZrI8jhvY1AVgBcIznL50cZ46ggdCYr8K6UgyeXLfGyJ3jHbJ7qHiXzLLGBMAeINLEhCB262K7Tfk8no1o_MhMQ7kGhSaYTtTDZ3bq-474RG_oL38_yX8WQ",
+            "width": 4032
+        }
+    ],
+    "place_id": "ChIJ80cfcTv2wokRx50S2iq9Hf4",
+    "rating": 4,
+    "reference": "CmRSAAAA41mW4yU7XBSSIVcUnwPv6JotibVCoL2UMr4HB7oeGJrB4b8DQrtcpL3aB_4R_4ehyqSYyjkxoKrr7MLhkNCXMTdG0TNjPwMruFxnRAblg2hS_jFKoDmNKIZC_g9ai1PSEhCyRnrlo5Ujg-G8x4OZdzgrGhSRJwB8vgCK4BKfmfP2qCHlM7SUvg",
+    "reviews": [
+        {
+            "aspects": [
+                {
+                    "rating": 2,
+                    "type": "overall"
+                }
+            ],
+            "author_name": "ivan zatz",
+            "author_url": "https://www.google.com/maps/contrib/111830546323043478912/reviews",
+            "language": "en",
+            "rating": 4,
+            "relative_time_description": "in the last week",
+            "text": "Well stocked supermarket with a good selection of cheese at relatively affordable prices. Their other goods are on the expensive side, and their fresh produce ranges from blah to awful. They have a nice selection of hot food to go, a pricey salad counter, a deli counter that will make sandwiches and a whole aisle with reasonable fresh prepared food. Their  aisles are too narrow and cramped, and during certain hours the crowds in this place put Times Square to shame. But they are basically the only game in Morningside Heights.",
+            "time": 1480610432
+        },
+        {
+            "aspects": [
+                {
+                    "rating": 2,
+                    "type": "overall"
+                }
+            ],
+            "author_name": "Justin Parker",
+            "author_url": "https://www.google.com/maps/contrib/101672365307310184628/reviews",
+            "language": "en",
+            "profile_photo_url": "//lh4.googleusercontent.com/-Xky1MKMPd6A/AAAAAAAAAAI/AAAAAAAALFI/nR7cY0fR_qA/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "a week ago",
+            "text": "Great for a quick bite at lunch and cheaper than Morton Williams. But if you are willing to go further you can do better on pricing. ",
+            "time": 1480424877
+        },
+        {
+            "aspects": [
+                {
+                    "rating": 3,
+                    "type": "overall"
+                }
+            ],
+            "author_name": "Philip Hamilton",
+            "author_url": "https://www.google.com/maps/contrib/112987915542908151810/reviews",
+            "language": "en",
+            "rating": 5,
+            "relative_time_description": "4 months ago",
+            "text": "As a resident of the West 100s, to me, this  Westside Market is one of those places that give our neighborhood bragging rights. It's a culinary wonderland with an unmatched selection of products from all over the world.  Having lived in Spain, I was amazed when I found chistorra there. The selection of any item is unmatched. Cheese, meats, coffee, ready made food, fruits, etc.. and it's all fresh!! I spend too much money every time I set foot in this store. That said, I don't buy the bulk of my groceries here, but rather go there for more specialty items. Their prices aren't bad for Manhattan though. Of the other existing Westside Markets in the city,  this is by far the best one! ",
+            "time": 1470109146
+        },
+        {
+            "aspects": [
+                {
+                    "rating": 3,
+                    "type": "overall"
+                }
+            ],
+            "author_name": "Ashlee Hollingsworth",
+            "author_url": "https://www.google.com/maps/contrib/108485661895145122820/reviews",
+            "language": "en",
+            "rating": 5,
+            "relative_time_description": "a month ago",
+            "text": "Best market in New York City. Not only is it all fresh and delicious, but they will let you try anything  you want! There is no reason to shop anywhere else when in NYC. This location in particular is one of the best, the one in the East Village should be avoided.",
+            "time": 1477893708
+        },
+        {
+            "aspects": [
+                {
+                    "rating": 2,
+                    "type": "overall"
+                }
+            ],
+            "author_name": "Luke Cook-Griffin",
+            "author_url": "https://www.google.com/maps/contrib/101889687428573530204/reviews",
+            "language": "en",
+            "profile_photo_url": "//lh4.googleusercontent.com/-Ev2vLaPMEU4/AAAAAAAAAAI/AAAAAAAACJo/L2pK80Rx2dg/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "2 months ago",
+            "text": "Great selection of fresh produce, meats, sandwiches, desserts, and cheeses.  Quality food and a great place to grab lunch on the go.  Some items can be a bit pricey, but most items are reasonable for the area.  ",
+            "time": 1475529553
+        }
+    ],
+    "scope": "GOOGLE",
+    "types": [
+        "grocery_or_supermarket",
+        "food",
+        "store",
+        "point_of_interest",
+        "establishment"
+    ],
+    "url": "https://maps.google.com/?cid=18310999651703233991",
+    "utc_offset": -300,
+    "vicinity": "2840 Broadway, New York",
+    "website": "http://www.wmarketnyc.com/"
+}
