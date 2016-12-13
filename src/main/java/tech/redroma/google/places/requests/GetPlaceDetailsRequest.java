@@ -19,6 +19,7 @@ package tech.redroma.google.places.requests;
 import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 import tech.redroma.google.places.data.Extensions;
+import tech.redroma.google.places.data.Language;
 import tech.redroma.google.places.data.Place;
 import tech.sirwellington.alchemy.annotations.arguments.NonEmpty;
 import tech.sirwellington.alchemy.annotations.arguments.Required;
@@ -49,9 +50,9 @@ public final class GetPlaceDetailsRequest
     @SerializedName("place_id")
     private final String placeId;
     private final Extensions extensions;
-    private final String language;
+    private final Language language;
 
-    GetPlaceDetailsRequest(String placeId, Extensions extensions, String language)
+    GetPlaceDetailsRequest(String placeId, Extensions extensions, Language language)
     {
         checkThat(placeId)
             .usingMessage("placeId is required")
@@ -74,7 +75,7 @@ public final class GetPlaceDetailsRequest
 
     public boolean hasLanguage()
     {
-        return !isNullOrEmpty(language);
+        return Objects.nonNull(language);
     }
 
     @Override
@@ -140,7 +141,7 @@ public final class GetPlaceDetailsRequest
 
         private String placeId;
         private Extensions extensions;
-        private String language;
+        private Language language;
 
         public static Builder newInstance()
         {
@@ -192,9 +193,10 @@ public final class GetPlaceDetailsRequest
          * @return
          * @throws IllegalArgumentException 
          */
-        public Builder withLanguage(@NonEmpty String language) throws IllegalArgumentException
+        public Builder withLanguage(@NonEmpty Language language) throws IllegalArgumentException
         {
-            checkThat(language).is(nonEmptyString());
+            checkThat(language)
+                .is(notNull());
 
             this.language = language;
             return this;
