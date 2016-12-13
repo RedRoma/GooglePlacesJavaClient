@@ -20,6 +20,9 @@ import java.util.Objects;
 import tech.redroma.google.places.data.Location;
 import tech.redroma.google.places.data.PriceLevel;
 import tech.redroma.google.places.data.Types;
+import tech.sirwellington.alchemy.annotations.arguments.NonEmpty;
+import tech.sirwellington.alchemy.annotations.arguments.Positive;
+import tech.sirwellington.alchemy.annotations.arguments.Required;
 import tech.sirwellington.alchemy.annotations.concurrency.Immutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadSafe;
 import tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern;
@@ -29,8 +32,12 @@ import static tech.redroma.google.places.data.Location.validLocation;
 import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.BUILDER;
 import static tech.sirwellington.alchemy.annotations.designs.patterns.BuilderPattern.Role.PRODUCT;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
 import static tech.sirwellington.alchemy.arguments.assertions.Assertions.nullObject;
+import static tech.sirwellington.alchemy.arguments.assertions.NumberAssertions.greaterThan;
 import static tech.sirwellington.alchemy.arguments.assertions.NumberAssertions.lessThan;
+import static tech.sirwellington.alchemy.arguments.assertions.NumberAssertions.lessThanOrEqualTo;
+import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
 
 /**
  *
@@ -43,7 +50,7 @@ public final class NearbySearchRequest
 {
 
     private final Location location;
-    private final Double radiusInMeters;
+    private final Integer radiusInMeters;
     private final String keyword;
     private final String name;
     private final String language;
@@ -55,7 +62,7 @@ public final class NearbySearchRequest
     private final String pageToken;
 
     NearbySearchRequest(Location location,
-                        Double radiusInMeters,
+                        Integer radiusInMeters,
                         String keyword,
                         String name,
                         String language,
@@ -137,18 +144,18 @@ public final class NearbySearchRequest
     @Override
     public int hashCode()
     {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.location);
-        hash = 79 * hash + Objects.hashCode(this.radiusInMeters);
-        hash = 79 * hash + Objects.hashCode(this.keyword);
-        hash = 79 * hash + Objects.hashCode(this.name);
-        hash = 79 * hash + Objects.hashCode(this.language);
-        hash = 79 * hash + Objects.hashCode(this.minPrice);
-        hash = 79 * hash + Objects.hashCode(this.maxPrice);
-        hash = 79 * hash + (this.onlyOpenNow ? 1 : 0);
-        hash = 79 * hash + Objects.hashCode(this.rankBy);
-        hash = 79 * hash + Objects.hashCode(this.type);
-        hash = 79 * hash + Objects.hashCode(this.pageToken);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.location);
+        hash = 89 * hash + Objects.hashCode(this.radiusInMeters);
+        hash = 89 * hash + Objects.hashCode(this.keyword);
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + Objects.hashCode(this.language);
+        hash = 89 * hash + Objects.hashCode(this.minPrice);
+        hash = 89 * hash + Objects.hashCode(this.maxPrice);
+        hash = 89 * hash + (this.onlyOpenNow ? 1 : 0);
+        hash = 89 * hash + Objects.hashCode(this.rankBy);
+        hash = 89 * hash + Objects.hashCode(this.type);
+        hash = 89 * hash + Objects.hashCode(this.pageToken);
         return hash;
     }
 
@@ -242,7 +249,7 @@ public final class NearbySearchRequest
         public static final int MAX_RADIUS = 50_000;
 
         private Location location;
-        private Double radiusInMeters;
+        private Integer radiusInMeters;
         private String keyword;
         private String name;
         private String language;
@@ -260,6 +267,106 @@ public final class NearbySearchRequest
         static Builder newInstance()
         {
             return new Builder();
+        }
+
+        public Builder withLocation(@Required Location location) throws IllegalArgumentException
+        {
+            checkThat(location).is(validLocation());
+
+            this.location = location;
+            return this;
+        }
+
+        public Builder withRadiusInMeters(@Positive int radius) throws IllegalArgumentException
+        {
+            checkThat(radius)
+                .is(greaterThan(0))
+                .usingMessage("Radius cannot exceed: " + MAX_RADIUS)
+                .is(lessThanOrEqualTo(MAX_RADIUS));
+
+            this.radiusInMeters = radius;
+            return this;
+        }
+
+        public Builder withKeyword(@NonEmpty String keyword) throws IllegalArgumentException
+        {
+            checkThat(keyword).is(nonEmptyString());
+
+            this.keyword = keyword;
+            return this;
+        }
+
+        public Builder withName(@NonEmpty String name) throws IllegalArgumentException
+        {
+            checkThat(name).is(nonEmptyString());
+
+            this.name = name;
+            return this;
+        }
+
+        public Builder withLanguage(@NonEmpty String language) throws IllegalArgumentException
+        {
+            checkThat(language).is(nonEmptyString());
+
+            this.language = language;
+            return this;
+        }
+        
+        public Builder withMinAndMaxPrice(@Required PriceLevel minPrice, @Required PriceLevel maxPrice) throws IllegalArgumentException
+        {
+            checkThat(minPrice, maxPrice).are(notNull());
+            
+            this.minPrice = maxPrice;
+            this.maxPrice = maxPrice;
+        
+            return this;
+        }
+
+        public Builder onlyOpenNow()
+        {
+            this.onlyOpenNow = true;
+            return this;
+        }
+        
+        public Builder withRankBy(@Required Ranking rankBy) throws IllegalArgumentException
+        {
+            checkThat(rankBy).is(notNull());
+            
+            this.rankBy = rankBy;
+            return this;
+        }
+        
+        public Builder withPlaceType(@Required Types.PlaceType type) throws IllegalArgumentException
+        {
+            checkThat(type).is(notNull());
+            
+            this.type = type;
+            return this;
+        }
+        
+        public Builder withPageToken(@NonEmpty String pageToken) throws IllegalArgumentException
+        {
+            checkThat(pageToken).is(nonEmptyString());
+            
+            this.pageToken = pageToken;
+            return this;
+        }
+
+        public NearbySearchRequest build() throws IllegalArgumentException
+        {
+            checkParameters();
+
+            return new NearbySearchRequest(location,
+                                           radiusInMeters,
+                                           keyword,
+                                           name,
+                                           language,
+                                           minPrice,
+                                           maxPrice,
+                                           onlyOpenNow,
+                                           rankBy,
+                                           type,
+                                           pageToken);
         }
 
         private void checkParameters()
