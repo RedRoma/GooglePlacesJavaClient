@@ -129,20 +129,26 @@ public final class NearbySearchRequest
         return Objects.nonNull(type);
     }
 
+    public boolean hasPageToken()
+    {
+        return !isNullOrEmpty(pageToken);
+    }
+
     @Override
     public int hashCode()
     {
         int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.location);
-        hash = 59 * hash + Objects.hashCode(this.radiusInMeters);
-        hash = 59 * hash + Objects.hashCode(this.keyword);
-        hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + Objects.hashCode(this.language);
-        hash = 59 * hash + Objects.hashCode(this.minPrice);
-        hash = 59 * hash + Objects.hashCode(this.maxPrice);
-        hash = 59 * hash + (this.onlyOpenNow ? 1 : 0);
-        hash = 59 * hash + Objects.hashCode(this.rankBy);
-        hash = 59 * hash + Objects.hashCode(this.type);
+        hash = 79 * hash + Objects.hashCode(this.location);
+        hash = 79 * hash + Objects.hashCode(this.radiusInMeters);
+        hash = 79 * hash + Objects.hashCode(this.keyword);
+        hash = 79 * hash + Objects.hashCode(this.name);
+        hash = 79 * hash + Objects.hashCode(this.language);
+        hash = 79 * hash + Objects.hashCode(this.minPrice);
+        hash = 79 * hash + Objects.hashCode(this.maxPrice);
+        hash = 79 * hash + (this.onlyOpenNow ? 1 : 0);
+        hash = 79 * hash + Objects.hashCode(this.rankBy);
+        hash = 79 * hash + Objects.hashCode(this.type);
+        hash = 79 * hash + Objects.hashCode(this.pageToken);
         return hash;
     }
 
@@ -178,6 +184,10 @@ public final class NearbySearchRequest
         {
             return false;
         }
+        if (!Objects.equals(this.pageToken, other.pageToken))
+        {
+            return false;
+        }
         if (!Objects.equals(this.location, other.location))
         {
             return false;
@@ -208,7 +218,7 @@ public final class NearbySearchRequest
     @Override
     public String toString()
     {
-        return "NearbySearchRequest{" + "location=" + location + ", radiusInMeters=" + radiusInMeters + ", keyword=" + keyword + ", name=" + name + ", language=" + language + ", minPrice=" + minPrice + ", maxPrice=" + maxPrice + ", onlyOpenNow=" + onlyOpenNow + ", rankBy=" + rankBy + ", type=" + type + '}';
+        return "NearbySearchRequest{" + "location=" + location + ", radiusInMeters=" + radiusInMeters + ", keyword=" + keyword + ", name=" + name + ", language=" + language + ", minPrice=" + minPrice + ", maxPrice=" + maxPrice + ", onlyOpenNow=" + onlyOpenNow + ", rankBy=" + rankBy + ", type=" + type + ", pageToken=" + pageToken + '}';
     }
 
     public static enum Ranking
@@ -269,7 +279,7 @@ public final class NearbySearchRequest
                     throw new IllegalArgumentException("when rankBy is set, at least one of name, keyword, or type are required");
                 }
             }
-            
+
             if (Objects.nonNull(minPrice) && Objects.nonNull(maxPrice))
             {
                 checkThat(minPrice.value)
