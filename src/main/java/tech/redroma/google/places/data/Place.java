@@ -19,9 +19,12 @@ package tech.redroma.google.places.data;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 import java.util.Objects;
+import sir.wellington.alchemy.collections.lists.Lists;
 import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
+
+import static com.google.common.base.Strings.isNullOrEmpty;
 
 /**
  *
@@ -141,6 +144,66 @@ public final class Place
 
     Place()
     {
+    }
+
+    public boolean hasIcon()
+    {
+        return !isNullOrEmpty(iconURL);
+    }
+
+    public boolean hasGeometry()
+    {
+        return Objects.nonNull(geometry);
+    }
+
+    public boolean hasName()
+    {
+        return !isNullOrEmpty(name);
+    }
+
+    public boolean hasOpeningHours()
+    {
+        return Objects.nonNull(openingHours);
+    }
+
+    public boolean hasPhotos()
+    {
+        return !Lists.isEmpty(photos);
+    }
+    
+    public boolean hasRating()
+    {
+        return Objects.nonNull(rating);
+    }
+    
+    public boolean hasPriceLevel()
+    {
+        return Objects.nonNull(priceLevel);
+    }
+    
+    public boolean hasTypes()
+    {
+        return !Lists.isEmpty(types);
+    }
+    
+    public boolean hasVicinity()
+    {
+        return !isNullOrEmpty(vicinity);
+    }
+    
+    public boolean hasFormattedAddress()
+    {
+        return !isNullOrEmpty(formattedAddress);
+    }
+    
+    public boolean isPermanentlyClosed()
+    {
+        if (Objects.isNull(permanentlyClosed))
+        {
+            return false;
+        }
+        
+        return permanentlyClosed;
     }
 
     @Override
