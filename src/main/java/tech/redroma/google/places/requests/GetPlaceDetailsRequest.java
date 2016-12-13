@@ -52,9 +52,9 @@ public final class GetPlaceDetailsRequest
 {
 
     @SerializedName("place_id")
-    private final String placeId;
-    private final Extensions extensions;
-    private final Language language;
+    public final String placeId;
+    public final Extensions extensions;
+    public final Language language;
 
     GetPlaceDetailsRequest(String placeId, Extensions extensions, Language language)
     {
