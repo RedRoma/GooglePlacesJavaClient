@@ -54,6 +54,7 @@ public final class Place
      *
      * @see <a href="https://developers.google.com/places/web-service/place-id">Place ID Documentation</a>
      */
+    @SerializedName("place_id")
     public String placeId;
 
     /**
