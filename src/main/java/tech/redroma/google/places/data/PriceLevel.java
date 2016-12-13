@@ -17,6 +17,11 @@
 package tech.redroma.google.places.data;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.Map;
+import sir.wellington.alchemy.collections.maps.Maps;
+
+import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.assertions.CollectionAssertions.keyInMap;
 
 /**
  *
@@ -43,4 +48,26 @@ public enum PriceLevel
         this.value = value;
     }
     
+    public static PriceLevel fromValue(int value)
+    {
+        checkThat(value)
+            .usingMessage("unknown value type: " + value)
+            .is(keyInMap(VALUE_TO_PRICE_LEVEL));
+        
+        return VALUE_TO_PRICE_LEVEL.get(value);
+    }
+    
+    private final static Map<Integer, PriceLevel> VALUE_TO_PRICE_LEVEL = createMapping();
+
+    private static Map<Integer, PriceLevel> createMapping()
+    {
+        Map<Integer, PriceLevel> map = Maps.create();
+        
+        for (PriceLevel price : PriceLevel.values())
+        {
+            map.put(price.value, price);
+        }
+        
+        return map;
+    }
 }
