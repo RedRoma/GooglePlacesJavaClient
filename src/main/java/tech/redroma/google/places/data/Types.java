@@ -25,6 +25,7 @@ import static tech.sirwellington.alchemy.arguments.assertions.Assertions.equalTo
 import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
 import static tech.sirwellington.alchemy.arguments.assertions.BooleanAssertions.trueStatement;
 import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
+import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
 
 /**
  * This page lists the supported values for the types property in the Google PlaceType API. You can use {@link PlaceType} in place
@@ -314,7 +315,7 @@ public class Types
             return ReturnedPlaceType.valueOf(string.toUpperCase());
         }
         
-        public static JsonDeserializer<ReturnedPlaceType> createDeserializer()
+        public static JsonDeserializer<ReturnedPlaceType> createJSONDeserializer()
         {
             return (json, type, context) ->
             {
