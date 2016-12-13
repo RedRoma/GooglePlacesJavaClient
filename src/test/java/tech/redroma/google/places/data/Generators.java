@@ -20,6 +20,7 @@ import tech.redroma.google.places.requests.NearbySearchRequest;
 import tech.sirwellington.alchemy.generator.AlchemyGenerator;
 
 import static tech.sirwellington.alchemy.generator.AlchemyGenerator.one;
+import static tech.sirwellington.alchemy.generator.EnumGenerators.enumValueOf;
 import static tech.sirwellington.alchemy.generator.GeolocationGenerators.latitudes;
 import static tech.sirwellington.alchemy.generator.GeolocationGenerators.longitudes;
 import static tech.sirwellington.alchemy.generator.NumberGenerators.integers;
@@ -79,11 +80,17 @@ public class Generators
             .withKeyword(one(alphabeticString()))
             .onlyOpenNow()
             .withRadiusInMeters(createRadius())
+            .withLanguage(oneLanguage())
             .build();
     }
 
     private static int createRadius()
     {
         return one(integers(1, NearbySearchRequest.Builder.MAX_RADIUS));
+    }
+
+    private static Language oneLanguage()
+    {
+        return enumValueOf(Language.class).get();
     }
 }
