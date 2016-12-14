@@ -29,5 +29,10 @@ public enum Extensions
      * Includes a rich and concise review curated by Google's editorial staff.
      */
     @SerializedName("review_summary")
-    REVIEW_SUMMARY
+    REVIEW_SUMMARY;
+
+    public String asText()
+    {
+        return this.toString().toLowerCase();
+    }
 }
