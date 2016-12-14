@@ -17,11 +17,17 @@
 
 package tech.redroma.google.places;
 
+import com.google.common.io.Resources;
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import sir.wellington.alchemy.collections.lists.Lists;
 import tech.redroma.google.places.data.Place;
 import tech.redroma.google.places.data.PlaceDetails;
+import tech.redroma.google.places.exceptions.GooglePlacesBadArgumentException;
 import tech.redroma.google.places.exceptions.GooglePlacesException;
+import tech.redroma.google.places.exceptions.GooglePlacesOperationFailedException;
+import tech.redroma.google.places.requests.GetPhotoRequest;
 import tech.redroma.google.places.requests.GetPlaceDetailsRequest;
 import tech.redroma.google.places.requests.NearbySearchRequest;
 import tech.redroma.google.places.responses.GetPlaceDetailsResponse;
@@ -50,9 +56,11 @@ public interface GooglePlacesAPI
     
     GetPlaceDetailsResponse getPlaceDetails(@Required GetPlaceDetailsRequest request) throws GooglePlacesException;
     
-    default PlaceDetails simpleGetPlaceDetails(@Required Place place) throws GooglePlacesException, IllegalArgumentException
+    default PlaceDetails simpleGetPlaceDetails(@Required Place place) throws GooglePlacesException
     {
-        checkThat(place).is(notNull());
+        checkThat(place)
+            .throwing(GooglePlacesBadArgumentException.class)
+            .is(notNull());
         
         GetPlaceDetailsRequest request = GetPlaceDetailsRequest.newBuilder()
             .withPlaceID(place.placeId)
@@ -61,5 +69,25 @@ public interface GooglePlacesAPI
         GetPlaceDetailsResponse result = this.getPlaceDetails(request);
         
         return result.getResult();
+    }
+    
+    URL getPhoto(@Required GetPhotoRequest request) throws GooglePlacesException;
+    
+    default byte[] downloadPhoto(@Required GetPhotoRequest request) throws GooglePlacesException
+    {
+        checkThat(request)
+            .throwing(GooglePlacesBadArgumentException.class)
+            .is(notNull());
+        
+        URL url = getPhoto(request);
+        
+        try 
+        {
+            return Resources.toByteArray(url);
+        }
+        catch (IOException ex)
+        {
+            throw new GooglePlacesOperationFailedException("Could not download Image at: " + url, ex);
+        }
     }
 }
