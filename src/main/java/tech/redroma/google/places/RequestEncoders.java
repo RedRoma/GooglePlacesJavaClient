@@ -16,9 +16,11 @@
 
 package tech.redroma.google.places;
 
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tech.redroma.google.places.data.Location;
+import tech.redroma.google.places.data.Types;
 import tech.redroma.google.places.exceptions.GooglePlacesBadArgumentException;
 import tech.redroma.google.places.requests.AutocompletePlaceRequest;
 import tech.redroma.google.places.requests.GetPlaceDetailsRequest;
@@ -27,6 +29,7 @@ import tech.sirwellington.alchemy.annotations.access.Internal;
 import tech.sirwellington.alchemy.annotations.access.NonInstantiable;
 import tech.sirwellington.alchemy.http.AlchemyRequest;
 
+import static java.util.stream.Collectors.toList;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
 import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
 
@@ -142,7 +145,48 @@ final class RequestEncoders
         @Override
         public AlchemyRequest.Step3 encodeRequest(AlchemyRequest.Step3 alchemyRequest, AutocompletePlaceRequest request)
         {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            checkThat(alchemyRequest, request)
+                .throwing(GooglePlacesBadArgumentException.class)
+                .are(notNull());
+            
+            AlchemyRequest.Step3 result = alchemyRequest.usingQueryParam(Parameters.INPUT, request.input);
+            
+            if (request.hasLanguage())
+            {
+                result = result.usingQueryParam(Parameters.LANGUAGE, request.language.code);
+            }
+            
+            if (request.hasLocation())
+            {
+                String location = String.format("%s,%s", request.location.latitude, request.location.longitude);
+                result = result.usingQueryParam(Parameters.LOCATION, location);
+            }
+            
+            if (request.hasOffset())
+            {
+                result = result.usingQueryParam(Parameters.OFFSET, request.offset);
+            }
+            
+            if (request.hasRadius())
+            {
+                result = result.usingQueryParam(Parameters.RADIUS, request.radiusInMeters);
+            }
+            
+            if (request.hasStrictBounds())
+            {
+                result = result.usingQueryParam(Parameters.STRICT_BOUNDS, request.strictBounds);
+            }
+            
+            if (request.hasTypes())
+            {
+                List<String> types = request.types.stream()
+                    .map(Types.AutocompleteType::asText)
+                    .collect(toList());
+
+                result = result.usingQueryParam(Parameters.TYPES, String.join("|", types));
+            }
+            
+            return result;
         }
 
     }
