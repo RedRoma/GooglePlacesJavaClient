@@ -47,7 +47,7 @@ public class GooglePlacesAPIIT
 
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
-    private String apiKey = "";
+    private final String apiKey = "";
     private Location location;
     private Place place;
     private Photo photo;
