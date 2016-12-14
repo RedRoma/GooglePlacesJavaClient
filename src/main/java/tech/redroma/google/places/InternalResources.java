@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tech.redroma.google.places.data.OpeningHours;
 import tech.redroma.google.places.data.Types;
 import tech.sirwellington.alchemy.annotations.access.Internal;
 
@@ -37,6 +38,7 @@ final class InternalResources
 
     static final Gson GSON = new GsonBuilder()
         .registerTypeAdapter(Types.ReturnedPlaceType.class, Types.ReturnedPlaceType.createJSONDeserializer())
+        .registerTypeAdapter(OpeningHours.Period.class, OpeningHours.Period.createDeserializer())
         .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
         .create();
 }
