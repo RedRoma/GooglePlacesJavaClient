@@ -23,6 +23,7 @@ import tech.redroma.google.places.data.Location;
 import tech.redroma.google.places.data.Types;
 import tech.redroma.google.places.exceptions.GooglePlacesBadArgumentException;
 import tech.redroma.google.places.requests.AutocompletePlaceRequest;
+import tech.redroma.google.places.requests.GetPhotoRequest;
 import tech.redroma.google.places.requests.GetPlaceDetailsRequest;
 import tech.redroma.google.places.requests.NearbySearchRequest;
 import tech.sirwellington.alchemy.annotations.access.Internal;
@@ -191,6 +192,32 @@ final class RequestEncoders
 
     }
     
+    static class GetPhotoRequestEncoder implements RequestEncoder<GetPhotoRequest>
+    {
+
+        @Override
+        public AlchemyRequest.Step3 encodeRequest(AlchemyRequest.Step3 alchemyRequest, GetPhotoRequest request)
+        {
+            checkThat(alchemyRequest, request)
+                .throwing(GooglePlacesBadArgumentException.class)
+                .are(notNull());
+
+            AlchemyRequest.Step3 result = alchemyRequest.usingQueryParam(Parameters.PHOTO_REFERENCE, request.photoReference);
+
+            if (request.hasMaxHeight())
+            {
+                result = result.usingQueryParam(GooglePlacesAPIImpl.Keys.HEIGHT, String.valueOf(request.maxHeight));
+            }
+            else if (request.hasMaxWidth())
+            {
+                result = result.usingQueryParam(GooglePlacesAPIImpl.Keys.WIDTH, String.valueOf(request.maxWidth));
+            }
+
+            return result;
+        }
+
+    }
+    
     @Internal
     static class Parameters
     {
@@ -206,6 +233,7 @@ final class RequestEncoders
         static final String NAME = "name";
         static final String OFFSET = "offset";
         static final String OPEN_NOW = "opennow";
+        static final String PHOTO_REFERENCE = "photoreference";
         static final String PLACE_ID = "placeid";
         static final String PAGE_TOKEN = "pagetoken";
         static final String RADIUS = "radius";
