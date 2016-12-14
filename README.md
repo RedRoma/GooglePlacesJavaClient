@@ -3,7 +3,7 @@ Google Places Java Client
 
 [<img src="http://brand.redroma.tech/Logos/RedRoma-Logo%402x.png" width="300">](http://RedRoma.tech)
 
-[![Jenkins](http://jenkins.redroma.tech/job/GooglePlacesAPI/badge/icon)](http://jenkins.redroma.tech/job/GooglePlacesAPI/) [![Travis](https://travis-ci.org/RedRoma/YelpJavaClient.svg?branch=develop)](https://travis-ci.org/RedRoma/GooglePlacesAPI)
+[![Jenkins](http://jenkins.redroma.tech/job/GooglePlacesAPI/badge/icon)](http://jenkins.redroma.tech/job/GooglePlacesAPI/) [![Travis](https://travis-ci.org/RedRoma/YelpJavaClient.svg?branch=develop)](https://travis-ci.org/RedRoma/GooglePlacesJavaClient)
 ![Maven Central Version](http://img.shields.io/maven-central/v/tech.redroma.google/google-places-api.svg)
 
 ---
