@@ -40,6 +40,7 @@ class TestResources
         .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
         .registerTypeAdapter(Types.ReturnedPlaceType.class, Types.ReturnedPlaceType.createJSONDeserializer())
         .registerTypeAdapter(OpeningHours.Period.class, OpeningHours.Period.createDeserializer())
+        .registerTypeAdapter(Language.class, Language.createDeserializer())
         .create();
     
     public static String loadFile(String filename) throws Exception

@@ -16,11 +16,15 @@
 
 package tech.redroma.google.places.data;
 
+import com.google.gson.JsonDeserializer;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sir.wellington.alchemy.collections.maps.Maps;
 import tech.sirwellington.alchemy.annotations.arguments.NonEmpty;
 
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.assertions.Assertions.equalTo;
 import static tech.sirwellington.alchemy.arguments.assertions.CollectionAssertions.keyInMap;
 
 /**
@@ -120,5 +124,38 @@ public enum Language
         }
 
         return map;
+    }
+    
+    public static JsonDeserializer<Language> createDeserializer()
+    {
+        final Logger LOG = LoggerFactory.getLogger(Language.class);
+        
+        return (json, type, context) ->
+        {
+            checkThat(type)
+                .is(equalTo(Language.class));
+            
+            if (json == null || json.isJsonNull())
+            {
+                return null;
+            }
+            
+            if (!json.isJsonPrimitive())
+            {
+                return null;
+            }
+            
+            String code = json.getAsString();
+            
+            try 
+            {
+                return Language.fromCode(code);
+            }
+            catch (IllegalArgumentException ex)
+            {
+                LOG.warn("Failed to deserialize from JSON: {}", code, ex);
+                return null;
+            }
+        };
     }
 }
