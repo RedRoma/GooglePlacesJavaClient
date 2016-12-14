@@ -19,7 +19,7 @@ package tech.redroma.google.places.data;
 import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 import tech.sirwellington.alchemy.annotations.arguments.Required;
-import tech.sirwellington.alchemy.annotations.concurrency.Immutable;
+import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadSafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
 import tech.sirwellington.alchemy.arguments.AlchemyAssertion;
@@ -37,7 +37,7 @@ import static tech.sirwellington.alchemy.arguments.assertions.GeolocationAsserti
  * @see #of(double, double) 
  * @author SirWellington
  */
-@Immutable
+@Mutable
 @ThreadSafe
 @Pojo
 public class Location
@@ -45,12 +45,16 @@ public class Location
 
     /** Latitude field. */
     @SerializedName("lat")
-    public final double latitude;
+    public double latitude;
     
     /** Longitude field. */
     @SerializedName("lng")
-    public final double longitude;
+    public double longitude;
 
+    public Location()
+    {
+    }
+    
     public Location(double latitude, double longitude)
     {
         checkThat(latitude).is(validLatitude());
