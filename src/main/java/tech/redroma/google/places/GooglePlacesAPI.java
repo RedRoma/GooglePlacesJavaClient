@@ -17,6 +17,20 @@
 
 package tech.redroma.google.places;
 
+import java.util.List;
+import sir.wellington.alchemy.collections.lists.Lists;
+import tech.redroma.google.places.data.Place;
+import tech.redroma.google.places.data.PlaceDetails;
+import tech.redroma.google.places.exceptions.GooglePlacesException;
+import tech.redroma.google.places.requests.GetPlaceDetailsRequest;
+import tech.redroma.google.places.requests.NearbySearchRequest;
+import tech.redroma.google.places.responses.GetPlaceDetailsResponse;
+import tech.redroma.google.places.responses.NearbySearchResponse;
+import tech.sirwellington.alchemy.annotations.arguments.Required;
+
+import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
+
 
 /**
  * Interact with the GooglePlaces API using this interface.
@@ -25,5 +39,27 @@ package tech.redroma.google.places;
  */
 public interface GooglePlacesAPI 
 {
-
+    NearbySearchResponse searchNearbyPlaces(@Required NearbySearchRequest request) throws GooglePlacesException;
+    
+    default List<Place> simpleSearchNearbyPlaces(@Required NearbySearchRequest request) throws GooglePlacesException
+    {
+        NearbySearchResponse result = searchNearbyPlaces(request);
+        
+        return Lists.nullToEmpty(result.getResults());
+    }
+    
+    GetPlaceDetailsResponse getPlaceDetails(@Required GetPlaceDetailsRequest request) throws GooglePlacesException;
+    
+    default PlaceDetails simpleGetPlaceDetails(@Required Place place) throws GooglePlacesException, IllegalArgumentException
+    {
+        checkThat(place).is(notNull());
+        
+        GetPlaceDetailsRequest request = GetPlaceDetailsRequest.newBuilder()
+            .withPlaceID(place.placeId)
+            .build();
+        
+        GetPlaceDetailsResponse result = this.getPlaceDetails(request);
+        
+        return result.getResult();
+    }
 }
