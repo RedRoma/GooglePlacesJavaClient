@@ -34,4 +34,9 @@ interface URLProvider
     String getNearbySearch();
     
     String getAutocomplete();
+    
+    /**
+     * Contains production URLs.
+     */
+    URLProvider PRODUCTION = new URLProviderProduction();
 }
