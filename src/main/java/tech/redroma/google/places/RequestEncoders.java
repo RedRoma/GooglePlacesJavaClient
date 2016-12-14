@@ -115,7 +115,23 @@ final class RequestEncoders
         @Override
         public AlchemyRequest.Step3 encodeRequest(AlchemyRequest.Step3 alchemyRequest, GetPlaceDetailsRequest request)
         {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            checkThat(alchemyRequest, request)
+                .throwing(GooglePlacesBadArgumentException.class)
+                .are(notNull());
+                
+            AlchemyRequest.Step3 result = alchemyRequest.usingQueryParam(Parameters.PLACE_ID, request.placeId);
+            
+            if (request.hasLanguage())
+            {
+                result = result.usingQueryParam(Parameters.LANGUAGE, request.language.code);
+            }
+            
+            if (request.hasExtensions())
+            {
+                result = result.usingQueryParam(Parameters.EXTENSIONS, request.extensions.asText());
+            }
+            
+            return result;
         }
 
     }
@@ -135,17 +151,19 @@ final class RequestEncoders
     static class Parameters
     {
 
-        static final String LOCATION = "location";
-        static final String RADIUS = "radius";
+        static final String EXTENSIONS = "extensions";
         static final String KEYWORD = "keyword";
-        static final String NAME = "name";
         static final String LANGUAGE = "language";
-        static final String MIN_PRICE = "minprice";
+        static final String LOCATION = "location";
         static final String MAX_PRICE = "maxprice";
+        static final String MIN_PRICE = "minprice";
+        static final String NAME = "name";
         static final String OPEN_NOW = "opennow";
-        static final String TYPE = "type";
+        static final String PLACE_ID = "placeid";
         static final String PAGE_TOKEN = "pagetoken";
+        static final String RADIUS = "radius";
         static final String RANK_BY = "rankby";
+        static final String TYPE = "type";
     }
 
 }
