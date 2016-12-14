@@ -88,12 +88,12 @@ public class Generators
             .build();
     }
 
-    private static int createRadius()
+    public static int createRadius()
     {
         return one(integers(1, NearbySearchRequest.Builder.MAX_RADIUS));
     }
 
-    private static Language oneLanguage()
+    public static Language oneLanguage()
     {
         return enumValueOf(Language.class).get();
     }
