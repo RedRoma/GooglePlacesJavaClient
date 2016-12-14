@@ -20,6 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
+import sir.wellington.alchemy.collections.lists.Lists;
 import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
@@ -34,25 +35,75 @@ import tech.sirwellington.alchemy.annotations.objects.Pojo;
 public final class Review
 {
 
-    public String authorName;
+    String authorName;
 
     @SerializedName("author_url")
-    public String authorURL;
+    String authorURL;
 
-    public Language language;
+    String language;
 
     @SerializedName("profile_photo_url")
-    public String authorPhotoURL;
+    String authorPhotoURL;
 
-    public Integer rating;
+    Integer rating;
 
-    public String relativeTimeDescription;
+    String relativeTimeDescription;
 
-    public String text;
+    String text;
 
-    public Instant time;
+    Long time;
 
-    public List<AspectRating> aspects;
+    List<AspectRating> aspects;
+
+    public String getAuthorName()
+    {
+        return authorName;
+    }
+
+    public String getAuthorURL()
+    {
+        return authorURL;
+    }
+
+    public String getLanguage()
+    {
+        return language;
+    }
+
+    public String getAuthorPhotoURL()
+    {
+        return authorPhotoURL;
+    }
+
+    public Integer getRating()
+    {
+        return rating;
+    }
+
+    public String getRelativeTimeDescription()
+    {
+        return relativeTimeDescription;
+    }
+
+    public String getText()
+    {
+        return text;
+    }
+
+    public Instant getTime()
+    {
+        if (time == null)
+        {
+            return null;
+        }
+
+        return Instant.ofEpochMilli(time);
+    }
+
+    public List<AspectRating> getAspects()
+    {
+        return Lists.copy(aspects);
+    }
 
     @Override
     public int hashCode()
@@ -94,6 +145,10 @@ public final class Review
         {
             return false;
         }
+        if (!Objects.equals(this.language, other.language))
+        {
+            return false;
+        }
         if (!Objects.equals(this.authorPhotoURL, other.authorPhotoURL))
         {
             return false;
@@ -103,10 +158,6 @@ public final class Review
             return false;
         }
         if (!Objects.equals(this.text, other.text))
-        {
-            return false;
-        }
-        if (this.language != other.language)
         {
             return false;
         }
