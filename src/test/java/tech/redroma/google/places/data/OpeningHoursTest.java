@@ -75,7 +75,7 @@ public class OpeningHoursTest
     @Test
     public void testCreate()
     {
-        OpeningHours result = OpeningHours.create(instance.openNow, Lists.copy(instance.weekdayText));
+        OpeningHours result = OpeningHours.create(instance.openNow, Lists.copy(instance.weekdayText), Lists.copy(instance.periods));
         assertThat(result, is(instance));
     }
     
@@ -104,6 +104,18 @@ public class OpeningHoursTest
         instance.weekdayText = null;
         assertFalse(instance.hasWeekdayText());
     }
+
+    @Test
+    public void testHasPeriods()
+    {
+        assertTrue(instance.hasPeriods());
+        
+        instance.periods = Lists.emptyList();
+        assertFalse(instance.hasPeriods());
+        
+        instance.periods = null;
+        assertFalse(instance.hasPeriods());
+    }
     
     @Test
     public void testHashCode()
@@ -115,7 +127,7 @@ public class OpeningHoursTest
     @Test
     public void testEquals()
     {
-        OpeningHours copy = OpeningHours.create(instance.openNow, instance.weekdayText);
+        OpeningHours copy = OpeningHours.create(instance.openNow, instance.weekdayText, instance.periods);
         assertThat(copy, is(instance));
         
         assertThat(instance, is(instance));
@@ -128,5 +140,6 @@ public class OpeningHoursTest
         String string = instance.toString();
         assertThat(string, not(isEmptyOrNullString()));
     }
+
     
 }
