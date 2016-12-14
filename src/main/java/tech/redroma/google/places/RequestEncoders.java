@@ -151,19 +151,24 @@ final class RequestEncoders
     static class Parameters
     {
 
+        static final String COMPONENTS = "components";
         static final String EXTENSIONS = "extensions";
         static final String KEYWORD = "keyword";
+        static final String INPUT = "input";
         static final String LANGUAGE = "language";
         static final String LOCATION = "location";
         static final String MAX_PRICE = "maxprice";
         static final String MIN_PRICE = "minprice";
         static final String NAME = "name";
+        static final String OFFSET = "offset";
         static final String OPEN_NOW = "opennow";
         static final String PLACE_ID = "placeid";
         static final String PAGE_TOKEN = "pagetoken";
         static final String RADIUS = "radius";
         static final String RANK_BY = "rankby";
+        static final String STRICT_BOUNDS = "strictbounds";
         static final String TYPE = "type";
+        static final String TYPES = "types";
     }
 
 }
