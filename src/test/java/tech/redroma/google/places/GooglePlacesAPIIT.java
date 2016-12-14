@@ -18,6 +18,8 @@ package tech.redroma.google.places;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -83,7 +85,7 @@ public class GooglePlacesAPIIT
         LOG.info("Found [{}] results for request: [{}]", result, request);
 
         place = Lists.oneOf(result.getResults());
-        photo = Lists.oneOf(place.photos);
+        photo = loadAPhotoFrom(result.getResults());
     }
 
     @Test
@@ -104,7 +106,7 @@ public class GooglePlacesAPIIT
         LOG.info("Found {} results for request: [{}]", results.size(), request);
 
         place = Lists.oneOf(results);
-        photo = Lists.oneOf(place.photos);
+        photo = loadAPhotoFrom(results);
     }
 
     @Test
@@ -126,11 +128,11 @@ public class GooglePlacesAPIIT
     @Test
     public void testSimpleGetPlaceDetails()
     {
-        if (instance == null)
+        if (instance == null || place == null)
         {
             return;
         }
-        
+
         PlaceDetails details = instance.simpleGetPlaceDetails(place);
         LOG.info("Retrieved details for place: [{}]", details);
     }
@@ -138,16 +140,30 @@ public class GooglePlacesAPIIT
     @Test
     public void testGetPhoto()
     {
-        if (instance == null || photo == null)
+        if (instance == null)
+        {
+            return;
+        }
+
+        NearbySearchRequest searchRequest = NearbySearchRequest.newBuilder()
+            .withKeyword("library")
+            .withRadiusInMeters(5_000)
+            .withLocation(location)
+            .build();
+
+        List<Place> results = instance.simpleSearchNearbyPlaces(searchRequest);
+        photo = loadAPhotoFrom(results);
+
+        if (Objects.isNull(photo))
         {
             return;
         }
 
         GetPhotoRequest request = GetPhotoRequest.newBuilder()
             .withPhotoReference(photo.photoReference)
-            .withMaxHeight(photo.height)
+            .withMaxHeight(GetPhotoRequest.Builder.MAX_HEIGHT)
             .build();
-        
+
         URL result = instance.getPhoto(request);
         LOG.info("Got photo URL [{}] for request: [{}]", result, request);
     }
@@ -155,13 +171,39 @@ public class GooglePlacesAPIIT
     @Test
     public void testDownloadPhoto()
     {
-        if (instance == null || photo == null)
+        if (instance == null)
         {
             return;
         }
-        
+
+        NearbySearchRequest searchRequest = NearbySearchRequest.newBuilder()
+            .withKeyword("library")
+            .withRadiusInMeters(5_000)
+            .withLocation(location)
+            .build();
+
+        List<Place> results = instance.simpleSearchNearbyPlaces(searchRequest);
+        photo = loadAPhotoFrom(results);
+
+        if (Objects.isNull(photo))
+        {
+            return;
+        }
+
         byte[] binary = instance.downloadPhoto(photo);
-        LOG.info("Downloaded photo [{]] with {} bytes", photo, binary.length);
+        LOG.info("Downloaded photo [{}] with {} bytes", photo, binary.length);
+    }
+
+    private Photo loadAPhotoFrom(List<Place> results)
+    {
+        Optional<Photo> optionalPhoto = results.stream()
+            .filter(Place::hasPhotos)
+            .limit(1)
+            .flatMap(place -> place.photos.stream())
+            .filter(Objects::nonNull)
+            .findAny();
+
+        return optionalPhoto.orElse(null);
     }
 
 }
