@@ -25,6 +25,8 @@ import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
 
+import static com.google.common.base.Strings.isNullOrEmpty;
+
 /**
  *
  * @author SirWellington
@@ -65,9 +67,21 @@ public final class Review
         return authorURL;
     }
 
-    public String getLanguage()
+    public Language getLanguage()
     {
-        return language;
+        if (isNullOrEmpty(language))
+        {
+            return null;
+        }
+        
+        try 
+        {
+            return Language.fromCode(language);
+        }
+        catch (IllegalArgumentException ex)
+        {
+            return null;
+        }
     }
 
     public String getAuthorPhotoURL()

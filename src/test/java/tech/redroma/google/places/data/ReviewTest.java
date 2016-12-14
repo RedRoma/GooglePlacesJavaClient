@@ -16,6 +16,8 @@
 
 package tech.redroma.google.places.data;
 
+import java.time.Instant;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,12 +34,14 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static tech.redroma.google.places.data.TestResources.GSON;
+import static tech.sirwellington.alchemy.generator.AlchemyGenerator.one;
+import static tech.sirwellington.alchemy.generator.TimeGenerators.anytime;
 
 /**
  *
  * @author SirWellington
  */
-@Repeat(10)
+@Repeat(25)
 @RunWith(AlchemyTestRunner.class)
 public class ReviewTest
 {
@@ -51,6 +55,11 @@ public class ReviewTest
     @Before
     public void setUp() throws Exception
     {
+        instance.language = Generators.oneLanguage().code;
+        other.language = Generators.oneLanguage().code;
+        
+        instance.time = one(anytime()).toEpochMilli();
+        other.time = anytime().get().toEpochMilli();
     }
 
     @Test
@@ -127,6 +136,37 @@ public class ReviewTest
         copy.time = instance.time;
 
         return copy;
+    }
+
+    @Test
+    public void testGetAuthorName()
+    {
+    }
+
+    @Test
+    public void testGetAuthorURL()
+    {
+    }
+
+    @Test
+    public void testGetLanguage()
+    {
+        Language language = instance.getLanguage();
+        assertThat(language, notNullValue());
+    }
+
+    @Test
+    public void testGetTime()
+    {
+        Instant time = instance.getTime();
+        assertThat(time, notNullValue());
+    }
+
+    @Test
+    public void testGetAspects()
+    {
+        List<Review.AspectRating> result = instance.getAspects();
+        assertThat(result, not(empty()));
     }
 
 }
