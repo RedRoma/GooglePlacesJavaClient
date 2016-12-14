@@ -33,47 +33,177 @@ import tech.sirwellington.alchemy.annotations.objects.Pojo;
 @Pojo
 public final class PlaceDetails
 {
-
+    
     List<AddressComponent> addressComponents;
-
+    
     String formattedAddress;
-
+    
     String formattedPhoneNumber;
-
+    
     String internationalPhoneNumber;
-
+    
     Geometry geometry;
-
+    
     @SerializedName("icon")
     String iconURL;
-
+    
     String id;
-
+    
     String name;
-
+    
     List<OpeningHours> openingHours;
-
+    
     List<Photo> photos;
-
+    
     @SerializedName("place_id")
     String placeId;
-
+    
     Integer rating;
-
+    
     String reference;
-
+    
     List<Review> reviews;
-
+    
     List<Types.ReturnedPlaceType> types;
-
+    
     String url;
-
+    
     Integer utcOffset;
-
+    
     String vicinity;
-
+    
     String website;
-
+    
+    public List<AddressComponent> getAddressComponents()
+    {
+        if (Lists.isEmpty(addressComponents))
+        {
+            return Lists.emptyList();
+        }
+        else        
+        {
+            return Lists.immutableCopyOf(addressComponents);
+        }
+    }
+    
+    public String getFormattedAddress()
+    {
+        return formattedAddress;
+    }
+    
+    public String getFormattedPhoneNumber()
+    {
+        return formattedPhoneNumber;
+    }
+    
+    public String getInternationalPhoneNumber()
+    {
+        return internationalPhoneNumber;
+    }
+    
+    public Geometry getGeometry()
+    {
+        return geometry;
+    }
+    
+    public String getIconURL()
+    {
+        return iconURL;
+    }
+    
+    public String getId()
+    {
+        return id;
+    }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    public List<OpeningHours> getOpeningHours()
+    {
+        if (Lists.isEmpty(openingHours))
+        {
+            return Lists.emptyList();
+        }
+        else        
+        {
+            return Lists.immutableCopyOf(openingHours);
+        }
+    }
+    
+    public List<Photo> getPhotos()
+    {
+        if (Lists.isEmpty(photos))
+        {
+            return Lists.emptyList();
+        }
+        else        
+        {
+            return Lists.immutableCopyOf(photos);
+        }
+    }
+    
+    public String getPlaceId()
+    {
+        return placeId;
+    }
+    
+    public Integer getRating()
+    {
+        return rating;
+    }
+    
+    public String getReference()
+    {
+        return reference;
+    }
+    
+    public List<Review> getReviews()
+    {
+        if (Lists.isEmpty(reviews))
+        {
+            return Lists.emptyList();
+        }
+        else        
+        {
+            return Lists.immutableCopyOf(reviews);
+        }
+    }
+    
+    public List<Types.ReturnedPlaceType> getTypes()
+    {
+        if (Lists.isEmpty(types))
+        {
+            return Lists.emptyList();
+        }
+        else        
+        {
+            return Lists.immutableCopyOf(types);
+        }
+    }
+    
+    public String getUrl()
+    {
+        return url;
+    }
+    
+    public Integer getUtcOffset()
+    {
+        return utcOffset;
+    }
+    
+    public String getVicinity()
+    {
+        return vicinity;
+    }
+    
+    public String getWebsite()
+    {
+        return website;
+    }
+    
     @Override
     public int hashCode()
     {
@@ -99,7 +229,7 @@ public final class PlaceDetails
         hash = 97 * hash + Objects.hashCode(this.website);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj)
     {
@@ -194,7 +324,7 @@ public final class PlaceDetails
         }
         return true;
     }
-
+    
     @Override
     public String toString()
     {
@@ -224,26 +354,26 @@ public final class PlaceDetails
          * An array indicating the type of the address component.
          */
         List<Types.ReturnedPlaceType> types;
-
+        
         public AddressComponent()
         {
         }
-
+        
         public String getLongName()
         {
             return longName;
         }
-
+        
         public String getShortName()
         {
             return shortName;
         }
-
+        
         public List<Types.ReturnedPlaceType> getTypes()
         {
             return Lists.immutableCopyOf(types);
         }
-
+        
         @Override
         public int hashCode()
         {
@@ -253,7 +383,7 @@ public final class PlaceDetails
             hash = 53 * hash + Objects.hashCode(this.types);
             return hash;
         }
-
+        
         @Override
         public boolean equals(Object obj)
         {
@@ -284,13 +414,13 @@ public final class PlaceDetails
             }
             return true;
         }
-
+        
         @Override
         public String toString()
         {
             return "AddressComponent{" + "longName=" + longName + ", shortName=" + shortName + ", types=" + types + '}';
         }
-
+        
     }
-
+    
 }
