@@ -24,6 +24,8 @@ import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  *
  * @author SirWellington
@@ -51,7 +53,7 @@ public final class PlaceDetails
     
     String name;
     
-    List<OpeningHours> openingHours;
+    OpeningHours openingHours;
     
     List<Photo> photos;
     
@@ -121,16 +123,9 @@ public final class PlaceDetails
         return name;
     }
     
-    public List<OpeningHours> getOpeningHours()
+    public OpeningHours getOpeningHours()
     {
-        if (Lists.isEmpty(openingHours))
-        {
-            return Lists.emptyList();
-        }
-        else        
-        {
-            return Lists.immutableCopyOf(openingHours);
-        }
+        return openingHours;
     }
     
     public List<Photo> getPhotos()
@@ -174,14 +169,10 @@ public final class PlaceDetails
     
     public List<Types.ReturnedPlaceType> getTypes()
     {
-        if (Lists.isEmpty(types))
-        {
-            return Lists.emptyList();
-        }
-        else        
-        {
-            return Lists.immutableCopyOf(types);
-        }
+        return Lists.nullToEmpty(types)
+            .stream()
+            .filter(Objects::nonNull)
+            .collect(toList());
     }
     
     public String getUrl()

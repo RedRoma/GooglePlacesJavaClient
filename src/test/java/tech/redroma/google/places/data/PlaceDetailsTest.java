@@ -26,6 +26,7 @@ import tech.sirwellington.alchemy.test.junit.runners.Repeat;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+import static tech.redroma.google.places.data.TestResources.GSON;
 
 /**
  *
@@ -121,8 +122,8 @@ public class PlaceDetailsTest
     @Test
     public void testGetOpeningHours()
     {
-        List<OpeningHours> result = instance.getOpeningHours();
-        assertThat(result, not(empty()));
+        OpeningHours result = instance.getOpeningHours();
+        assertThat(result, notNullValue());
     }
 
     @Test
@@ -214,6 +215,15 @@ public class PlaceDetailsTest
     {
         String string = instance.toString();
         assertThat(string, not(isEmptyString()));
+    }
+    
+    @Test
+    public void testDeserializeFromJSON() throws Exception
+    {
+        String file = TestResources.loadFile("place-details.json");
+        PlaceDetails result = GSON.fromJson(file, PlaceDetails.class);
+        
+        checkInstance(result);
     }
 
     private void checkInstance(PlaceDetails place)
