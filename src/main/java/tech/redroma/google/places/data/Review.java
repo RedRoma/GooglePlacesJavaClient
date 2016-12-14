@@ -28,29 +28,108 @@ import tech.sirwellington.alchemy.annotations.objects.Pojo;
  *
  * @author SirWellington
  */
+@Mutable
+@ThreadUnsafe
 @Pojo
 public final class Review
 {
 
-    private String authorName;
+    public String authorName;
 
     @SerializedName("author_url")
-    private String authorURL;
+    public String authorURL;
 
-    private Language language;
+    public Language language;
 
     @SerializedName("profile_photo_url")
-    private String authorPhotoURL;
+    public String authorPhotoURL;
 
-    private Integer rating;
+    public Integer rating;
 
-    private String relativeTimeDescription;
+    public String relativeTimeDescription;
 
-    private String text;
+    public String text;
 
-    private Instant time;
+    public Instant time;
 
-    private List<AspectRating> aspects;
+    public List<AspectRating> aspects;
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.authorName);
+        hash = 89 * hash + Objects.hashCode(this.authorURL);
+        hash = 89 * hash + Objects.hashCode(this.language);
+        hash = 89 * hash + Objects.hashCode(this.authorPhotoURL);
+        hash = 89 * hash + Objects.hashCode(this.rating);
+        hash = 89 * hash + Objects.hashCode(this.relativeTimeDescription);
+        hash = 89 * hash + Objects.hashCode(this.text);
+        hash = 89 * hash + Objects.hashCode(this.time);
+        hash = 89 * hash + Objects.hashCode(this.aspects);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final Review other = (Review) obj;
+        if (!Objects.equals(this.authorName, other.authorName))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.authorURL, other.authorURL))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.authorPhotoURL, other.authorPhotoURL))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.relativeTimeDescription, other.relativeTimeDescription))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.text, other.text))
+        {
+            return false;
+        }
+        if (this.language != other.language)
+        {
+            return false;
+        }
+        if (!Objects.equals(this.rating, other.rating))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.time, other.time))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.aspects, other.aspects))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Review{" + "authorName=" + authorName + ", authorURL=" + authorURL + ", language=" + language + ", authorPhotoURL=" + authorPhotoURL + ", rating=" + rating + ", relativeTimeDescription=" + relativeTimeDescription + ", text=" + text + ", time=" + time + ", aspects=" + aspects + '}';
+    }
 
     @Pojo
     @Mutable
