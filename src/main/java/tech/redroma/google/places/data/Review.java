@@ -33,15 +33,23 @@ public final class Review
 {
 
     private String authorName;
+
     @SerializedName("author_url")
     private String authorURL;
+
     private Language language;
+
     @SerializedName("profile_photo_url")
     private String authorPhotoURL;
+
     private Integer rating;
+
     private String relativeTimeDescription;
+
     private String text;
+
     private Instant time;
+
     private List<AspectRating> aspects;
 
     @Pojo
@@ -49,11 +57,12 @@ public final class Review
     @ThreadUnsafe
     public static class AspectRating
     {
+
         public Integer rating;
-        
+
         @SerializedName("type")
         public String aspect;
-        
+
         @Override
         public int hashCode()
         {
@@ -63,6 +72,7 @@ public final class Review
             return hash;
         }
 
+        @Override
         public boolean equals(Object obj)
         {
             if (this == obj)
