@@ -17,7 +17,17 @@
 
 package tech.redroma.google.places;
 
+import tech.redroma.google.places.exceptions.GooglePlacesAuthenticationException;
+import tech.redroma.google.places.exceptions.GooglePlacesBadArgumentException;
 import tech.redroma.google.places.exceptions.GooglePlacesException;
+import tech.redroma.google.places.exceptions.GooglePlacesLimitExceededException;
+import tech.redroma.google.places.exceptions.GooglePlacesOperationFailedException;
+import tech.sirwellington.alchemy.http.HttpResponse;
+import tech.sirwellington.alchemy.http.HttpStatusCode;
+import tech.sirwellington.alchemy.http.exceptions.AlchemyHttpException;
+
+import static tech.sirwellington.alchemy.http.HttpStatusCode.BAD_REQUEST;
+import static tech.sirwellington.alchemy.http.HttpStatusCode.UNAUTHORIZED;
 
 
 /**
@@ -28,4 +38,54 @@ import tech.redroma.google.places.exceptions.GooglePlacesException;
 interface ExceptionMapper 
 {
     GooglePlacesException mapException(Exception ex);
+    
+    /*
+     * Singleton instance.
+     */
+    ExceptionMapper INSTANCE = (Exception ex) ->
+    {
+        if (ex instanceof GooglePlacesException)
+        {
+            return (GooglePlacesException) ex;
+        }
+        
+        if (ex instanceof IllegalArgumentException)
+        {
+            return new GooglePlacesBadArgumentException(ex);
+        }
+        
+        if (ex instanceof AlchemyHttpException)
+        {
+            AlchemyHttpException aex = (AlchemyHttpException) ex;
+            
+            if (!aex.hasResponse())
+            {
+                return new GooglePlacesOperationFailedException(aex);
+            }
+            
+            HttpResponse response = aex.getResponse();
+            
+            if (response.statusCode() == BAD_REQUEST.code)
+            {
+                return new GooglePlacesBadArgumentException(aex);
+            }
+            
+            if (response.statusCode() == UNAUTHORIZED.code)
+            {
+                return new GooglePlacesAuthenticationException(aex);
+            }
+            
+            if (response.statusCode() == HttpStatusCode.NOT_FOUND.code)
+            {
+                return new GooglePlacesBadArgumentException(aex);
+            }
+            
+            if (response.bodyAsString().contains("OVER_QUERY_LIMIT"))
+            {
+                return new GooglePlacesLimitExceededException(aex);
+            }
+        }
+        
+        return new GooglePlacesOperationFailedException(ex);
+    };
 }
