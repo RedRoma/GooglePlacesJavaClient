@@ -1,0 +1,210 @@
+{
+    "predictions": [
+        {
+            "description": "Victorville, CA, United States",
+            "id": "dd296d3fde2a539b9279cdd817c01183f69d07a7",
+            "matched_substrings": [
+                {
+                    "length": 4,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJedLdY1pkw4ARdjT0JVkRlQ0",
+            "reference": "CkQ2AAAAQ5BZBD-owKjhUYd5ZGPTXMEsUJ6P8zVm9bORAkd_IUrBo2SXYZYKk0hol5uvwmomSMpuE0XCI4KdVVqkcWsReBIQMASDo6UQ-qBIgQM9dpkkvxoUzUxLypQ3xuLxU5zC1hYpEnJbqVg",
+            "structured_formatting": {
+                "main_text": "Victorville",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 4,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "CA, United States"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "Victorville"
+                },
+                {
+                    "offset": 13,
+                    "value": "CA"
+                },
+                {
+                    "offset": 17,
+                    "value": "United States"
+                }
+            ],
+            "types": [
+                "locality",
+                "political",
+                "geocode"
+            ]
+        },
+        {
+            "description": "Victoria, BC, Canada",
+            "id": "d5892cffd777f0252b94ab2651fea7123d2aa34a",
+            "matched_substrings": [
+                {
+                    "length": 4,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJcWGw3Ytzj1QR7Ui7HnTz6Dg",
+            "reference": "CjQsAAAAu1sQbQGRZGnIUbMOIIdpdGB5xZb5y6gP5oWmVZprekj26xywJb2Qb9BCUXXsNGDeEhChomgh5Mc5FsKL-M5lRsYbGhSuww_bfBYOTNA1dGuPLbJ7jrM70A",
+            "structured_formatting": {
+                "main_text": "Victoria",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 4,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "BC, Canada"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "Victoria"
+                },
+                {
+                    "offset": 10,
+                    "value": "BC"
+                },
+                {
+                    "offset": 14,
+                    "value": "Canada"
+                }
+            ],
+            "types": [
+                "locality",
+                "political",
+                "geocode"
+            ]
+        },
+        {
+            "description": "Victoria, TX, United States",
+            "id": "003e8789b133eaa54fe0e7fdde07944c4849c1b5",
+            "matched_substrings": [
+                {
+                    "length": 4,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJO6wtLttmQoYRfSZjb1YN4u4",
+            "reference": "CkQzAAAAtgYuuuLI1UL5I_ZaH6rIxuxVaQd0MFEFwG9-giTZAcjchL5CuEdpZFXRRm9mwfqPesWHgNT0EJBUIRVLI_f-LhIQXpm5gwmt72fRHaYjaNuHtBoUgGh8A0iYwfyyDrsfXGMhyTT0SYg",
+            "structured_formatting": {
+                "main_text": "Victoria",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 4,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "TX, United States"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "Victoria"
+                },
+                {
+                    "offset": 10,
+                    "value": "TX"
+                },
+                {
+                    "offset": 14,
+                    "value": "United States"
+                }
+            ],
+            "types": [
+                "locality",
+                "political",
+                "geocode"
+            ]
+        },
+        {
+            "description": "Victor, ID, United States",
+            "id": "18cd6eda20675d9effbe43cb2aa4e5a268b03026",
+            "matched_substrings": [
+                {
+                    "length": 4,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJlVxRrqoKU1MRqnR-P5qmm24",
+            "reference": "CkQxAAAAfjeiCitE6-pnIHDaY26GpP21Jn41iXt2BO4q781CfUZXOqBN0uDKueOGQe7L5q9V793KKKcL0D8jYRvNLxcofRIQsHGDyNJFOh2UCB0DY9XvgBoUXl9Fq8SAuQv_9zlwOE2ZBYikkBw",
+            "structured_formatting": {
+                "main_text": "Victor",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 4,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "ID, United States"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "Victor"
+                },
+                {
+                    "offset": 8,
+                    "value": "ID"
+                },
+                {
+                    "offset": 12,
+                    "value": "United States"
+                }
+            ],
+            "types": [
+                "locality",
+                "political",
+                "geocode"
+            ]
+        },
+        {
+            "description": "Victoria, MN, United States",
+            "id": "695ba50f1fcc62be79f3b6e4dfa7854d2ba78645",
+            "matched_substrings": [
+                {
+                    "length": 4,
+                    "offset": 0
+                }
+            ],
+            "place_id": "ChIJF3XGvQAE9ocRv2g1Vx1zzf8",
+            "reference": "CkQzAAAAeYiPMQ7zgwOBaAkdv4ZFoOvkVkMdn0mfhh_AxzsV16KKzvMqC0W9xbQPpyPEcY1MU6Ea7AlspmxXYmw1iefg6hIQ4f1ufpvFE6QBdHZYZBhVGRoUKbcbPzUwiti8HvnjALvT16AbuE4",
+            "structured_formatting": {
+                "main_text": "Victoria",
+                "main_text_matched_substrings": [
+                    {
+                        "length": 4,
+                        "offset": 0
+                    }
+                ],
+                "secondary_text": "MN, United States"
+            },
+            "terms": [
+                {
+                    "offset": 0,
+                    "value": "Victoria"
+                },
+                {
+                    "offset": 10,
+                    "value": "MN"
+                },
+                {
+                    "offset": 14,
+                    "value": "United States"
+                }
+            ],
+            "types": [
+                "locality",
+                "political",
+                "geocode"
+            ]
+        }
+    ],
+    "status": "OK"
+}
