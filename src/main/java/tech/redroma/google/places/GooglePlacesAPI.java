@@ -32,10 +32,13 @@ import tech.redroma.google.places.requests.GetPlaceDetailsRequest;
 import tech.redroma.google.places.requests.NearbySearchRequest;
 import tech.redroma.google.places.responses.GetPlaceDetailsResponse;
 import tech.redroma.google.places.responses.NearbySearchResponse;
+import tech.sirwellington.alchemy.annotations.arguments.NonEmpty;
 import tech.sirwellington.alchemy.annotations.arguments.Required;
+import tech.sirwellington.alchemy.http.AlchemyHttp;
 
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
 import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
+import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
 
 /**
  * Interact with the GooglePlaces API using this interface.
@@ -160,5 +163,30 @@ public interface GooglePlacesAPI
         {
             throw new GooglePlacesOperationFailedException("Could not download Image at: " + url, ex);
         }
+    }
+    
+    /**
+     * Creates a production {@link GooglePlacesAPI} that can be used to make requests.
+     * 
+     * @param apiKey The API Key is required, and can be obtained from the Google Console.
+     * @return
+     * @throws IllegalArgumentException 
+     */
+    static GooglePlacesAPI create(@NonEmpty String apiKey) throws IllegalArgumentException
+    {
+        checkThat(apiKey).is(nonEmptyString());
+       
+        AlchemyHttp http = AlchemyHttp.newDefaultInstance();
+        RequestEncoders.NearbySearchEncoder nearbySearchEncoder = new RequestEncoders.NearbySearchEncoder();
+        RequestEncoders.GetPlaceDetailsEncoder placeDetailsEncoder = new RequestEncoders.GetPlaceDetailsEncoder();
+        RequestEncoders.AutocompleteEncoder autocompleteEncoder = new RequestEncoders.AutocompleteEncoder();
+        
+        return new GooglePlacesAPIImpl(apiKey,
+                                       http,
+                                       ExceptionMapper.INSTANCE,
+                                       nearbySearchEncoder,
+                                       placeDetailsEncoder,
+                                       autocompleteEncoder,
+                                       URLProvider.PRODUCTION);
     }
 }
