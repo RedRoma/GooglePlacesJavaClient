@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
- 
 package tech.redroma.google.places.data;
 
-
+import com.google.gson.annotations.SerializedName;
 import java.time.Instant;
 import java.util.List;
+import java.util.Objects;
 import tech.sirwellington.alchemy.annotations.concurrency.Mutable;
 import tech.sirwellington.alchemy.annotations.concurrency.ThreadUnsafe;
 import tech.sirwellington.alchemy.annotations.objects.Pojo;
@@ -29,24 +29,72 @@ import tech.sirwellington.alchemy.annotations.objects.Pojo;
  * @author SirWellington
  */
 @Pojo
-public final class Review 
+public final class Review
 {
-    
+
     private String authorName;
+    @SerializedName("author_url")
     private String authorURL;
     private Language language;
+    @SerializedName("profile_photo_url")
     private String authorPhotoURL;
     private Integer rating;
     private String relativeTimeDescription;
+    private String text;
     private Instant time;
     private List<AspectRating> aspects;
-    
+
     @Pojo
     @Mutable
     @ThreadUnsafe
     public static class AspectRating
     {
-        private Integer rating;
-        private String aspect;
+        public Integer rating;
+        
+        @SerializedName("type")
+        public String aspect;
+        
+        @Override
+        public int hashCode()
+        {
+            int hash = 3;
+            hash = 59 * hash + Objects.hashCode(this.rating);
+            hash = 59 * hash + Objects.hashCode(this.aspect);
+            return hash;
+        }
+
+        public boolean equals(Object obj)
+        {
+            if (this == obj)
+            {
+                return true;
+            }
+            if (obj == null)
+            {
+                return false;
+            }
+            if (getClass() != obj.getClass())
+            {
+                return false;
+            }
+            final AspectRating other = (AspectRating) obj;
+            if (!Objects.equals(this.aspect, other.aspect))
+            {
+                return false;
+            }
+            if (!Objects.equals(this.rating, other.rating))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        public String toString()
+        {
+            return "AspectRating{" + "rating=" + rating + ", aspect=" + aspect + '}';
+        }
+
     }
+
 }
