@@ -72,7 +72,9 @@ public final class Place
     /**
      * May contain the following information:
      * <p>
+     * <ul>
      * <li> {@link OpeningHours#openNow} - A boolean indicating whether the place is open at the time of request. </li>
+     * </ul>
      */
     public OpeningHours openingHours;
 
