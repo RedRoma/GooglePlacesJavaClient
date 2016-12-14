@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 package tech.redroma.google.places;
 
 import com.google.common.io.Resources;
@@ -22,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import sir.wellington.alchemy.collections.lists.Lists;
+import tech.redroma.google.places.data.Photo;
 import tech.redroma.google.places.data.Place;
 import tech.redroma.google.places.data.PlaceDetails;
 import tech.redroma.google.places.exceptions.GooglePlacesBadArgumentException;
@@ -37,51 +37,122 @@ import tech.sirwellington.alchemy.annotations.arguments.Required;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
 import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
 
-
 /**
  * Interact with the GooglePlaces API using this interface.
- * 
+ * <p>
+ * See <a href="https://developers.google.com/places/web-service">https://developers.google.com/places/web-service</a>
+ *
+ * @see  <a href="https://developers.google.com/places/web-service">https://developers.google.com/places/web-service</a>
  * @author SirWellington
  */
-public interface GooglePlacesAPI 
+public interface GooglePlacesAPI
 {
+
+    /**
+     * Search for nearby places using the
+     * <a href="https://developers.google.com/places/web-service/search">Nearby Search Request API</a>
+     *
+     * @param request
+     * @return
+     * @throws GooglePlacesException
+     * @see NearbySearchRequest#newBuilder()
+     * @see #simpleSearchNearbyPlaces(tech.redroma.google.places.requests.NearbySearchRequest)
+     * @see <a href="https://developers.google.com/places/web-service/search">Nearby Search Request API</a>
+     */
     NearbySearchResponse searchNearbyPlaces(@Required NearbySearchRequest request) throws GooglePlacesException;
-    
+
+    /**
+     * This is a convenient version of {@link #searchNearbyPlaces(tech.redroma.google.places.requests.NearbySearchRequest) }
+     * that returns a {@code List<Place>}.
+     *
+     * @param request
+     * @return
+     * @throws GooglePlacesException
+     */
     default List<Place> simpleSearchNearbyPlaces(@Required NearbySearchRequest request) throws GooglePlacesException
     {
         NearbySearchResponse result = searchNearbyPlaces(request);
-        
+
         return Lists.nullToEmpty(result.getResults());
     }
-    
+
+    /**
+     * Get more information about a Place using the
+     * <a href="https://developers.google.com/places/web-service/details">Place Details API</a>
+     *
+     * @param request
+     * @return
+     * @throws GooglePlacesException
+     * @see #simpleGetPlaceDetails(tech.redroma.google.places.data.Place)
+     * @see GetPlaceDetailsRequest#newBuilder()
+     * @see <a href="https://developers.google.com/places/web-service/details">Place Details API</a>
+     */
     GetPlaceDetailsResponse getPlaceDetails(@Required GetPlaceDetailsRequest request) throws GooglePlacesException;
-    
+
+    /**
+     * This is a convenient version of {@link #getPlaceDetails(tech.redroma.google.places.requests.GetPlaceDetailsRequest) }
+     * that returns a {@link PlaceDetails}.
+     *
+     * @param place
+     * @return
+     * @throws GooglePlacesException
+     */
     default PlaceDetails simpleGetPlaceDetails(@Required Place place) throws GooglePlacesException
     {
         checkThat(place)
             .throwing(GooglePlacesBadArgumentException.class)
             .is(notNull());
-        
+
         GetPlaceDetailsRequest request = GetPlaceDetailsRequest.newBuilder()
             .withPlaceID(place.placeId)
             .build();
-        
+
         GetPlaceDetailsResponse result = this.getPlaceDetails(request);
-        
+
         return result.getResult();
     }
-    
+
+    /**
+     * Get a URL to a {@link Photo} using the
+     * <a href="https://developers.google.com/places/web-service/photos">Places Photo API</a>
+     * @param request
+     * @return
+     * @throws GooglePlacesException 
+     * @see Photo
+     * @see Photo#photoReference
+     * @see <a href="https://developers.google.com/places/web-service/photos">Places Photo API</a>
+     */
     URL getPhoto(@Required GetPhotoRequest request) throws GooglePlacesException;
-    
-    default byte[] downloadPhoto(@Required GetPhotoRequest request) throws GooglePlacesException
+
+    /**
+     * This is a convenience method for {@link #getPhoto(tech.redroma.google.places.requests.GetPhotoRequest) }
+     * which returns a fully-downloaded image.
+     * <p>
+     * NOTE: This operation downloads the full-sized image. 
+     * Use {@link #getPhoto(tech.redroma.google.places.requests.GetPhotoRequest) } if you want more
+     * customized sizing.
+     * 
+     * @param photo The image to download.
+     * @return
+     * @throws GooglePlacesException 
+     * @see Photo
+     * @see Photo#photoReference
+     * @see #getPhoto(tech.redroma.google.places.requests.GetPhotoRequest) 
+     */
+    default byte[] downloadPhoto(@Required Photo photo) throws GooglePlacesException
     {
-        checkThat(request)
+        checkThat(photo)
             .throwing(GooglePlacesBadArgumentException.class)
             .is(notNull());
         
+        GetPhotoRequest request = GetPhotoRequest.newBuilder()
+            .withPhotoReference(photo.photoReference)
+            .withMaxWidth(GetPhotoRequest.Builder.MAX_WIDTH)
+            .build();
+
         URL url = getPhoto(request);
-        
-        try 
+
+        try
         {
             return Resources.toByteArray(url);
         }
