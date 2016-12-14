@@ -16,10 +16,13 @@
 
 package tech.redroma.google.places;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLConnection;
 import javax.inject.Inject;
 import org.apache.http.client.utils.URIBuilder;
 import org.slf4j.Logger;
@@ -36,6 +39,7 @@ import tech.sirwellington.alchemy.annotations.access.Internal;
 import tech.sirwellington.alchemy.http.AlchemyHttp;
 import tech.sirwellington.alchemy.http.AlchemyRequest;
 
+import static com.google.common.base.Strings.isNullOrEmpty;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
 import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
 import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
@@ -47,9 +51,9 @@ import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.n
 @Internal
 final class GooglePlacesAPIImpl implements GooglePlacesAPI
 {
-    
+
     private final static Logger LOG = LoggerFactory.getLogger(GooglePlacesAPIImpl.class);
-    
+
     private final String apiKey;
     private final AlchemyHttp http;
     private final ExceptionMapper exceptionMapper;
@@ -57,7 +61,7 @@ final class GooglePlacesAPIImpl implements GooglePlacesAPI
     private final RequestEncoder<GetPlaceDetailsRequest> placeDetailsRequestEncoder;
     private final RequestEncoder<AutocompletePlaceRequest> autocompleteRequestEncoder;
     private final URLProvider urls;
-    
+
     @Inject
     GooglePlacesAPIImpl(String apiKey,
                         AlchemyHttp http,
@@ -70,7 +74,7 @@ final class GooglePlacesAPIImpl implements GooglePlacesAPI
         checkThat(apiKey).is(nonEmptyString());
         checkThat(http, exceptionMapper, nearbySearchRequestEncoder, placeDetailsRequestEncoder, autocompleteRequestEncoder)
             .are(notNull());
-        
+
         this.apiKey = apiKey;
         this.http = http;
         this.exceptionMapper = exceptionMapper;
@@ -79,19 +83,19 @@ final class GooglePlacesAPIImpl implements GooglePlacesAPI
         this.autocompleteRequestEncoder = autocompleteRequestEncoder;
         this.urls = urls;
     }
-    
+
     @Override
     public NearbySearchResponse searchNearbyPlaces(NearbySearchRequest request) throws GooglePlacesException
     {
         checkRequest(request);
-        
+
         AlchemyRequest.Step3 httpRequest = http.go()
             .get()
             .usingQueryParam(Keys.API_KEY, apiKey);
-        
+
         String url = urls.getNearbySearch();
         httpRequest = nearbySearchRequestEncoder.encodeRequest(httpRequest, request);
-        
+
         try
         {
             return httpRequest
@@ -104,19 +108,19 @@ final class GooglePlacesAPIImpl implements GooglePlacesAPI
             throw exceptionMapper.mapException(ex);
         }
     }
-    
+
     @Override
     public GetPlaceDetailsResponse getPlaceDetails(GetPlaceDetailsRequest request) throws GooglePlacesException
     {
         checkRequest(request);
-        
+
         AlchemyRequest.Step3 httpRequest = http.go()
             .get()
             .usingQueryParam(Keys.API_KEY, apiKey);
-        
+
         String url = urls.getPlaceDetails();
         httpRequest = placeDetailsRequestEncoder.encodeRequest(httpRequest, request);
-        
+
         try
         {
             return httpRequest
@@ -129,31 +133,17 @@ final class GooglePlacesAPIImpl implements GooglePlacesAPI
             throw exceptionMapper.mapException(ex);
         }
     }
-    
+
     @Override
     public URL getPhoto(GetPhotoRequest request) throws GooglePlacesException
     {
         checkRequest(request);
-        
+
         String url = urls.getPhotoAPI();
-        
+        URL result;
         try
         {
-            URIBuilder builder = new URIBuilder(url)
-                .addParameter(Keys.API_KEY, apiKey)
-                .addParameter(Keys.PHOTO_REFERENCE, request.photoReference);
-            
-            if (request.hasMaxHeight())
-            {
-                builder = builder.addParameter(Keys.HEIGHT, String.valueOf(request.maxHeight));
-            }
-            else if (request.hasMaxWidth())
-            {
-                builder = builder.addParameter(Keys.WIDTH, String.valueOf(request.maxWidth));
-            }
-            
-            URI uri = builder.build();
-            return uri.toURL();
+            result = buildURLFor(request, url);
         }
         catch (URISyntaxException | MalformedURLException ex)
         {
@@ -161,24 +151,90 @@ final class GooglePlacesAPIImpl implements GooglePlacesAPI
             throw exceptionMapper.mapException(ex);
         }
         
+        try
+        {
+            result = determineRedirectAt(result);
+        }
+        catch (Exception ex)
+        {
+            LOG.error("Failed to follow a redirect to get image at: [{}]", url, ex);
+        }
+        
+        return result;
     }
-    
+
     private void checkRequest(Object request)
     {
         checkThat(request)
             .throwing(GooglePlacesBadArgumentException.class)
             .usingMessage("request missing")
             .is(notNull());
-        
+
     }
-    
+
+    private URL buildURLFor(GetPhotoRequest request, String url) throws URISyntaxException, MalformedURLException
+    {
+        URIBuilder builder = new URIBuilder(url)
+            .addParameter(Keys.API_KEY, apiKey)
+            .addParameter(Keys.PHOTO_REFERENCE, request.photoReference);
+
+        if (request.hasMaxHeight())
+        {
+            builder = builder.addParameter(Keys.HEIGHT, String.valueOf(request.maxHeight));
+        }
+        else if (request.hasMaxWidth())
+        {
+            builder = builder.addParameter(Keys.WIDTH, String.valueOf(request.maxWidth));
+        }
+
+        URI uri = builder.build();
+        return uri.toURL();
+    }
+
+    private URL determineRedirectAt(URL url) throws IOException
+    {
+        URLConnection connection = url.openConnection();
+        
+        if (!(connection instanceof HttpURLConnection))
+        {
+            return url;
+        }
+        
+        HttpURLConnection httpConnection = (HttpURLConnection) connection;
+        httpConnection.setInstanceFollowRedirects(false);
+        httpConnection.setRequestMethod(Keys.HEAD);
+        int responseCode = httpConnection.getResponseCode();
+        
+        try
+        {
+            String redirectURL = httpConnection.getHeaderField(Keys.REDIRECTED_HEADER);
+
+            if (!isNullOrEmpty(redirectURL))
+            {
+                return new URL(redirectURL);
+            }
+            else
+            {
+                return url;
+            }
+        }
+        finally
+        {
+            httpConnection.disconnect();
+        }
+    }
+
     static class Keys
     {
-        
+
         static final String API_KEY = "key";
         static final String PHOTO_REFERENCE = "photoreference";
         static final String WIDTH = "maxwidth";
         static final String HEIGHT = "maxheight";
+        static final String REDIRECTED_HEADER = "location";
+        
+        static final String HEAD = "HEAD";
+        static final String GET = "GET";
     }
-    
+
 }
