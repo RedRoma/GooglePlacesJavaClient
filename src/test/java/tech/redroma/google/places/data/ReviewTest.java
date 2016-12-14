@@ -55,9 +55,6 @@ public class ReviewTest
     @Before
     public void setUp() throws Exception
     {
-        instance.language = Generators.oneLanguage().code;
-        other.language = Generators.oneLanguage().code;
-        
         instance.time = one(anytime()).toEpochMilli();
         other.time = anytime().get().toEpochMilli();
     }
