@@ -146,6 +146,61 @@ public final class NearbySearchRequest
         return !isNullOrEmpty(pageToken);
     }
 
+    public Location getLocation()
+    {
+        return Location.copyOf(location);
+    }
+
+    public Integer getRadiusInMeters()
+    {
+        return radiusInMeters;
+    }
+
+    public String getKeyword()
+    {
+        return keyword;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public Language getLanguage()
+    {
+        return language;
+    }
+
+    public PriceLevel getMinPrice()
+    {
+        return minPrice;
+    }
+
+    public PriceLevel getMaxPrice()
+    {
+        return maxPrice;
+    }
+
+    public boolean isOnlyOpenNow()
+    {
+        return onlyOpenNow;
+    }
+
+    public Ranking getRankBy()
+    {
+        return rankBy;
+    }
+
+    public Types.PlaceType getType()
+    {
+        return type;
+    }
+
+    public String getPageToken()
+    {
+        return pageToken;
+    }
+
     @Override
     public int hashCode()
     {
@@ -283,20 +338,20 @@ public final class NearbySearchRequest
         {
             return new Builder();
         }
-        
+
         /**
          * Creates a builder using the information from the specified request object.
-         * 
+         *
          * @param request
          * @return
-         * @throws IllegalArgumentException 
+         * @throws IllegalArgumentException
          */
         public static Builder from(@Required NearbySearchRequest request) throws IllegalArgumentException
         {
             checkThat(request).is(notNull());
-            
+
             Builder builder = newBuilder();
-            
+
             builder.keyword = request.keyword;
             builder.language = request.language;
             builder.location = request.location;
@@ -308,7 +363,7 @@ public final class NearbySearchRequest
             builder.radiusInMeters = request.radiusInMeters;
             builder.rankBy = request.rankBy;
             builder.type = request.type;
-            
+
             return builder;
         }
 
@@ -513,13 +568,13 @@ public final class NearbySearchRequest
 
         private void checkParameters()
         {
-            
+
             if (!isNullOrEmpty(pageToken))
             {
                 //Other parameters are not required.
                 return;
             }
-            
+
             checkThat(location)
                 .usingMessage("a valid location is required")
                 .is(validLocation());
