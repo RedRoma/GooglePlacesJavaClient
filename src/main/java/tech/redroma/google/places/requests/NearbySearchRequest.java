@@ -384,7 +384,7 @@ public final class NearbySearchRequest
         }
 
         /**
-         * Sets the distance (in meters) within which to return place results. The maximum allowd radius is {@link #MAX_RADIUS}.
+         * Sets the distance (in meters) within which to return place results. The maximum allowed radius is {@link #MAX_RADIUS}.
          * Note that radius cannot be included if {@link #withRankBy(tech.redroma.google.places.requests.NearbySearchRequest.Ranking)
          * } is used with {@link Ranking#DISTANCE}.
          *
