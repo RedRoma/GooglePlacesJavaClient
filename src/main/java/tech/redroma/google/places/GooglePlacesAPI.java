@@ -52,6 +52,8 @@ import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.n
 public interface GooglePlacesAPI
 {
 
+    GooglePlacesAPI NO_OP = new NoOpGooglePlaces();
+
     /**
      * Search for nearby places using the
      * <a href="https://developers.google.com/places/web-service/search">Nearby Search Request API</a>
