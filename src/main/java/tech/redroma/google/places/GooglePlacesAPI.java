@@ -17,6 +17,7 @@
 package tech.redroma.google.places;
 
 import com.google.common.io.Resources;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -179,7 +180,12 @@ public interface GooglePlacesAPI
     {
         checkThat(apiKey).is(nonEmptyString());
        
-        AlchemyHttp http = AlchemyHttp.newDefaultInstance();
+        Gson gson = InternalResources.GSON;
+        AlchemyHttp http = AlchemyHttp.newBuilder()
+            .disableAsyncCallbacks()
+            .usingGson(gson)
+            .build();
+        
         RequestEncoders.NearbySearchEncoder nearbySearchEncoder = new RequestEncoders.NearbySearchEncoder();
         RequestEncoders.GetPlaceDetailsEncoder placeDetailsEncoder = new RequestEncoders.GetPlaceDetailsEncoder();
         RequestEncoders.AutocompleteEncoder autocompleteEncoder = new RequestEncoders.AutocompleteEncoder();
