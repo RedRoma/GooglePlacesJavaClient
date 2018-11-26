@@ -18,24 +18,26 @@
 package tech.redroma.google.places;
 
 import tech.sirwellington.alchemy.annotations.access.Internal;
-import tech.sirwellington.alchemy.http.AlchemyRequest;
+import tech.sirwellington.alchemy.http.AlchemyRequestSteps;
 
 
 /**
- * Responsible for taking information from a request object and embedding it into an {@link AlchemyRequest}.
+ * Responsible for taking information from a request object and embedding it into an {@link tech.sirwellington.alchemy.http.HttpRequest}.
  * 
  * @author SirWellington
  */
 @Internal
 interface RequestEncoder<Request>
 {
+
     /**
-     * Takes the {@linkplain AlchemyRequest.Step3 Alchemy Request} and embeds it with the information
+     * Takes the {@linkplain AlchemyRequestSteps.Step3 Alchemy Request} and embeds it with the information
      * from the {@code Request} object.
      * 
      * @param alchemyRequest
      * @param request
-     * @return An {@linkplain AlchemyRequest.Step3 Alchemy Request} with information from {@code request} injected.
+     * @return An {@linkplain AlchemyRequestSteps.Step3 Alchemy Request} with information from {@code request} injected.
      */
-    AlchemyRequest.Step3 encodeRequest(AlchemyRequest.Step3 alchemyRequest, Request request);
+    AlchemyRequestSteps.Step3 encodeRequest(AlchemyRequestSteps.Step3 alchemyRequest, Request request);
+
 }

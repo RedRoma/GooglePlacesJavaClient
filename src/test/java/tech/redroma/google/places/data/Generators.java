@@ -22,13 +22,13 @@ import tech.redroma.google.places.requests.GetPlaceDetailsRequest;
 import tech.redroma.google.places.requests.NearbySearchRequest;
 import tech.sirwellington.alchemy.generator.AlchemyGenerator;
 
-import static tech.sirwellington.alchemy.generator.AlchemyGenerator.one;
+import static tech.sirwellington.alchemy.generator.AlchemyGenerator.Get.one;
 import static tech.sirwellington.alchemy.generator.CollectionGenerators.listOf;
 import static tech.sirwellington.alchemy.generator.EnumGenerators.enumValueOf;
 import static tech.sirwellington.alchemy.generator.GeolocationGenerators.latitudes;
 import static tech.sirwellington.alchemy.generator.GeolocationGenerators.longitudes;
 import static tech.sirwellington.alchemy.generator.NumberGenerators.integers;
-import static tech.sirwellington.alchemy.generator.StringGenerators.alphabeticString;
+import static tech.sirwellington.alchemy.generator.StringGenerators.alphabeticStrings;
 import static tech.sirwellington.alchemy.generator.StringGenerators.hexadecimalString;
 
 /**
@@ -81,7 +81,7 @@ public class Generators
     {
         return NearbySearchRequest.newBuilder()
             .withLocation(createLocation())
-            .withKeyword(one(alphabeticString()))
+            .withKeyword(one(alphabeticStrings()))
             .onlyOpenNow()
             .withRadiusInMeters(createRadius())
             .withLanguage(oneLanguage())
@@ -101,7 +101,7 @@ public class Generators
     public static AutocompletePlaceRequest createAutocompleteRequest()
     {
         return AutocompletePlaceRequest.newBuilder()
-            .withInput(one(alphabeticString()))
+            .withInput(one(alphabeticStrings()))
             .withLocation(createLocation())
             .withLanguage(oneLanguage())
             .withRadiusInMeters(createRadius())

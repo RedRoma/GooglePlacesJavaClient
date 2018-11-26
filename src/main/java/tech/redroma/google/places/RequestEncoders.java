@@ -28,7 +28,7 @@ import tech.redroma.google.places.requests.GetPlaceDetailsRequest;
 import tech.redroma.google.places.requests.NearbySearchRequest;
 import tech.sirwellington.alchemy.annotations.access.Internal;
 import tech.sirwellington.alchemy.annotations.access.NonInstantiable;
-import tech.sirwellington.alchemy.http.AlchemyRequest;
+import tech.sirwellington.alchemy.http.AlchemyRequestSteps;
 
 import static java.util.stream.Collectors.toList;
 import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
@@ -47,9 +47,8 @@ final class RequestEncoders
 
     static class NearbySearchEncoder implements RequestEncoder<NearbySearchRequest>
     {
-
         @Override
-        public AlchemyRequest.Step3 encodeRequest(AlchemyRequest.Step3 alchemyRequest, NearbySearchRequest request)
+        public AlchemyRequestSteps.Step3 encodeRequest(AlchemyRequestSteps.Step3 alchemyRequest, NearbySearchRequest request)
         {
             checkThat(alchemyRequest, request)
                 .throwing(GooglePlacesBadArgumentException.class)
@@ -59,7 +58,7 @@ final class RequestEncoders
             
             String locationString = String.format("%s,%s", location.latitude, location.longitude);
             
-            AlchemyRequest.Step3 result = alchemyRequest.usingQueryParam(Parameters.LOCATION, locationString);
+            AlchemyRequestSteps.Step3 result = alchemyRequest.usingQueryParam(Parameters.LOCATION, locationString);
             
             if (request.hasLanguage())
             {
@@ -117,13 +116,13 @@ final class RequestEncoders
     {
 
         @Override
-        public AlchemyRequest.Step3 encodeRequest(AlchemyRequest.Step3 alchemyRequest, GetPlaceDetailsRequest request)
+        public AlchemyRequestSteps.Step3 encodeRequest(AlchemyRequestSteps.Step3 alchemyRequest, GetPlaceDetailsRequest request)
         {
             checkThat(alchemyRequest, request)
                 .throwing(GooglePlacesBadArgumentException.class)
                 .are(notNull());
                 
-            AlchemyRequest.Step3 result = alchemyRequest.usingQueryParam(Parameters.PLACE_ID, request.placeId);
+            AlchemyRequestSteps.Step3 result = alchemyRequest.usingQueryParam(Parameters.PLACE_ID, request.placeId);
             
             if (request.hasLanguage())
             {
@@ -144,13 +143,13 @@ final class RequestEncoders
     {
 
         @Override
-        public AlchemyRequest.Step3 encodeRequest(AlchemyRequest.Step3 alchemyRequest, AutocompletePlaceRequest request)
+        public AlchemyRequestSteps.Step3 encodeRequest(AlchemyRequestSteps.Step3 alchemyRequest, AutocompletePlaceRequest request)
         {
             checkThat(alchemyRequest, request)
                 .throwing(GooglePlacesBadArgumentException.class)
                 .are(notNull());
             
-            AlchemyRequest.Step3 result = alchemyRequest.usingQueryParam(Parameters.INPUT, request.input);
+            AlchemyRequestSteps.Step3 result = alchemyRequest.usingQueryParam(Parameters.INPUT, request.input);
             
             if (request.hasLanguage())
             {
@@ -196,13 +195,13 @@ final class RequestEncoders
     {
 
         @Override
-        public AlchemyRequest.Step3 encodeRequest(AlchemyRequest.Step3 alchemyRequest, GetPhotoRequest request)
+        public AlchemyRequestSteps.Step3 encodeRequest(AlchemyRequestSteps.Step3 alchemyRequest, GetPhotoRequest request)
         {
             checkThat(alchemyRequest, request)
                 .throwing(GooglePlacesBadArgumentException.class)
                 .are(notNull());
 
-            AlchemyRequest.Step3 result = alchemyRequest.usingQueryParam(Parameters.PHOTO_REFERENCE, request.photoReference);
+            AlchemyRequestSteps.Step3 result = alchemyRequest.usingQueryParam(Parameters.PHOTO_REFERENCE, request.photoReference);
 
             if (request.hasMaxHeight())
             {

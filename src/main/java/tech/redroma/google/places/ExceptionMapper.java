@@ -37,6 +37,7 @@ import static tech.sirwellington.alchemy.http.HttpStatusCode.UNAUTHORIZED;
  */
 interface ExceptionMapper 
 {
+
     GooglePlacesException mapException(Exception ex);
     
     /*
@@ -65,17 +66,17 @@ interface ExceptionMapper
             
             HttpResponse response = aex.getResponse();
             
-            if (response.statusCode() == BAD_REQUEST.code)
+            if (response.statusCode() == BAD_REQUEST.getCode())
             {
                 return new GooglePlacesBadArgumentException(aex);
             }
             
-            if (response.statusCode() == UNAUTHORIZED.code)
+            if (response.statusCode() == UNAUTHORIZED.getCode())
             {
                 return new GooglePlacesAuthenticationException(aex);
             }
             
-            if (response.statusCode() == HttpStatusCode.NOT_FOUND.code)
+            if (response.statusCode() == HttpStatusCode.NOT_FOUND.getCode())
             {
                 return new GooglePlacesBadArgumentException(aex);
             }

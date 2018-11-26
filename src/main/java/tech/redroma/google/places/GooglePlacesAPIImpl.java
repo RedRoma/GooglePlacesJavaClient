@@ -17,32 +17,25 @@
 package tech.redroma.google.places;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import javax.inject.Inject;
-import org.apache.http.client.utils.URIBuilder;
+
+import io.mikael.urlbuilder.UrlBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tech.redroma.google.places.exceptions.GooglePlacesBadArgumentException;
 import tech.redroma.google.places.exceptions.GooglePlacesException;
-import tech.redroma.google.places.requests.AutocompletePlaceRequest;
-import tech.redroma.google.places.requests.GetPhotoRequest;
-import tech.redroma.google.places.requests.GetPlaceDetailsRequest;
-import tech.redroma.google.places.requests.NearbySearchRequest;
+import tech.redroma.google.places.requests.*;
 import tech.redroma.google.places.responses.GetPlaceDetailsResponse;
 import tech.redroma.google.places.responses.NearbySearchResponse;
 import tech.sirwellington.alchemy.annotations.access.Internal;
 import tech.sirwellington.alchemy.http.AlchemyHttp;
-import tech.sirwellington.alchemy.http.AlchemyRequest;
+import tech.sirwellington.alchemy.http.AlchemyRequestSteps;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
-import static tech.sirwellington.alchemy.arguments.Arguments.checkThat;
+import static tech.sirwellington.alchemy.arguments.Arguments.*;
 import static tech.sirwellington.alchemy.arguments.assertions.Assertions.notNull;
-import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.nonEmptyString;
+import static tech.sirwellington.alchemy.arguments.assertions.StringAssertions.*;
 
 /**
  *
@@ -89,9 +82,9 @@ final class GooglePlacesAPIImpl implements GooglePlacesAPI
     {
         checkRequest(request);
 
-        AlchemyRequest.Step3 httpRequest = http.go()
-            .get()
-            .usingQueryParam(Keys.API_KEY, apiKey);
+        AlchemyRequestSteps.Step3 httpRequest = http.go()
+                                                    .get()
+                                                    .usingQueryParam(Keys.API_KEY, apiKey);
 
         String url = urls.getNearbySearch();
         httpRequest = nearbySearchRequestEncoder.encodeRequest(httpRequest, request);
@@ -114,7 +107,7 @@ final class GooglePlacesAPIImpl implements GooglePlacesAPI
     {
         checkRequest(request);
 
-        AlchemyRequest.Step3 httpRequest = http.go()
+        AlchemyRequestSteps.Step3 httpRequest = http.go()
             .get()
             .usingQueryParam(Keys.API_KEY, apiKey);
 
@@ -174,9 +167,10 @@ final class GooglePlacesAPIImpl implements GooglePlacesAPI
 
     private URL buildURLFor(GetPhotoRequest request, String url) throws URISyntaxException, MalformedURLException
     {
-        URIBuilder builder = new URIBuilder(url)
-            .addParameter(Keys.API_KEY, apiKey)
-            .addParameter(Keys.PHOTO_REFERENCE, request.photoReference);
+
+        UrlBuilder builder = UrlBuilder.fromString(url);
+        builder.addParameter(Keys.API_KEY, apiKey)
+               .addParameter(Keys.PHOTO_REFERENCE, request.photoReference);
 
         if (request.hasMaxHeight())
         {
@@ -187,7 +181,7 @@ final class GooglePlacesAPIImpl implements GooglePlacesAPI
             builder = builder.addParameter(Keys.WIDTH, String.valueOf(request.maxWidth));
         }
 
-        URI uri = builder.build();
+        URI uri = builder.toUri();
         return uri.toURL();
     }
 

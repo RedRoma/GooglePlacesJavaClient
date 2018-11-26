@@ -181,7 +181,7 @@ public interface GooglePlacesAPI
         checkThat(apiKey).is(nonEmptyString());
        
         Gson gson = InternalResources.GSON;
-        AlchemyHttp http = AlchemyHttp.newBuilder()
+        AlchemyHttp http = AlchemyHttp.Factory.newBuilder()
             .disableAsyncCallbacks()
             .usingGson(gson)
             .build();
